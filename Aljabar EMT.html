@@ -1,0 +1,3165 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+<title>EMT untuk Perhitungan Aljabar</title>
+<style type="text/css">
+body { width : 700px; font-family: arial, sans-serif; font-size: 10pt; margin: 20px; margin-left: auto; margin-right: auto; }
+pre { font-family : "Courier New", monospace; background: #EEE; padding: 10px; margin-left: 15%; }
+pre.output { color: #000; background:none; margin-left: 5%; }
+pre.udf { color : #006; margin-left: 0; }
+pre.prompt { color : #700; margin-left: 0; }
+pre.comment { color : #040; background: none; margin-left: 7%; }
+p.comment { color : #040; margin-left: 5%; margin-right: 5%; }
+p.indentedcomment { color : #040; margin-left: 10%; }
+h1.title { font-family : arial, sans-serif; text-align : right; font-size : 24pt; padding-bottom: 5pt; }
+h1.comment, h1.comment a { font-family : arial, sans-serif; text-align : right; font-size : 16pt; color : #000; }
+h1.comment, h2.comment a { font-family : arial, sans-serif; text-align : right; font-size : 12pt; color : #000; }
+h1.title, h1.comment, h2.comment { border-bottom: 2px solid #e9b06e; }
+ul.comment { font-family : arial, sans-serif; font-size : 10pt; color : #040; margin-left: 10%; margin-right: 10%; padding-left:0; }
+img.euler { }
+p.image { text-align:center; margin-left:50px; }
+a:link { color:#448; font-weight:bolder; text-decoration:none; }
+a:visited { color:#446; font-weight:bolder; text-decoration:none; }
+</style>
+</head>
+
+<body>
+<h1 class="title">EMT untuk Perhitungan Aljabar</h1>
+<p class="comment">Pada notebook ini Anda belajar menggunakan EMT untuk melakukan berbagai perhitungan
+terkait dengan materi atau topik dalam Aljabar. Kegiatan yang harus Anda lakukan adalah
+sebagai berikut:
+</p>
+<ul class="comment">
+<li>
+Membaca secara cermat dan teliti notebook ini;
+</li>
+<li>
+Menerjemahkan teks bahasa Inggris ke bahasa Indonesia;
+</li>
+<li>
+Mencoba contoh-contoh perhitungan (perintah EMT) dengan cara meng-ENTER setiap
+perintah EMT yang ada (pindahkan kursor ke baris perintah)
+</li>
+<li>
+Jika perlu Anda dapat memodifikasi perintah yang ada dan memberikan
+keterangan/penjelasan tambahan terkait hasilnya.
+</li>
+<li>
+Menyisipkan baris-baris perintah baru untuk mengerjakan soal-soal Aljabar dari file
+PDF yang saya berikan;
+</li>
+<li>
+Memberi catatan hasilnya.
+</li>
+<li>
+Jika perlu tuliskan soalnya pada teks notebook (menggunakan format LaTeX).
+</li>
+<li>
+Gunakan tampilan hasil semua perhitungan yang eksak atau simbolik dengan format
+LaTeX. (Seperti contoh-contoh pada notebook ini.)
+</li>
+</ul>
+<h2 class="comment">Contoh pertama</h2>
+<p class="comment">Menyederhanakan bentuk aljabar:
+</p>
+<pre class="prompt">&gt;$&amp;6*x^(-3)*y^5*-7*x^2*y^(-9)
+</pre>
+<p class="comment">Menjabarkan:
+</p>
+<pre class="prompt">&gt;$&amp;showev('expand((6*x^(-3)+y^5)*(-7*x^2-y^(-9))))
+</pre>
+<p class="comment">Baris perintah Euler terdiri dari satu atau beberapa perintah Euler
+yang diikuti oleh titik koma ";" atau koma ",". Titik koma mencegah
+pencetakan hasil. Koma setelah perintah terakhir dapat dihilangkan.
+</p>
+<p class="comment">Baris perintah berikut hanya akan mencetak hasil dari ekspresi, bukan
+penugasan atau perintah format.
+</p>
+<pre class="prompt">&gt;r:=3; h:=6; pi*r^3*h/4
+</pre>
+<pre class="output">127.23450247
+</pre>
+<pre class="prompt">&gt;r:=2; h:=4; pi*r^2*h/3
+</pre>
+<pre class="output">16.7551608191
+</pre>
+<p class="comment">Perintah-perintah harus dipisahkan dengan spasi. Baris perintah
+berikut mencetak dua hasilnya.
+</p>
+<pre class="prompt">&gt;pi*3*r*h, %+3*pi*r*h
+</pre>
+<pre class="output">75.3982236862
+150.796447372
+</pre>
+<pre class="prompt">&gt;pi*2*r*h, %+2*pi*r*h // Ingat tanda % menyatakan hasil perhitungan terakhir sebelumnya
+</pre>
+<pre class="output">50.2654824574
+100.530964915
+</pre>
+<p class="comment">Baris perintah dieksekusi sesuai urutan saat pengguna menekan tombol
+enter. Jadi, Anda akan mendapatkan nilai baru setiap kali mengeksekusi
+baris kedua.
+</p>
+<pre class="prompt">&gt;x := 1;
+&gt;x := sin(x)
+</pre>
+<pre class="output">0.841470984808
+</pre>
+<pre class="prompt">&gt;x := cos(x) // nilai cosinus (x dalam radian)
+</pre>
+<pre class="output">0.666366745393
+</pre>
+<pre class="prompt">&gt;x := cos(x)
+</pre>
+<pre class="output">0.786072687687
+</pre>
+<p class="comment">Jika dua baris dihubungkan dengan "..." kedua baris tersebut akan
+selalu dieksekusi secara bersamaan.
+</p>
+<pre class="prompt">&gt;x := 1.5; ...
+ y := (3*x)/3,
+</pre>
+<pre class="output">1.5
+</pre>
+<pre class="prompt">&gt;y :=4; ...
+ y+y
+</pre>
+<pre class="output">8
+</pre>
+<pre class="prompt">&gt;k :=8; ...
+ k/2
+</pre>
+<pre class="output">4
+</pre>
+<pre class="prompt">&gt;x := 2; ...
+ x := (x+2/x)/2, x := (x+2/x)/2, x := (x+2/x)/2, 
+</pre>
+<pre class="output">1.5
+1.41666666667
+1.41421568627
+</pre>
+<p class="comment">Ini juga merupakan cara yang baik untuk membagi perintah yang panjang
+menjadi dua atau lebih baris. Anda dapat menekan Ctrl+Return untuk
+membagi satu baris menjadi dua pada posisi kursor saat ini, atau
+Ctrl+Back untuk menggabungkan baris-baris tersebut.
+</p>
+<p class="comment">Untuk melipat semua baris multi-line, tekan Ctrl+L. Maka baris-baris
+berikutnya hanya akan terlihat jika salah satu dari mereka memiliki
+fokus. Untuk melipat satu baris multi-line, mulai baris pertama dengan
+"%+ ".
+</p>
+<pre class="prompt">&gt;%+ x=4+5; ...
+  // This line will not be visible once the cursor is off the line
+&gt;%% x^2 // This line will be invisible.
+</pre>
+<pre class="output">81
+</pre>
+<p class="comment">Baris yang dimulai dengan %% akan sepenuhnya tidak terlihat.
+<br />&gt;%% x^2 // Baris ini akan tidak terlihat.
+<br /> 81
+<br />Euler mendukung loop dalam baris perintah, selama loop tersebut muat
+dalam satu baris atau beberapa baris. Tentu saja, batasan ini tidak
+berlaku dalam program. Untuk informasi lebih lanjut, silakan lihat
+pengantar berikut.
+</p>
+<pre class="prompt">&gt;x=1; for i=1 to 5; x := (x+2/x)/2, end; // menghitung akar 2
+</pre>
+<pre class="output">1.5
+1.41666666667
+1.41421568627
+1.41421356237
+1.41421356237
+</pre>
+<p class="comment">Berikut terjemahannya:
+</p>
+<p class="comment">```
+<br />Boleh menggunakan beberapa baris. Pastikan baris berakhir dengan "
+...".
+<br />```
+</p>
+<pre class="prompt">&gt;x := 1.5; // comments go here before the ...
+ repeat xnew:=(x+2/x)/2; until xnew~=x; ...
+    x := xnew; ...
+ end; ...
+ x,
+</pre>
+<pre class="output">1.41421356237
+</pre>
+<p class="comment">Conditional structures do also work.
+</p>
+<pre class="prompt">&gt;if E^pi&gt;pi^E; then "Thought so!", endif;
+</pre>
+<pre class="output">Thought so!
+</pre>
+<p class="comment">Saya pikir begitu!
+</p>
+<p class="comment">Saat Anda mengeksekusi perintah, kursor bisa berada di posisi mana
+saja dalam baris perintah. Anda dapat kembali ke perintah sebelumnya
+atau melompat ke perintah berikutnya menggunakan tombol panah. Atau
+Anda bisa mengklik bagian komentar di atas perintah untuk menuju ke
+perintah tersebut.
+</p>
+<p class="comment">Saat Anda memindahkan kursor sepanjang baris, pasangan tanda kurung
+atau tanda kurung siku yang membuka dan menutup akan disorot. Juga,
+perhatikan garis status. Setelah tanda kurung pembuka dari fungsi
+sqrt(), garis status akan menampilkan teks bantuan untuk fungsi
+tersebut. Eksekusi perintah dengan tombol enter.
+</p>
+<pre class="prompt">&gt;sqrt(sin(15°)/cos(10°))
+</pre>
+<pre class="output">0.512651681027
+</pre>
+<pre class="prompt">&gt;sqrt(sin(10°)/cos(20°))
+</pre>
+<pre class="output">0.429875017772
+</pre>
+<p class="comment">Untuk melihat bantuan untuk perintah terbaru, buka jendela bantuan
+dengan tombol F1. Di sana, Anda dapat memasukkan teks untuk mencari.
+Pada baris kosong, bantuan untuk jendela bantuan akan ditampilkan.
+Anda dapat menekan tombol escape untuk menghapus baris, atau untuk
+menutup jendela bantuan.
+</p>
+<p class="comment">Anda dapat mengklik dua kali pada perintah apa pun untuk membuka
+bantuan untuk perintah tersebut. Coba klik dua kali pada perintah exp
+di bawah ini pada baris perintah.
+</p>
+<p class="comment">Saat Anda menggerakkan kursor di sepanjang baris, pasangan tanda
+kurung buka dan tutup akan disorot. Juga, perhatikan garis status.
+Setelah tanda kurung buka dari fungsi sqrt(), garis status akan
+menampilkan teks bantuan untuk fungsi tersebut. Eksekusi perintah
+dengan tombol return.
+</p>
+<pre class="prompt">&gt;exp(log(7.2))
+</pre>
+<pre class="output">7.2
+</pre>
+<pre class="prompt">&gt;exp(log(3.6))
+</pre>
+<pre class="output">3.6
+</pre>
+<pre class="prompt">&gt;exp(log(2.5))
+</pre>
+<pre class="output">2.5
+</pre>
+<p class="comment">Anda juga dapat menyalin dan menempel di Euler. Gunakan Ctrl-C dan
+Ctrl-V untuk ini. Untuk menandai teks, seret mouse atau gunakan tombol
+shift bersama dengan tombol kursor mana pun. Selain itu, Anda dapat
+menyalin tanda kurung yang disorot.
+</p>
+<p class="comment">Euler mengenal fungsi matematika biasa. Seperti yang telah Anda lihat
+di atas, fungsi trigonometri bekerja dalam radian atau derajat. Untuk
+mengonversi ke derajat, tambahkan simbol derajat (dengan tombol F7)
+pada nilainya, atau gunakan fungsi rad(x). Fungsi akar kuadrat disebut
+sqrt di Euler. Tentu saja, x^(1/2) juga memungkinkan.
+</p>
+<p class="comment">Untuk menetapkan variabel, gunakan "=" atau ":=". Demi kejelasan,
+pengantar ini menggunakan bentuk yang terakhir. Spasi tidak
+berpengaruh, namun spasi antara perintah diharapkan ada.
+</p>
+<p class="comment">Beberapa perintah dalam satu baris dipisahkan dengan "," atau ";".
+Titik koma menekan keluaran dari perintah. Di akhir baris perintah,
+koma "," dianggap ada jika titik koma ";" tidak ada.
+</p>
+<pre class="prompt">&gt;c:=7.4; d:=3.5; 1/4*c*d 
+</pre>
+<pre class="output">6.475
+</pre>
+<pre class="prompt">&gt;g:=9.81; t:=2.5; 1/2*g*t^2
+</pre>
+<pre class="output">30.65625
+</pre>
+<p class="comment">EMT menggunakan sintaks pemrograman untuk ekspresi. Untuk memasukkan
+</p>
+<p class="comment">Anda harus menggunakan tanda kurung yang benar dan menggunakan "/"
+untuk pecahan. Perhatikan tanda kurung yang disorot untuk bantuan.
+Perlu dicatat bahwa konstanta Euler \( e \) disebut sebagai \( E \)
+dalam EMT.
+</p>
+<pre class="prompt">&gt;E^2*(1/(3+4*log(0.6))+1/7)
+</pre>
+<pre class="output">8.77908249441
+</pre>
+<p class="comment">To compute a complicate expression like
+</p>
+<p class="comment">you need to enter it in line form.
+</p>
+<pre class="prompt">&gt;((1/7 + 1/8 + 2) / (1/3 + 1/2))^2 * pi
+</pre>
+<pre class="output">23.2671801626
+</pre>
+<p class="comment">Pasang tanda kurung dengan hati-hati di sekitar sub-ekspresi yang
+perlu dihitung terlebih dahulu.
+<br />EMT membantu Anda dengan menyoroti ekspresi yang diselesaikan oleh
+tanda kurung penutup.
+<br />Anda juga harus memasukkan nama "pi" untuk huruf Yunani pi.
+</p>
+<p class="comment">Hasil dari perhitungan ini adalah angka desimal. Secara default, hasil
+dicetak dengan ketelitian sekitar 12 digit.
+<br />Pada baris perintah berikut, kita juga akan belajar bagaimana merujuk
+hasil sebelumnya dalam baris yang sama.
+</p>
+<pre class="prompt">&gt;2/4+5/6, fraction %
+</pre>
+<pre class="output">1.33333333333
+4/3
+</pre>
+<pre class="prompt">&gt;1/3+1/7, fraction %
+</pre>
+<pre class="output">0.47619047619
+10/21
+</pre>
+<p class="comment">Perintah Euler bisa berupa ekspresi atau perintah primitif. Ekspresi
+terdiri dari operator dan fungsi. Jika perlu, harus memuat tanda
+kurung untuk memaksa urutan eksekusi yang benar. Jika ragu,
+menggunakan tanda kurung adalah ide yang baik. Perhatikan bahwa EMT
+menampilkan tanda kurung buka dan tutup saat mengedit baris perintah.
+</p>
+<pre class="prompt">&gt;(sin(pi/2)+2)^4*(cos(pi/2)+4)^3
+</pre>
+<pre class="output">5184
+</pre>
+<pre class="prompt">&gt;(cos(pi/4)+1)^3*(sin(pi/4)+1)^2
+</pre>
+<pre class="output">14.4978445072
+</pre>
+<p class="comment">Operator numerik di Euler mencakup:
+</p>
+<ul class="comment">
+<li>
++ operator unary atau penjumlahan
+</li>
+<li>
+- operator unary atau pengurangan
+</li>
+<li>
+*, / operator perkalian dan pembagian
+</li>
+<li>
+. produk matriks
+</li>
+<li>
+a^b pangkat untuk a positif atau b bilangan bulat (a**b juga
+berfungsi)
+</li>
+<li>
+n! operator faktorial
+</li>
+</ul>
+<p class="comment">dan banyak lagi.
+</p>
+<p class="comment">Berikut beberapa fungsi yang mungkin Anda perlukan. Masih banyak lagi:
+</p>
+<ul class="comment">
+<li>
+sin, cos, tan, atan, asin, acos, rad, deg
+</li>
+<li>
+log, exp, log10, sqrt, logbase
+</li>
+<li>
+bin, logbin, logfac, mod, floor, ceil, round, abs, sign
+</li>
+<li>
+conj, re, im, arg, conj, real, complex
+</li>
+<li>
+beta, betai, gamma, complexgamma, ellrf, ellf, ellrd, elle
+</li>
+<li>
+bitand, bitor, bitxor, bitnot
+</li>
+</ul>
+<pre class="prompt">&gt;sin(pi/4) // sin of pi/4
+</pre>
+<pre class="output">0.707106781187
+</pre>
+<pre class="prompt">&gt;log (6) // natural logaritma of 6
+</pre>
+<pre class="output">1.79175946923
+</pre>
+<pre class="prompt">&gt;bin (5,2) // binomial coefficient
+</pre>
+<pre class="output">10
+</pre>
+<pre class="prompt">&gt;conj(3 + 4*I)   // complex conjugate of 3+
+</pre>
+<pre class="output">3-4i
+</pre>
+<pre class="prompt">&gt;ln(E^2), arctan(tan(0.5))
+</pre>
+<pre class="output">2
+0.5
+</pre>
+<pre class="prompt">&gt;sin(30°)
+</pre>
+<pre class="output">0.5
+</pre>
+<p class="comment">Pastikan untuk menggunakan tanda kurung (kurung bulat) kapan saja ada
+keraguan tentang urutan eksekusi! Berikut ini tidak sama dengan \(
+(2^3)^4 \), yang merupakan default untuk \( 2^3^4 \) dalam EMT
+(beberapa sistem numerik melakukannya sebaliknya).
+</p>
+<pre class="prompt">&gt;2^3^4, (2^3)^4, 2^(3^4)
+</pre>
+<pre class="output">2.41785163923e+24
+4096
+2.41785163923e+24
+</pre>
+<p class="comment">Tipe data utama di Euler adalah angka real. Angka real
+direpresentasikan dalam format IEEE dengan akurasi sekitar 16 digit
+desimal.
+</p>
+<pre class="prompt">&gt;longest 1/3
+</pre>
+<pre class="output">     0.3333333333333333 
+</pre>
+<p class="comment">Representasi dual internal memerlukan 8 byte.
+</p>
+<pre class="prompt">&gt;printdual(1/3)
+</pre>
+<pre class="output">1.0101010101010101010101010101010101010101010101010101*2^-2
+</pre>
+<pre class="prompt">&gt;printhex(1/3)
+</pre>
+<pre class="output">5.5555555555554*16^-1
+</pre>
+<h2 class="comment">Strings</h2>
+<p class="comment">A string in Euler is defined with "...".
+</p>
+<pre class="prompt">&gt;"A string can contain anything."
+</pre>
+<pre class="output">A string can contain anything.
+</pre>
+<p class="comment">String dapat digabungkan dengan | atau dengan +. Ini juga berlaku
+untuk angka, yang akan dikonversi menjadi string dalam hal ini.
+</p>
+<pre class="prompt">&gt;"The area of the circle with radius " + 2 + " cm is " + pi*4 + " cm^2."
+</pre>
+<pre class="output">The area of the circle with radius 2 cm is 12.5663706144 cm^2.
+</pre>
+<p class="comment">Fungsi cetak juga mengonversi angka menjadi string. Fungsi ini dapat
+menerima jumlah digit dan jumlah tempat desimal (0 untuk output
+padat), serta secara opsional sebuah satuan.
+</p>
+<pre class="prompt">&gt;"Golden Ratio : " + print((1+sqrt(5))/2,5,0)
+</pre>
+<pre class="output">Golden Ratio : 1.61803
+</pre>
+<p class="comment">Ada string khusus "none" yang tidak dicetak. String ini dikembalikan
+oleh beberapa fungsi ketika hasilnya tidak penting. (String ini
+dikembalikan secara otomatis jika fungsi tersebut tidak memiliki
+pernyataan return.)
+</p>
+<p class="comment">Untuk mengubah string menjadi angka, cukup evaluasi string tersebut.
+Ini juga berlaku untuk ekspresi (lihat di bawah).
+</p>
+<pre class="prompt">&gt;"1234.5"()
+</pre>
+<pre class="output">1234.5
+</pre>
+<p class="comment">Untuk mendefinisikan vektor string, gunakan notasi vektor [...].
+</p>
+<pre class="prompt">&gt;w:=["alika","azimatinur","raudha"]
+</pre>
+<pre class="output">alika
+azimatinur
+raudha
+</pre>
+<pre class="prompt">&gt;v:=["affe","charlie","bravo"]
+</pre>
+<pre class="output">affe
+charlie
+bravo
+</pre>
+<p class="comment">Vektor string kosong dinyatakan dengan [none]. Vektor string dapat
+digabungkan.
+</p>
+<pre class="prompt">&gt;k:= w|v|w
+</pre>
+<pre class="output">alika
+azimatinur
+raudha
+affe
+charlie
+bravo
+alika
+azimatinur
+raudha
+</pre>
+<pre class="prompt">&gt;w:=[none]; w|v|v
+</pre>
+<pre class="output">affe
+charlie
+bravo
+affe
+charlie
+bravo
+</pre>
+<p class="comment">String dapat mengandung karakter Unicode. Secara internal, string ini
+menggunakan kode UTF-8. Untuk membuat string seperti itu, gunakan
+u"..." dan salah satu entitas HTML.
+</p>
+<p class="comment">String Unicode dapat digabungkan seperti string lainnya.
+</p>
+<pre class="prompt">&gt;u"&amp;alpha; = " + 45 + u"&amp;deg;" // pdfLaTeX mungkin gagal menampilkan secara benar
+</pre>
+<pre class="output">α = 45°
+</pre>
+<p class="comment">I
+</p>
+<pre class="prompt">&gt;u"&amp;alpha; = " + 30 + u"&amp;deg;"
+</pre>
+<pre class="output">α = 30°
+</pre>
+<p class="comment">Dalam komentar, entitas yang sama seperti α, β, dan
+lain-lain dapat digunakan. Ini mungkin menjadi alternatif cepat untuk
+LaTeX. (Lebih banyak detail tentang komentar di bawah).
+</p>
+<p class="comment">Ada beberapa fungsi untuk membuat atau menganalisis string Unicode.
+Fungsi `strtochar()` akan mengenali string Unicode dan
+menerjemahkannya dengan benar.
+</p>
+<pre class="prompt">&gt;v=strtochar(u"&amp;Auml; is a German letter")
+</pre>
+<pre class="output">[196,  32,  105,  115,  32,  97,  32,  71,  101,  114,  109,  97,  110,
+32,  108,  101,  116,  116,  101,  114]
+</pre>
+<p class="comment">Hasilnya adalah vektor dari nomor Unicode. Fungsi kebalikannya adalah
+`chartoutf()`.
+</p>
+<pre class="prompt">&gt;a=strtochar ("\u03A9 \u03B1 \u03B2")  // Unicode for Omega (O), alpha (a), and beta (ß)
+</pre>
+<pre class="output">[92,  117,  48,  51,  65,  57,  32,  92,  117,  48,  51,  66,  49,  32,
+92,  117,  48,  51,  66,  50]
+</pre>
+<pre class="prompt">&gt;v[1]=strtochar(u"&amp;Uuml;")[1]; chartoutf(v)
+</pre>
+<pre class="output">Ü is a German letter
+</pre>
+<p class="comment">Fungsi `utf()` dapat menerjemahkan string dengan entitas dalam sebuah
+variabel menjadi string Unicode.
+</p>
+<pre class="prompt">&gt;s="We have &amp;alpha;=&amp;beta;."; utf(s) // pdfLaTeX mungkin gagal menampilkan secara benar
+</pre>
+<pre class="output">We have α=β.
+</pre>
+<p class="comment">Juga memungkinkan untuk menggunakan entitas numerik.
+</p>
+<pre class="prompt">&gt;u"&amp;#196;hnliches"
+</pre>
+<pre class="output">Ähnliches
+</pre>
+<p class="comment">Nilai boolean direpresentasikan dengan 1=true atau 0=false di Euler. 
+<br />String dapat dibandingkan, sama seperti angka.
+</p>
+<pre class="prompt">&gt;3&lt;2, "anggur"&gt;"pepaya"
+</pre>
+<pre class="output">0
+0
+</pre>
+<pre class="prompt">&gt;2&lt;1, "apel"&lt;"banana"
+</pre>
+<pre class="output">0
+1
+</pre>
+<p class="comment">"and" adalah operator "&amp;&amp;" dan "or" adalah operator "||", seperti
+dalam bahasa C. (Kata-kata "and" dan "or" hanya dapat digunakan dalam
+kondisi untuk "if").
+</p>
+<pre class="prompt">&gt;3&gt;1 or 4&lt;2
+</pre>
+<pre class="output">1
+</pre>
+<pre class="prompt">&gt;2&lt;E &amp;&amp; E&lt;3
+</pre>
+<pre class="output">1
+</pre>
+<p class="comment">Operator boolean mengikuti aturan bahasa matriks.
+</p>
+<pre class="prompt">&gt;(1:10)&lt;8
+</pre>
+<pre class="output">[1,  1,  1,  1,  1,  1,  1,  0,  0,  0]
+</pre>
+<pre class="prompt">&gt;(1:10)&gt;5, nonzeros(%)
+</pre>
+<pre class="output">[0,  0,  0,  0,  0,  1,  1,  1,  1,  1]
+[6,  7,  8,  9,  10]
+</pre>
+<p class="comment">Anda dapat menggunakan fungsi `nonzeros()` untuk mengekstrak elemen
+tertentu dari sebuah vektor. Dalam contoh ini, kami menggunakan
+kondisi `isprime(n)`.
+</p>
+<pre class="prompt">&gt;N=2|3:2:99 // N berisi elemen 2 dan bilangan2 ganjil dari 3 s.d. 99
+</pre>
+<pre class="output">[2,  3,  5,  7,  9,  11,  13,  15,  17,  19,  21,  23,  25,  27,  29,
+31,  33,  35,  37,  39,  41,  43,  45,  47,  49,  51,  53,  55,  57,
+59,  61,  63,  65,  67,  69,  71,  73,  75,  77,  79,  81,  83,  85,
+87,  89,  91,  93,  95,  97,  99]
+</pre>
+<pre class="prompt">&gt;C=4|5|7:1:45 // C berisi elemen 4, 5 dan bilangan2 antara 7 sampai 45
+</pre>
+<pre class="output">[4,  5,  7,  8,  9,  10,  11,  12,  13,  14,  15,  16,  17,  18,  19,
+20,  21,  22,  23,  24,  25,  26,  27,  28,  29,  30,  31,  32,  33,
+34,  35,  36,  37,  38,  39,  40,  41,  42,  43,  44,  45]
+</pre>
+<pre class="prompt">&gt;N[nonzeros(isprime(N))] //pilih anggota2 N yang prima
+</pre>
+<pre class="output">[2,  3,  5,  7,  11,  13,  17,  19,  23,  29,  31,  37,  41,  43,  47,
+53,  59,  61,  67,  71,  73,  79,  83,  89,  97]
+</pre>
+<h2 class="comment">Output Formats</h2>
+<p class="comment">Format output default dari EMT mencetak 12 digit. Untuk memastikan
+kita melihat pengaturan default, kita mengatur ulang format
+</p>
+<pre class="prompt">&gt;defformat; pi
+</pre>
+<pre class="output">3.14159265359
+</pre>
+<p class="comment">Secara internal, EMT menggunakan standar IEEE untuk angka double
+dengan sekitar 16 digit desimal. Untuk melihat jumlah digit yang
+lengkap, gunakan perintah "longestformat", atau gunakan operator
+"longest" untuk menampilkan hasil dalam format terpanjang.
+</p>
+<pre class="prompt">&gt;longest pi
+</pre>
+<pre class="output">      3.141592653589793 
+</pre>
+<p class="comment">ini adalah representasi internal dalam format heksa desimal dari
+sebuah angka double
+</p>
+<pre class="prompt">&gt;printhex(pi)
+</pre>
+<pre class="output">3.243F6A8885A30*16^0
+</pre>
+<p class="comment">format output dapat berubah dengan format perintah
+</p>
+<pre class="prompt">&gt;format(12,5); 1/3, pi, sin(1)
+</pre>
+<pre class="output">    0.33333 
+    3.14159 
+    0.84147 
+</pre>
+<p class="comment">The default is format(12).
+</p>
+<pre class="prompt">&gt;format(13); 1/2
+</pre>
+<pre class="output">0.5
+</pre>
+<pre class="prompt">&gt;format(12); 1/3
+</pre>
+<pre class="output">0.333333333333
+</pre>
+<p class="comment">Functions like "shortestformat", "shortformat", "longformat" work for vectors
+in the following way.
+</p>
+<pre class="prompt">&gt;shortestformat; random(4,5)
+</pre>
+<pre class="output">  0.29   0.75   0.47   0.32   0.34 
+   0.2   0.45   0.22    0.6   0.73 
+  0.95   0.79   0.42   0.47    0.9 
+  0.39   0.67  0.075   0.85   0.12 
+</pre>
+<pre class="prompt">&gt;shortestformat; random(3,8)
+</pre>
+<pre class="output">  0.21   0.47  0.028   0.61   0.11   0.62   0.22   0.96 
+  0.84   0.33   0.56   0.92      1   0.47   0.19   0.42 
+  0.72   0.25   0.83   0.44   0.37   0.78   0.37   0.22 
+</pre>
+<p class="comment">The default format for scalars is format(12). But this can be changed.
+</p>
+<pre class="prompt">&gt;setscalarformat(5); pi
+</pre>
+<pre class="output">3.1416
+</pre>
+<p class="comment">The function "longestformat" set the scalar format too.
+</p>
+<pre class="prompt">&gt;longestformat; pi
+</pre>
+<pre class="output">3.141592653589793
+</pre>
+<p class="comment">Sebagai referensi, berikut adalah daftar format keluaran yang paling
+penting.
+</p>
+<p class="comment">shortestformat shortformat longformat, longestformat
+<br />format(length,digits) goodformat(length)
+<br />fracformat(length)
+<br />defformat
+</p>
+<p class="comment">Akurasi internal EMT adalah sekitar 16 tempat desimal, sesuai dengan
+standar IEEE. Angka-angka disimpan dalam format internal ini.
+</p>
+<p class="comment">Namun, format keluaran EMT dapat diatur dengan cara yang fleksibel.
+</p>
+<pre class="prompt">&gt;longestformat; pi,
+</pre>
+<pre class="output">3.141592653589793
+</pre>
+<pre class="prompt">&gt;format(10,5); pi
+</pre>
+<pre class="output">  3.14159 
+</pre>
+<p class="comment">The default is defformat().
+</p>
+<pre class="prompt">&gt;defformat; // default
+</pre>
+<p class="comment">There are short operators which print only one value. The operator "longest"
+will print all valid digits of a number.
+</p>
+<pre class="prompt">&gt;longest pi^2/2
+</pre>
+<pre class="output">      4.934802200544679 
+</pre>
+<p class="comment">There is also a short operator for printing a result in fractional format. We
+have already used it above.
+</p>
+<pre class="prompt">&gt;fraction 1+1/2+1/3+1/4
+</pre>
+<pre class="output">25/12
+</pre>
+<p class="comment">Since the internal format uses a binary way to store numbers, the value 0.1
+will not be represented exactly. The error adds up a bit, as you see in the
+following computation.
+</p>
+<pre class="prompt">&gt;longest 0.1+0.1+0.1+0.1+0.1+0.1+0.1+0.1+0.1+0.1-1
+</pre>
+<pre class="output"> -1.110223024625157e-16 
+</pre>
+<p class="comment">But with the default "longformat" you will not notice this. For convenience,
+the output of very small numbers is 0.
+</p>
+<pre class="prompt">&gt;0.1+0.1+0.1+0.1+0.1+0.1+0.1+0.1+0.1+0.1-1
+</pre>
+<pre class="output">0
+</pre>
+<p class="comment">String atau nama dapat digunakan untuk menyimpan ekspresi matematika,
+yang dapat dievaluasi oleh EMT. Untuk ini, gunakan tanda kurung
+setelah ekspresi. Jika Anda berniat menggunakan string sebagai
+ekspresi, gunakan konvensi untuk menamakannya "fx" atau "fxy" dan
+sebagainya. Ekspresi memiliki prioritas lebih tinggi dibandingkan
+fungsi.
+</p>
+<p class="comment">Variabel global dapat digunakan dalam evaluasi.
+</p>
+<pre class="prompt">&gt;x:=3; fx:="x^3"
+</pre>
+<pre class="output">x^3
+</pre>
+<pre class="prompt">&gt;r:=2; fx:="pi*r^2"; longest fx()
+</pre>
+<pre class="output">      12.56637061435917 
+</pre>
+<p class="comment">Parameter ditetapkan ke x, y, dan z secara berurutan. Parameter
+tambahan dapat ditambahkan menggunakan parameter yang telah
+ditetapkan.
+</p>
+<pre class="prompt">&gt;fx:="a*sin(x)^2"; fx(5,a=-1)
+</pre>
+<pre class="output">-0.919535764538
+</pre>
+<p class="comment">Perhatikan bahwa ekspresi akan selalu menggunakan variabel global,
+meskipun ada variabel dalam fungsi dengan nama yang sama. (Jika tidak,
+evaluasi ekspresi dalam fungsi bisa menghasilkan kebingungan bagi
+pengguna yang memanggil fungsi terseb
+</p>
+<pre class="output">Function f needs at least 3 arguments!
+Use: f (expr, x, at) 
+Error in:
+f("at^3*5,4,6")  ...
+               ^
+</pre>
+<pre class="prompt">&gt;at:=4; function f(expr,x,at) := expr(x); ...
+ f("at*x^2",3,5) // computes 4*3^2 not 5*3^2
+</pre>
+<pre class="output">36
+</pre>
+<p class="comment">Jika Anda ingin menggunakan nilai lain untuk "at" selain nilai global,
+Anda perlu menambahkan "at=nilai
+</p>
+<pre class="prompt">&gt;at:=4; function f(expr,x,a) := expr(x,at=a); ...
+ f("at*x^2",3,5)
+</pre>
+<pre class="output">45
+</pre>
+<p class="comment">Sebagai referensi, kami mencatat bahwa kumpulan panggilan (dibahas di
+tempat lain) dapat berisi ekspresi. Jadi kita dapat membuat contoh di
+atas sebagai berikut.
+</p>
+<pre class="prompt">&gt;at:=4; function f(expr,x) := expr(x); ...
+ f({{"at*x^2",at=5}},3)
+</pre>
+<pre class="output">45
+</pre>
+<p class="comment">Ekspresi dalam x sering digunakan seperti fungsi. %%Perhatikan bahwa
+mendefinisikan fungsi dengan nama yang sama seperti ekspresi simbolik
+global akan menghapus variabel ini untuk menghindari kebingungan
+antara ekspresi simbolik dan fungsi.
+</p>
+<pre class="prompt">&gt;f &amp;= 5*x;
+&gt;function f(x) := 6*x;
+&gt;f(2)
+</pre>
+<pre class="output">12
+</pre>
+<p class="comment">Sebagai konvensi, ekspresi simbolik atau numerik sebaiknya diberi nama
+fx, fxy, dan sebagainya. Skema penamaan ini sebaiknya tidak digunakan
+untuk fungsi
+</p>
+<pre class="prompt">&gt;fx &amp;= diff(x^x,x); $&amp;fx
+</pre>
+<p class="comment">Bentuk khusus dari sebuah ekspresi memungkinkan penggunaan variabel
+apa pun sebagai parameter tanpa nama dalam evaluasi ekspresi, tidak
+hanya "x", "y", dll. Untuk ini, mulai ekspresi dengan "@(variabel)
+..."
+</p>
+<pre class="prompt">&gt;"@(a,b) a^2+b^2", %(4,5)
+</pre>
+<pre class="output">@(a,b) a^2+b^2
+41
+</pre>
+<p class="comment">Ini memungkinkan manipulasi ekspresi dalam variabel lain untuk fungsi
+EMT yang membutuhkan ekspresi dalam "x". % % Cara paling mendasar
+untuk mendefinisikan fungsi sederhana adalah dengan menyimpan rumusnya
+dalam ekspresi simbolik atau numerik. Jika variabel utamanya adalah x,
+ekspresi tersebut dapat dievaluasi seperti fungsi. % % Seperti yang
+Anda lihat dalam contoh berikut, variabel global terlihat selama
+evaluasi
+</p>
+<pre class="prompt">&gt;fx &amp;= x^3-a*x;  ...
+ a=1.2; fx(0.5)
+</pre>
+<pre class="output">-0.475
+</pre>
+<p class="comment">Semua variabel lain dalam ekspresi dapat ditentukan dalam evaluasi
+menggunakan parameter yang ditetapkan.
+</p>
+<pre class="prompt">&gt;fx(0.5,a=1.1)
+</pre>
+<pre class="output">-0.425
+</pre>
+<p class="comment">EMT melakukan matematika simbolik dengan bantuan Maxima. Untuk
+detailnya, mulai dengan tutorial berikut, atau jelajahi referensi
+untuk Maxima. Para ahli Maxima harus mencatat bahwa terdapat perbedaan
+dalam sintaks antara sintaks asli Maxima dan sintaks default ekspresi
+simbolik di EMT.
+</p>
+<p class="comment">Matematika simbolik terintegrasi secara mulus ke dalam Euler dengan
+menggunakan &amp;. Setiap ekspresi yang dimulai dengan &amp; adalah ekspresi
+simbolik. Ekspresi tersebut dievaluasi dan dicetak oleh Maxima.
+</p>
+<p class="comment">Pertama-tama, Maxima memiliki aritmetika "tak terhingga" yang dapat
+menangani angka-angka yang sangat besar.
+<br />&gt;$&amp;44!
+<br />Dengan cara ini, Anda dapat menghitung hasil besar dengan tepat. Mari
+kita hitung
+</p>
+<pre class="prompt">&gt;$&amp;44!
+</pre>
+<p class="comment">Dengan cara ini, Anda dapat menghitung hasil yang besar dengan akurat.
+Mari kita hitung
+</p>
+<pre class="prompt">&gt;$&amp; 44!/(34!*10!) // nilai C(44,10)
+</pre>
+<p class="comment">Tentu saja, Maxima memiliki fungsi yang lebih efisien untuk ini
+(begitu juga dengan bagian numerik EMT).
+</p>
+<pre class="prompt">&gt;$binomial(44,10) //menghitung C(44,10) menggunakan fungsi binomial()
+</pre>
+<p class="comment">Untuk mempelajari lebih lanjut tentang fungsi tertentu, klik ganda
+pada fungsi tersebut. Misalnya, coba klik ganda pada "&amp;binomial" di
+baris perintah sebelumnya. Ini akan membuka dokumentasi Maxima
+sebagaimana disediakan oleh pengembang program tersebut. % % Anda akan
+mengetahui bahwa yang berikut ini juga berfungsi
+</p>
+<pre class="prompt">&gt;$binomial(x,3) // C(x,3)
+</pre>
+<p class="comment">Jika Anda ingin mengganti x dengan nilai tertentu, gunakan "with".
+</p>
+<pre class="prompt">&gt;$&amp;binomial(x,3) with x=10 // substitusi x=10 ke C(x,3)
+</pre>
+<p class="comment">Dengan cara ini, Anda dapat menggunakan solusi dari suatu persamaan
+dalam persamaan lainnya.
+<br />Ekspresi simbolik dicetak oleh Maxima dalam bentuk 2D. Alasannya
+adalah adanya flag simbolik khusus dalam string.
+<br />Seperti yang Anda lihat dalam contoh sebelumnya dan berikutnya, jika
+Anda memiliki LaTeX terinstal, Anda dapat mencetak ekspresi simbolik
+dengan LaTeX. Jika tidak, perintah berikut akan mengeluarkan pesan
+kesalahan.
+<br />Untuk mencetak ekspresi simbolik dengan LaTeX, gunakan $ di depan &amp;
+(atau Anda dapat menghilangkan &amp;) sebelum perintah. Jangan jalankan
+perintah Maxima dengan $, jika Anda tidak memiliki LaTeX terinstal.
+</p>
+<pre class="prompt">&gt;$(3+x)/(x^2+1)
+</pre>
+<p class="comment">Ekspresi simbolik diparsing oleh Euler. Jika Anda memerlukan sintaks
+kompleks dalam satu ekspresi, Anda dapat membungkus ekspresi tersebut
+dalam "...". Menggunakan lebih dari satu ekspresi sederhana
+dimungkinkan, tetapi sangat tidak disarankan.
+</p>
+<pre class="prompt">&gt;&amp;"v := 5; v^2"
+</pre>
+<pre class="output">
+                                  25
+
+</pre>
+<p class="comment">Untuk kelengkapan, kami mencatat bahwa ekspresi simbolik dapat
+digunakan dalam program, tetapi perlu dibungkus dalam tanda kutip.
+Selain itu, jauh lebih efektif untuk memanggil Maxima pada waktu
+kompilasi jika memungkinkan.
+</p>
+<pre class="prompt">&gt;$&amp;expand((1+x)^4), $&amp;factor(diff(%,x)) // diff: turunan, factor: faktor
+</pre>
+<p class="comment">Sekali lagi, mengacu pada hasil sebelumnya.Untuk mempermudah, kita
+simpan solusi ke dalam variabel simbolik. Variabel simbolik
+didefinisikan dengan "&amp;=".
+</p>
+<pre class="prompt">&gt;fx &amp;= (x+1)/(x^4+1); $&amp;fx
+</pre>
+<p class="comment">Ekspresi simbolik dapat digunakan dalam ekspresi simbolik lainnya.
+</p>
+<pre class="prompt">&gt;$&amp;factor(diff(fx,x))
+</pre>
+<p class="comment">Masukan langsung perintah Maxima juga tersedia. Mulailah baris
+perintah dengan "::". Sintaks Maxima disesuaikan dengan sintaks EMT
+(disebut "mode kompatibilitas").
+</p>
+<pre class="prompt">&gt;&amp;factor(20!)
+</pre>
+<pre class="output">
+                         2432902008176640000
+
+</pre>
+<pre class="prompt">&gt;::: factor(10!)
+</pre>
+<pre class="output">
+                               8  4  2
+                              2  3  5  7
+
+</pre>
+<pre class="prompt">&gt;:: factor(20!)
+</pre>
+<pre class="output">
+                        18  8  4  2
+                       2   3  5  7  11 13 17 19
+
+</pre>
+<p class="comment">Jika Anda seorang ahli dalam Maxima, Anda mungkin ingin menggunakan
+sintaks asli Maxima. Anda dapat melakukannya dengan ":::"
+</p>
+<pre class="prompt">&gt;::: av:g$ av^2;
+</pre>
+<pre class="output">
+                                   2
+                                  g
+
+</pre>
+<pre class="prompt">&gt;fx &amp;= x^3*exp(x), $fx
+</pre>
+<pre class="output">
+                                 3  x
+                                x  E
+
+</pre>
+<p class="comment">Variabel semacam itu dapat digunakan dalam ekspresi simbolik lainnya.
+Perhatikan bahwa dalam perintah berikut, sisi kanan dari &amp;= dievaluasi
+sebelum penugasan ke Fx.
+</p>
+<pre class="prompt">&gt;&amp;(fx with x=5), $%, &amp;float(%)
+</pre>
+<pre class="output">
+                                     5
+                                125 E
+
+
+                          18551.64488782208
+
+</pre>
+<pre class="prompt">&gt;fx(5)
+</pre>
+<pre class="output">18551.6448878
+</pre>
+<p class="comment">Untuk evaluasi ekspresi dengan nilai tertentu dari variabel, Anda
+dapat menggunakan operator "with".
+<br />Baris perintah berikut juga menunjukkan bahwa Maxima dapat
+mengevaluasi ekspresi secara numerik dengan float().
+</p>
+<pre class="prompt">&gt;&amp;(fx with x=10)-(fx with x=5), &amp;float(%)
+</pre>
+<pre class="output">
+                                10        5
+                          1000 E   - 125 E
+
+
+                         2.20079141499189e+7
+
+</pre>
+<pre class="prompt">&gt;$factor(diff(fx,x,2))
+</pre>
+<p class="comment">Untuk mendapatkan kode LaTeX dari sebuah ekspresi, Anda dapat
+menggunakan perintah tex.
+</p>
+<pre class="prompt">&gt;tex(fx)
+</pre>
+<pre class="output">x^3\,e^{x}
+</pre>
+<p class="comment">Ekspresi simbolik dapat dievaluasi seperti halnya ekspresi numerik.
+</p>
+<pre class="prompt">&gt;fx(0.5)
+</pre>
+<pre class="output">0.206090158838
+</pre>
+<p class="comment">Dalam ekspresi simbolik, ini tidak berfungsi karena Maxima tidak
+mendukungnya. Sebagai gantinya, gunakan sintaks "with" (bentuk yang
+lebih baik dari perintah at(...) pada Maxima)
+</p>
+<pre class="prompt">&gt;$&amp;fx with x=1/2
+</pre>
+<p class="comment">Penugasan juga bisa bersifat simbolik.
+</p>
+<pre class="prompt">&gt;$&amp;fx with x=1+t
+</pre>
+<p class="comment">Perintah "solve" menyelesaikan ekspresi simbol untuk sebuah variable
+di maxima. Penyelesaian itu adalah sebuah solusi vektor
+</p>
+<pre class="prompt">&gt;$&amp;solve(x^2+x=4,x)
+</pre>
+<p class="comment">Bandingkan dengan perintah numerik "solve" di Euler, yang membutuhkan
+nilai awal, dan opsional nilai target.
+</p>
+<pre class="prompt">&gt;solve("x^2+x",1,y=4)
+</pre>
+<pre class="output">1.56155281281
+</pre>
+<p class="comment">Nilai numerik dari solusi simbolik dapat dihitung dengan evaluasi
+hasil simbolik. Euler akan melewati penugasan x= dll. Jika Anda tidak
+memerlukan hasil numerik untuk perhitungan lebih lanjut, Anda juga
+dapat membiarkan Maxima menemukan nilai numeriknya.
+</p>
+<pre class="prompt">&gt;sol &amp;= solve(x^2+2*x=4,x); $&amp;sol, sol(), $&amp;float(sol)
+</pre>
+<pre class="output">[-3.23607,  1.23607]
+</pre>
+<p class="comment">Untuk mendapatkan solusi simbolik tertentu, seseorang dapat
+menggunakan "with" dan sebuah indeks.
+</p>
+<pre class="prompt">&gt;$&amp;solve(x^2+x=1,x), x2 &amp;= x with %[2]; $&amp;x2
+</pre>
+<p class="comment">Untuk menyelesaikan sistem persamaan, gunakan vektor persamaan.
+Hasilnya adalah vektor solusi.
+</p>
+<pre class="prompt">&gt;sol &amp;= solve([x+y=3,x^2+y^2=5],[x,y]); $&amp;sol, $&amp;x*y with sol[1]
+</pre>
+<p class="comment">Ekspresi simbolik dapat memiliki flag yang menunjukkan perlakuan
+khusus di Maxima. Beberapa flag dapat digunakan sebagai perintah juga,
+sementara yang lain tidak bisa. Flag ditambahkan dengan "|" (bentuk
+yang lebih baik dari "ev(...,flags)").
+</p>
+<pre class="prompt">&gt;$&amp; diff((x^3-1)/(x+1),x) //turunan bentuk pecahan
+&gt;$&amp; diff((x^3-1)/(x+1),x) | ratsimp //menyederhanakan pecahan
+&gt;$&amp;factor(%)
+</pre>
+<h2 class="comment">function</h2>
+<p class="comment"><br />Di EMT, fungsi adalah program yang didefinisikan dengan perintah
+"function". Fungsi ini bisa berupa fungsi satu baris atau fungsi
+multi-baris.
+<br />Fungsi satu baris bisa bersifat numerik atau simbolik. Fungsi satu
+baris numerik didefinisikan dengan ":=".
+</p>
+<pre class="prompt">&gt;function f(x) := x*sqrt(x^2+1)
+</pre>
+<p class="comment">Sebagai gambaran umum, kami menunjukkan semua definisi yang mungkin
+untuk fungsi satu baris. Sebuah fungsi dapat dievaluasi seperti fungsi
+bawaan Euler lainnya.
+</p>
+<pre class="prompt">&gt;f(2)
+</pre>
+<pre class="output">4.472135955
+</pre>
+<p class="comment">Fungsi ini juga akan berfungsi untuk vektor, mengikuti bahasa matriks
+Euler, karena ekspresi yang digunakan dalam fungsi tersebut telah
+vektorisasi.
+</p>
+<pre class="prompt">&gt;f(0:0.1:1)
+</pre>
+<pre class="output">[0,  0.100499,  0.203961,  0.313209,  0.430813,  0.559017,  0.699714,
+0.854459,  1.0245,  1.21083,  1.41421]
+</pre>
+<p class="comment">Fungsi-fungsi dapat dipetakan. Alih-alih ekspresi, kita hanya perlu
+memberikan nama fungsi.
+<br />Berbeda dengan ekspresi simbolik atau numerik, nama fungsi harus
+diberikan dalam bentuk string.
+</p>
+<pre class="prompt">&gt;solve("f",1,y=1)
+</pre>
+<pre class="output">0.786151377757
+</pre>
+<p class="comment">Secara default, jika Anda perlu menimpa fungsi bawaan, Anda harus
+menambahkan kata kunci 'overwrite'. Menimpa fungsi bawaan berbahaya
+dan dapat menyebabkan masalah bagi fungsi lain yang bergantung
+padanya.
+</p>
+<p class="comment">Anda masih dapat memanggil fungsi bawaan dengan menambahkan '_...'
+jika itu adalah fungsi dalam inti Euler.
+</p>
+<pre class="prompt">&gt;function overwrite sin (x) := _sin(x°) // redine sine in degrees
+&gt;sin(45)
+</pre>
+<pre class="output">0.707106781187
+</pre>
+<p class="comment">Sebaiknya kita hapus persamaan numerik ini
+</p>
+<pre class="prompt">&gt;forget sin; sin(pi/4)
+</pre>
+<pre class="output">0.707106781187
+</pre>
+<h2 class="comment">Default Parameters</h2>
+<p class="comment">Fungsi numerik dapat memiliki parameter default.
+</p>
+<pre class="prompt">&gt;function f(x,a=1) := a*x^2
+</pre>
+<p class="comment">Melewatkan parameter ini akan menggunakan nilai default.
+</p>
+<pre class="prompt">&gt;f(4)
+</pre>
+<pre class="output">16
+</pre>
+<p class="comment">Menetapkannya akan menimpa nilai default.
+</p>
+<pre class="prompt">&gt;f(4,5)
+</pre>
+<pre class="output">80
+</pre>
+<p class="comment">Parameter yang ditetapkan juga akan menimpanya. Ini digunakan oleh
+banyak fungsi Euler seperti plot2d, plot3d.
+</p>
+<pre class="prompt">&gt;f(4,a=1)
+</pre>
+<pre class="output">16
+</pre>
+<p class="comment">Jika sebuah variabel bukan parameter, variabel tersebut harus bersifat
+global. Fungsi satu baris dapat melihat variabel global.
+</p>
+<pre class="prompt">&gt;function f(x) := a*x^2
+&gt;a=6; f(2)
+</pre>
+<pre class="output">24
+</pre>
+<p class="comment">Namun, parameter yang ditetapkan akan menimpa nilai global.
+</p>
+<p class="comment">Jika argumen tidak ada dalam daftar parameter yang telah ditentukan
+sebelumnya, ia harus dideklarasikan dengan ":="!
+</p>
+<pre class="prompt">&gt;f(2,a:=5)
+</pre>
+<pre class="output">20
+</pre>
+<p class="comment">Fungsi simbolik didefinisikan dengan "&amp;=". Fungsi ini didefinisikan di
+Euler dan Maxima, dan berfungsi di kedua lingkungan tersebut. Ekspresi
+yang mendefinisikan fungsi dijalankan melalui Maxima sebelum
+definisinya.
+</p>
+<pre class="prompt">&gt;function g(x) &amp;= x^3-x*exp(-x); $&amp;g(x)
+</pre>
+<p class="comment">Fungsi simbolik dapat digunakan dalam ekspresi simbolik.
+</p>
+<pre class="prompt">&gt;$&amp;diff(g(x),x), $&amp;% with x=4/3
+</pre>
+<p class="comment">Fungsi simbolik juga dapat digunakan dalam ekspresi numerik. Tentu
+saja, ini hanya akan berhasil jika EMT dapat menginterpretasikan semua
+yang ada di dalam fungsi.
+</p>
+<pre class="prompt">&gt;g(5+g(1))
+</pre>
+<pre class="output">178.635099908
+</pre>
+<p class="comment">Fungsi simbolik dapat digunakan untuk mendefinisikan fungsi simbolik
+atau ekspresi lainnya.
+</p>
+<pre class="prompt">&gt;function G(x) &amp;= factor(integrate(g(x),x)); $&amp;G(c) // integrate: mengintegralkan
+</pre>
+<pre class="prompt">&gt;solve(&amp;g(x),0.5)
+</pre>
+<pre class="output">0.703467422498
+</pre>
+<p class="comment">Berikut ini juga berfungsi, karena Euler menggunakan ekspresi simbolik
+dalam fungsi g, jika tidak menemukan variabel simbolik g, dan jika ada
+fungsi simbolik g.
+</p>
+<pre class="prompt">&gt;solve(&amp;g,0.5)
+</pre>
+<pre class="output">0.703467422498
+</pre>
+<pre class="prompt">&gt;function P(x,n) &amp;= (2*x-1)^n; $&amp;P(x,n)
+&gt;function Q(x,n) &amp;= (x+2)^n; $&amp;Q(x,n)
+&gt;$&amp;P(x,4), $&amp;expand(%)
+&gt;P(3,4)
+</pre>
+<pre class="output">625
+</pre>
+<pre class="prompt">&gt;$&amp;P(x,4)+ Q(x,3), $&amp;expand(%)
+&gt;$&amp;P(x,4)-Q(x,3), $&amp;expand(%), $&amp;factor(%)
+&gt;$&amp;P(x,4)*Q(x,3), $&amp;expand(%), $&amp;factor(%)
+&gt;$&amp;P(x,4)/Q(x,1), $&amp;expand(%), $&amp;factor(%)
+&gt;function f(x) &amp;= x^3-x; $&amp;f(x)
+</pre>
+<p class="comment">Dengan &amp;=, fungsi tersebut menjadi simbolik dan dapat digunakan dalam
+ekspresi simbolik lainnya.
+</p>
+<pre class="prompt">&gt;$&amp;integrate(f(x),x)
+</pre>
+<p class="comment">Dengan :=, fungsi tersebut bersifat numerik. Contoh yang baik adalah
+integral tentu seperti
+</p>
+<p class="comment">\[ f(x) = \int_1^x t^t \, dt \]
+</p>
+<p class="comment">yang tidak dapat dievaluasi secara simbolik.
+</p>
+<p class="comment">Jika kita mendefinisikan ulang fungsi dengan kata kunci "map", fungsi
+tersebut dapat digunakan untuk vektor x. Secara internal, fungsi
+tersebut dipanggil untuk semua nilai x sekali, dan hasilnya disimpan
+dalam sebuah vektor.
+</p>
+<pre class="prompt">&gt;function map f(x) := integrate("x^x",1,x)
+&gt;f(0:0.5:2)
+</pre>
+<pre class="output">[-0.783431,  -0.410816,  0,  0.676863,  2.05045]
+</pre>
+<p class="comment">Fungsi dapat memiliki nilai default untuk parameter.
+</p>
+<pre class="prompt">&gt;function mylog (x,base=10) := ln(x)/ln(base);
+</pre>
+<p class="comment">Now the function can be called with or without a parameter "base".
+</p>
+<pre class="prompt">&gt;mylog(100), mylog(2^6.7,2)
+</pre>
+<pre class="output">2
+6.7
+</pre>
+<p class="comment">Moreover, it is possible to use assigned parameters.
+</p>
+<pre class="prompt">&gt;mylog(E^2,base=E)
+</pre>
+<pre class="output">2
+</pre>
+<p class="comment">Seringkali, kita ingin menggunakan fungsi untuk vektor di satu tempat,
+dan untuk elemen individu di tempat lain. Ini dimungkinkan dengan
+parameter vektor.
+</p>
+<pre class="prompt">&gt;function f([a,b]) &amp;= a^2+b^2-a*b+b; $&amp;f(a,b), $&amp;f(x,y)
+</pre>
+<p class="comment">Fungsi simbolik seperti itu dapat digunakan untuk variabel simbolik.
+</p>
+<p class="comment">Namun, fungsi tersebut juga dapat digunakan untuk vektor numerik.
+</p>
+<pre class="prompt">&gt;v=[3,4]; f(v)
+</pre>
+<pre class="output">17
+</pre>
+<p class="comment">Seringkali, kita ingin menggunakan fungsi untuk vektor di satu tempat,
+dan untuk elemen individu di tempat lain. Ini dimungkinkan dengan
+parameter vektor.
+</p>
+<pre class="prompt">&gt;function lapl(expr,x,y) &amp;&amp;= diff(expr,x,2)+diff(expr,y,2)//turunan parsial kedua
+</pre>
+<pre class="output">
+                 diff(expr, y, 2) + diff(expr, x, 2)
+
+</pre>
+<pre class="prompt">&gt;$&amp;realpart((x+I*y)^4), $&amp;lapl(%,x,y)
+</pre>
+<p class="comment">Tentu saja, fungsi tersebut dapat digunakan dalam ekspresi simbolik
+atau dalam definisi fungsi simbolik.
+</p>
+<pre class="prompt">&gt;function f(x,y) &amp;= factor(lapl((x+y^2)^5,x,y)); $&amp;f(x,y)
+</pre>
+<p class="comment">Untuk merangkum:
+</p>
+<ul class="comment">
+<li>
+&amp;= mendefinisikan fungsi simbolik,
+</li>
+<li>
+:= mendefinisikan fungsi numerik,
+</li>
+<li>
+&amp;&amp;= mendefinisikan fungsi yang sepenuhnya simbolik.
+</li>
+</ul>
+<h1 class="comment"><a name="Solving_Expressions">Solving Expressions</a></h1>
+<p class="comment">Ekspresi dapat diselesaikan secara numerik dan simbolik.
+</p>
+<p class="comment">Untuk menyelesaikan ekspresi sederhana dengan satu variabel, kita
+dapat menggunakan fungsi `solve()`. Fungsi ini memerlukan nilai awal
+untuk memulai pencarian. Secara internal, `solve()` menggunakan metode
+sekant.
+</p>
+<pre class="prompt">&gt;solve("x^2-2",1)
+</pre>
+<pre class="output">1.41421356237
+</pre>
+<p class="comment">Ini juga berlaku untuk ekspresi simbolik. Ambil fungsi berikut.
+</p>
+<pre class="prompt">&gt;$&amp;solve(x^2=2,x)
+&gt;$&amp;solve(x^2-2,x)
+&gt;$&amp;solve(a*x^2+b*x+c=0,x)
+&gt;$&amp;solve([a*x+b*y=c,d*x+e*y=f],[x,y])
+</pre>
+<pre class="prompt">&gt;px &amp;= 4*x^8+x^7-x^4-x; $&amp;px
+</pre>
+<p class="comment">Sekarang kita mencari titik di mana polinomialnya adalah 2. Dalam
+`solve()`, nilai target default y=0 dapat diubah dengan variabel yang
+ditetapkan. 
+</p>
+<p class="comment">Kita menggunakan y=2 dan memeriksa dengan mengevaluasi polinomial pada
+hasil sebelumnya.
+</p>
+<pre class="prompt">&gt;solve(px,1,y=2), px(%)
+</pre>
+<pre class="output">0.966715594851
+2
+</pre>
+<p class="comment">Menyelesaikan ekspresi simbolik dalam bentuk simbolik mengembalikan
+daftar solusi. Kita menggunakan penyelesai simbolik `solve()` yang
+disediakan oleh Maxima.
+</p>
+<pre class="prompt">&gt;sol &amp;= solve(x^2-x-1,x); $&amp;sol
+</pre>
+<p class="comment">Cara termudah untuk mendapatkan nilai numerik adalah dengan
+mengevaluasi solusi secara numerik seperti halnya sebuah ekspresi.
+</p>
+<pre class="prompt">&gt;longest sol()
+</pre>
+<pre class="output">    -0.6180339887498949       1.618033988749895 
+</pre>
+<p class="comment">Untuk menggunakan solusi secara simbolik dalam ekspresi lain, cara
+termudah adalah dengan "with".
+</p>
+<pre class="prompt">&gt;$&amp;x^2 with sol[1], $&amp;expand(x^2-x-1 with sol[2])
+</pre>
+<p class="comment">Menyelesaikan sistem persamaan secara simbolik dapat dilakukan dengan
+vektor persamaan dan penyelesai simbolik `solve()`. Jawabannya adalah
+daftar dari daftar persamaan.
+</p>
+<pre class="prompt">&gt;$&amp;solve([x+y=2,x^3+2*y+x=4],[x,y])
+</pre>
+<p class="comment">Fungsi `f()` dapat melihat variabel global. Namun seringkali kita
+ingin menggunakan parameter lokal.
+</p>
+<p class="comment">\[ a^x - x^a = 0.1 \]
+</p>
+<p class="comment">dengan \( a = 3 \).
+</p>
+<pre class="prompt">&gt;function f(x,a) := x^a-a^x;
+</pre>
+<p class="comment">Salah satu cara untuk mengirimkan parameter tambahan ke `f()` adalah
+dengan menggunakan daftar yang berisi nama fungsi dan
+parameter-parameter tersebut (cara lainnya adalah dengan menggunakan
+parameter titik koma).
+</p>
+<pre class="prompt">&gt;solve({{"f",3}},2,y=0.1)
+</pre>
+<pre class="output">2.54116291558
+</pre>
+<p class="comment">Ini juga berlaku untuk ekspresi. Namun, dalam hal ini, elemen daftar
+yang bernama harus digunakan. (Lebih lanjut tentang daftar dapat
+ditemukan di tutorial mengenai sintaks EMT).
+</p>
+<pre class="prompt">&gt;solve({{"x^a-a^x",a=3}},2,y=0.1)
+</pre>
+<pre class="output">2.54116291558
+</pre>
+<h1 class="comment"><a name="Menyelesaikan_Pertidaksamaan">Menyelesaikan Pertidaksamaan</a></h1>
+<p class="comment">Untuk menyelesaikan pertidaksamaan, EMT tidak akan dapat melakukannya,
+melainkan dengan bantuan Maxima, artinya secara eksak (simbolik).
+Perintah Maxima yang digunakan adalah fourier_elim(), yang harus
+dipanggil dengan perintah "load(fourier_elim)" terlebih dahulu.
+</p>
+<pre class="prompt">&gt;&amp;load(fourier_elim)
+</pre>
+<pre class="output">
+        C:/Program Files/Euler x64/maxima/share/maxima/5.35.1/share/f\
+ourier_elim/fourier_elim.lisp
+
+</pre>
+<pre class="prompt">&gt;$&amp;fourier_elim([x^2 - 1&gt;0],[x]) // x^2-1 &gt; 0
+&gt;$&amp;fourier_elim([x^2 - 1&lt;0],[x]) // x^2-1 &lt; 0
+&gt;$&amp;fourier_elim([x^2 - 1 # 0],[x]) // x^-1 &lt;&gt; 0
+&gt;$&amp;fourier_elim([x # 6],[x])
+&gt;$&amp;fourier_elim([x &lt; 1, x &gt; 1],[x]) // tidak memiliki penyelesaian
+&gt;$&amp;fourier_elim([minf &lt; x, x &lt; inf],[x]) // solusinya R
+&gt;$&amp;fourier_elim([x^3 - 1 &gt; 0],[x])
+&gt;$&amp;fourier_elim([cos(x) &lt; 1/2],[x]) // ??? gagal
+</pre>
+<pre class="prompt">&gt;$&amp;fourier_elim([y-x &lt; 5, x - y &lt; 7, 10 &lt; y],[x,y]) // sistem pertidaksamaan
+&gt;$&amp;fourier_elim([y-x &lt; 5, x - y &lt; 7, 10 &lt; y],[y,x])
+&gt;$&amp;fourier_elim((x + y &lt; 5) and (x - y &gt;8),[x,y])
+&gt;$&amp;fourier_elim(((x + y &lt; 5) and x &lt; 1) or  (x - y &gt;8),[x,y])
+&gt;&amp;fourier_elim([max(x,y) &gt; 6, x # 8, abs(y-1) &gt; 12],[x,y])
+</pre>
+<pre class="output">
+        [6 &lt; x, x &lt; 8, y &lt; - 11] or [8 &lt; x, y &lt; - 11]
+ or [x &lt; 8, 13 &lt; y] or [x = y, 13 &lt; y] or [8 &lt; x, x &lt; y, 13 &lt; y]
+ or [y &lt; x, 13 &lt; y]
+
+</pre>
+<pre class="prompt">&gt;$&amp;fourier_elim([(x+6)/(x-9) &lt;= 6],[x])
+</pre>
+<h1 class="comment"><a name="Bahasa_Matriks">Bahasa Matriks</a></h1>
+<p class="comment">Dokumentasi inti EMT mencakup pembahasan mendetail tentang bahasa
+matriks di Euler.
+</p>
+<p class="comment">Vektor dan matriks dimasukkan dengan tanda kurung siku, elemen
+dipisahkan oleh koma, dan baris dipisahkan oleh titik koma.
+</p>
+<pre class="prompt">&gt;A=[1,2;3,4]
+</pre>
+<pre class="output">       1.00        2.00 
+       3.00        4.00 
+</pre>
+<p class="comment">The matrix product is denoted by a dot.
+</p>
+<pre class="prompt">&gt;b=[3;4]
+</pre>
+<pre class="output">       3.00 
+       4.00 
+</pre>
+<pre class="prompt">&gt;b' // transpose b
+</pre>
+<pre class="output">       3.00        4.00 
+</pre>
+<pre class="prompt">&gt;inv(A) //inverse A
+</pre>
+<pre class="output">      -2.00        1.00 
+       1.50       -0.50 
+</pre>
+<pre class="prompt">&gt;A.b //perkalian matriks
+</pre>
+<pre class="output">      11.00 
+      25.00 
+</pre>
+<pre class="prompt">&gt;A.inv(A)
+</pre>
+<pre class="output">       1.00        0.00 
+       0.00        1.00 
+</pre>
+<p class="comment">Inti dari bahasa matriks adalah bahwa semua fungsi dan operator
+bekerja pada setiap elemen secara individu.
+</p>
+<pre class="prompt">&gt;A.A
+</pre>
+<pre class="output">       7.00       10.00 
+      15.00       22.00 
+</pre>
+<pre class="prompt">&gt;A^2 //perpangkatan elemen2 A
+</pre>
+<pre class="output">       1.00        4.00 
+       9.00       16.00 
+</pre>
+<pre class="prompt">&gt;A.A.A
+</pre>
+<pre class="output">      37.00       54.00 
+      81.00      118.00 
+</pre>
+<pre class="prompt">&gt;power(A,3) //perpangkatan matriks
+</pre>
+<pre class="output">      37.00       54.00 
+      81.00      118.00 
+</pre>
+<pre class="prompt">&gt;A/A //pembagian elemen-elemen matriks yang seletak
+</pre>
+<pre class="output">       1.00        1.00 
+       1.00        1.00 
+</pre>
+<pre class="prompt">&gt;A/b //pembagian elemen2 A oleh elemen2 b kolom demi kolom (karena b vektor kolom)
+</pre>
+<pre class="output">       0.33        0.67 
+       0.75        1.00 
+</pre>
+<pre class="prompt">&gt;A\b // hasilkali invers A dan b, A^(-1)b 
+</pre>
+<pre class="output">      -2.00 
+       2.50 
+</pre>
+<pre class="prompt">&gt;inv(A).b
+</pre>
+<pre class="output">      -2.00 
+       2.50 
+</pre>
+<pre class="prompt">&gt;A\A   //A^(-1)A
+</pre>
+<pre class="output">       1.00        0.00 
+       0.00        1.00 
+</pre>
+<pre class="prompt">&gt;inv(A).A
+</pre>
+<pre class="output">       1.00        0.00 
+       0.00        1.00 
+</pre>
+<pre class="prompt">&gt;A*A //perkalin elemen-elemen matriks seletak
+</pre>
+<pre class="output">       1.00        4.00 
+       9.00       16.00 
+</pre>
+<p class="comment">Ini bukanlah produk matriks, melainkan perkalian elemen demi elemen.
+Hal yang sama berlaku untuk vektor.
+</p>
+<pre class="prompt">&gt;b^2 // perpangkatan elemen-elemen matriks/vektor
+</pre>
+<pre class="output">       9.00 
+      16.00 
+</pre>
+<p class="comment">Jika salah satu operand adalah vektor atau skalar, maka operand
+tersebut akan diperluas dengan cara yang alami.
+</p>
+<pre class="prompt">&gt;2*A
+</pre>
+<pre class="output">       2.00        4.00 
+       6.00        8.00 
+</pre>
+<p class="comment">Misalnya, jika operandnya adalah vektor kolom, elemennya diterapkan ke
+semua baris dari A.
+</p>
+<pre class="prompt">&gt;[1,2]*A
+</pre>
+<pre class="output">       1.00        4.00 
+       3.00        8.00 
+</pre>
+<p class="comment">Jika itu adalah vektor baris, maka elemennya diterapkan ke semua kolom
+dari A.
+</p>
+<pre class="prompt">&gt;A*[2,3]
+</pre>
+<pre class="output">       2.00        6.00 
+       6.00       12.00 
+</pre>
+<p class="comment">Kita bisa membayangkan perkalian ini seolah-olah vektor baris v telah
+diduplikasi untuk membentuk matriks dengan ukuran yang sama dengan A.
+</p>
+<pre class="prompt">&gt;dup([1,2],2) // dup: menduplikasi/menggandakan vektor [1,2] sebanyak 2 kali (baris)
+</pre>
+<pre class="output">       1.00        2.00 
+       1.00        2.00 
+</pre>
+<pre class="prompt">&gt;A*dup([1,2],2) 
+</pre>
+<pre class="output">       1.00        4.00 
+       3.00        8.00 
+</pre>
+<p class="comment">Ini juga berlaku untuk dua vektor di mana satu adalah vektor baris dan
+yang lainnya adalah vektor kolom. Kita menghitung \(i \times j\) untuk
+\(i, j\) dari 1 hingga 5. Triknya adalah mengalikan 1:5 dengan
+transposenya. Bahasa matriks Euler secara otomatis menghasilkan tabel
+nilai.
+</p>
+<pre class="prompt">&gt;(1:5)*(1:5)' // hasilkali elemen-elemen vektor baris dan vektor kolom
+</pre>
+<pre class="output">       1.00        2.00        3.00        4.00        5.00 
+       2.00        4.00        6.00        8.00       10.00 
+       3.00        6.00        9.00       12.00       15.00 
+       4.00        8.00       12.00       16.00       20.00 
+       5.00       10.00       15.00       20.00       25.00 
+</pre>
+<p class="comment">Again, remember that this is not the matrix product!
+</p>
+<pre class="prompt">&gt;(1:5).(1:5)' // hasilkali vektor baris dan vektor kolom
+</pre>
+<pre class="output">      55.00 
+</pre>
+<pre class="prompt">&gt;sum((1:5)*(1:5)) // sama hasilnya
+</pre>
+<pre class="output">      55.00 
+</pre>
+<p class="comment">Even operators like &lt; or == work in the same way.
+</p>
+<pre class="prompt">&gt;(1:10)&lt;6 // menguji elemen-elemen yang kurang dari 6
+</pre>
+<pre class="output">Real 1 x 10 matrix
+
+       1.00        1.00        1.00        1.00     ...
+</pre>
+<p class="comment">E.g., we can count the number of elements satisfying a certain
+condition with the function sum().
+</p>
+<pre class="prompt">&gt;sum((1:10)&lt;6) // banyak elemen yang kurang dari 6
+</pre>
+<pre class="output">       5.00 
+</pre>
+<p class="comment">Euler has comparison operators, like "==", which checks for equality.
+</p>
+<p class="comment">We get a vector of 0 and 1, where 1 stands for true.
+</p>
+<pre class="prompt">&gt;t=(1:10)^2; t==25 //menguji elemen2 t yang sama dengan 25 (hanya ada 1)
+</pre>
+<pre class="output">Real 1 x 10 matrix
+
+       0.00        0.00        0.00        0.00     ...
+</pre>
+<p class="comment">From such a vector, "nonzeros" selects the non-zero elements.
+</p>
+<p class="comment">In this case, we get the indices of all elements greater than 50.
+</p>
+<pre class="prompt">&gt;nonzeros(t&gt;50) //indeks elemen2 t yang lebih besar daripada 50
+</pre>
+<pre class="output">       8.00        9.00       10.00 
+</pre>
+<p class="comment">Of course, we can use this vector of indices to get the corresponding
+values in t.
+</p>
+<pre class="prompt">&gt;t[nonzeros(t&gt;50)] //elemen2 t yang lebih besar daripada 50
+</pre>
+<pre class="output">      64.00       81.00      100.00 
+</pre>
+<p class="comment">As an example, let us find all squares of the numbers 1 to 1000, which
+are 5 modulo 11 and 3 modulo 13.
+</p>
+<pre class="prompt">&gt;t=1:1000; nonzeros(mod(t^2,11)==5 &amp;&amp; mod(t^2,13)==3)
+</pre>
+<pre class="output">Real 1 x 28 matrix
+
+       4.00       48.00       95.00      139.00     ...
+</pre>
+<p class="comment">EMT tidak sepenuhnya efektif untuk perhitungan bilangan bulat. Secara
+internal, ia menggunakan presisi floating point ganda. Namun,
+seringkali ini sangat berguna.
+</p>
+<p class="comment">Kita dapat memeriksa bilangan prima. Mari kita cari tahu berapa banyak
+bilangan kuadrat ditambah 1 yang merupakan bilangan prima.
+</p>
+<pre class="prompt">&gt;t=1:1000; length(nonzeros(isprime(t^2+1)))
+</pre>
+<pre class="output">     112.00 
+</pre>
+<p class="comment">Fungsi `nonzeros()` hanya berfungsi untuk vektor. Untuk matriks,
+gunakan `mnonzeros()`.
+</p>
+<pre class="prompt">&gt;seed(2); A=random(3,4)
+</pre>
+<pre class="output">       0.77        0.40        0.41        0.27 
+       0.14        0.39        0.50        0.95 
+       0.55        0.01        0.44        0.54 
+</pre>
+<p class="comment">It returns the indices of the elements, which are not zeros.
+</p>
+<pre class="prompt">&gt;k=mnonzeros(A&lt;0.4) //indeks elemen2 A yang kurang dari 0,4
+</pre>
+<pre class="output">       1.00        4.00 
+       2.00        1.00 
+       2.00        2.00 
+       3.00        2.00 
+</pre>
+<p class="comment">These indices can be used to set the elements to some value.
+</p>
+<pre class="prompt">&gt;mset(A,k,0) //mengganti elemen2 suatu matriks pada indeks tertentu
+</pre>
+<pre class="output">       0.77        0.40        0.41        0.00 
+       0.00        0.00        0.50        0.95 
+       0.55        0.00        0.44        0.54 
+</pre>
+<p class="comment">The function mset() can also set the elements at the indices to the
+entries of some other matrix.
+</p>
+<pre class="prompt">&gt;mset(A,k,-random(size(A)))
+</pre>
+<pre class="output">       0.77        0.40        0.41       -0.13 
+      -0.12       -0.69        0.50        0.95 
+       0.55       -0.48        0.44        0.54 
+</pre>
+<p class="comment">And it is possible to get the elements in a vector.
+</p>
+<pre class="prompt">&gt;mget(A,k)
+</pre>
+<pre class="output">       0.27        0.14        0.39        0.01 
+</pre>
+<p class="comment">Another useful function is extrema, which returns the minimal and
+maximal values in each row of the matrix and their positions.
+</p>
+<pre class="prompt">&gt;ex=extrema(A)
+</pre>
+<pre class="output">       0.27        4.00        0.77        1.00 
+       0.14        1.00        0.95        4.00 
+       0.01        2.00        0.55        1.00 
+</pre>
+<p class="comment">We can use this to extract the maximal values in each row.
+</p>
+<pre class="prompt">&gt;ex[,3]'
+</pre>
+<pre class="output">       0.77        0.95        0.55 
+</pre>
+<p class="comment">This, of course, is the same as the function max().
+</p>
+<pre class="prompt">&gt;max(A)'
+</pre>
+<pre class="output">       0.77        0.95        0.55 
+</pre>
+<p class="comment">But with mget(), we can extract the indices and use this information
+to extract the elements at the same positions from another matrix.
+</p>
+<pre class="prompt">&gt;j=(1:rows(A))'|ex[,4], mget(-A,j)
+</pre>
+<pre class="output">       1.00        1.00 
+       2.00        4.00 
+       3.00        1.00 
+      -0.77       -0.95       -0.55 
+</pre>
+<h1 class="comment"><a name="Fungsi_Matriks_Lainnya_(Membangun_Matriks)">Fungsi Matriks Lainnya (Membangun Matriks)</a></h1>
+<p class="comment">Untuk membangun matriks, kita dapat menumpuk satu matriks di atas yang
+lain. Jika keduanya tidak memiliki jumlah kolom yang sama, matriks
+yang lebih pendek akan diisi dengan angka 0.
+</p>
+<pre class="prompt">&gt;w=2:4; w_w
+</pre>
+<pre class="output">       2.00        3.00        4.00 
+       2.00        3.00        4.00 
+</pre>
+<pre class="prompt">&gt;v=1:3; v_v
+</pre>
+<pre class="output">       1.00        2.00        3.00 
+       1.00        2.00        3.00 
+</pre>
+<p class="comment">Demikian pula, kita dapat menempelkan satu matriks di samping yang
+lain, jika keduanya memiliki jumlah baris yang sama.
+</p>
+<pre class="prompt">&gt;B=random(4,5); B|w
+</pre>
+<pre class="output">Real 4 x 8 matrix
+
+       0.41        0.72        0.94        0.23     ...
+       0.62        0.03        0.08        0.79     ...
+       0.43        0.06        0.34        0.67     ...
+       0.17        0.50        0.46        0.32     ...
+</pre>
+<pre class="prompt">&gt;A=random(3,4); A|v'
+</pre>
+<pre class="output">       0.14        0.24        0.27        0.80        1.00 
+       0.31        0.86        0.15        0.63        2.00 
+       0.56        0.96        0.38        0.86        3.00 
+</pre>
+<p class="comment">Jika mereka tidak memiliki jumlah baris yang sama, matriks yang lebih
+pendek akan diisi dengan angka 0.
+</p>
+<p class="comment">Ada pengecualian untuk aturan ini. Angka riil yang ditempelkan pada
+matriks akan digunakan sebagai kolom yang diisi dengan angka riil
+tersebut.
+</p>
+<pre class="prompt">&gt;B|2
+</pre>
+<pre class="output">Real 4 x 6 matrix
+
+       0.41        0.72        0.94        0.23     ...
+       0.62        0.03        0.08        0.79     ...
+       0.43        0.06        0.34        0.67     ...
+       0.17        0.50        0.46        0.32     ...
+</pre>
+<pre class="prompt">&gt;A|1
+</pre>
+<pre class="output">       0.14        0.24        0.27        0.80        1.00 
+       0.31        0.86        0.15        0.63        1.00 
+       0.56        0.96        0.38        0.86        1.00 
+</pre>
+<p class="comment">Dimungkinkan untuk membuat matriks dari vektor baris dan vektor kolom.
+</p>
+<pre class="prompt">&gt;[w;w]
+</pre>
+<pre class="output">       2.00        3.00        4.00 
+       2.00        3.00        4.00 
+</pre>
+<pre class="prompt">&gt;[v;v]
+</pre>
+<pre class="output">       1.00        2.00        3.00 
+       1.00        2.00        3.00 
+</pre>
+<pre class="prompt">&gt;[w',w']
+</pre>
+<pre class="output">       2.00        2.00 
+       3.00        3.00 
+       4.00        4.00 
+</pre>
+<pre class="prompt">&gt;[v',v']
+</pre>
+<pre class="output">       1.00        1.00 
+       2.00        2.00 
+       3.00        3.00 
+</pre>
+<p class="comment">Tujuan utama dari ini adalah untuk menginterpretasikan vektor ekspresi
+untuk vektor kolom.
+</p>
+<pre class="prompt">&gt;"[x,x^2]"(w')
+</pre>
+<pre class="output">       2.00        4.00 
+       3.00        9.00 
+       4.00       16.00 
+</pre>
+<pre class="prompt">&gt;"[x,x^2]"(v')
+</pre>
+<pre class="output">       1.00        1.00 
+       2.00        4.00 
+       3.00        9.00 
+</pre>
+<p class="comment">Untuk mendapatkan ukuran dari matriks A, kita bisa menggunakan fungsi
+berikut:
+</p>
+<pre class="prompt">&gt;C=zeros(2,4); rows(C), cols(C), size(C), length(C)
+</pre>
+<pre class="output">       2.00 
+       4.00 
+       2.00        4.00 
+       4.00 
+</pre>
+<p class="comment">Untuk vektor, ada fungsi `length()`.
+</p>
+<pre class="prompt">&gt;D=zeros(1,3); rows(C), cols(C), size(C), length(C)
+</pre>
+<pre class="output">       2.00 
+       4.00 
+       2.00        4.00 
+       4.00 
+</pre>
+<pre class="prompt">&gt;length(1:3)
+</pre>
+<pre class="output">       3.00 
+</pre>
+<pre class="prompt">&gt;length(2:10)
+</pre>
+<pre class="output">       9.00 
+</pre>
+<p class="comment">Ada banyak fungsi lain yang menghasilkan matriks.
+</p>
+<pre class="prompt">&gt;ones(3,3)
+</pre>
+<pre class="output">       1.00        1.00        1.00 
+       1.00        1.00        1.00 
+       1.00        1.00        1.00 
+</pre>
+<pre class="prompt">&gt;ones(2,2)
+</pre>
+<pre class="output">       1.00        1.00 
+       1.00        1.00 
+</pre>
+<p class="comment">Ini juga dapat digunakan dengan satu parameter. Untuk mendapatkan
+vektor dengan angka lain selain 1, gunakan yang berikut.
+</p>
+<pre class="prompt">&gt;ones(6)*3
+</pre>
+<pre class="output">Real 1 x 6 matrix
+
+       3.00        3.00        3.00        3.00     ...
+</pre>
+<pre class="prompt">&gt;ones(5)*6
+</pre>
+<pre class="output">       6.00        6.00        6.00        6.00        6.00 
+</pre>
+<p class="comment">Matrix juga dapat dihasilkan dengan angka acak menggunakan fungsi
+`random` (distribusi uniform) atau `normal` (distribusi Gauss).
+</p>
+<pre class="prompt">&gt;random(4,4)
+</pre>
+<pre class="output">       0.80        0.42        0.16        0.38 
+       0.11        0.62        0.80        0.77 
+       0.06        0.97        0.03        0.11 
+       0.07        0.21        0.37        0.92 
+</pre>
+<pre class="prompt">&gt;random(2,2)
+</pre>
+<pre class="output">       0.75        0.29 
+       0.17        0.89 
+</pre>
+<p class="comment">Berikut adalah fungsi berguna lainnya, yang menyusun ulang
+elemen-elemen sebuah matriks menjadi matriks lain.
+</p>
+<pre class="prompt">&gt;redim(2:7,2,3) // menyusun elemen2 2, 3, 4, ..., 7 ke bentuk matriks 2x3
+</pre>
+<pre class="output">       2.00        3.00        4.00 
+       5.00        6.00        7.00 
+</pre>
+<pre class="prompt">&gt;redim(1:9,3,3) // menyusun elemen2 1, 2, 3, ..., 9 ke bentuk matriks 3x3
+</pre>
+<pre class="output">       1.00        2.00        3.00 
+       4.00        5.00        6.00 
+       7.00        8.00        9.00 
+</pre>
+<p class="comment">Dengan fungsi berikut, kita dapat menggunakan fungsi ini dan fungsi
+`dup` untuk menulis fungsi `rep()`, yang mengulangi vektor sebanyak n
+kali.
+</p>
+<pre class="prompt">&gt;function rep(w,n) := redim(dup(w,n),1,n*cols(w))
+&gt;function rep(v,n) := redim(dup(v,n),1,n*cols(v))
+</pre>
+<p class="comment">Ayo kita tes
+</p>
+<pre class="prompt">&gt;rep(1:4,8)
+</pre>
+<pre class="output">Real 1 x 32 matrix
+
+       1.00        2.00        3.00        4.00     ...
+</pre>
+<pre class="prompt">&gt;rep(1:3,5)
+</pre>
+<pre class="output">Real 1 x 15 matrix
+
+       1.00        2.00        3.00        1.00     ...
+</pre>
+<p class="comment">Fungsi `multdup()` menggandakan elemen-elemen dari sebuah vektor.
+</p>
+<pre class="prompt">&gt;multdup(1:4,8), multdup(1:4,[2,5,6])
+</pre>
+<pre class="output">Real 1 x 32 matrix
+
+       1.00        1.00        1.00        1.00     ...
+Real 1 x 13 matrix
+
+       1.00        1.00        2.00        2.00     ...
+</pre>
+<pre class="prompt">&gt;multdup(1:3,5), multdup(1:3,[2,3,2])
+</pre>
+<pre class="output">Real 1 x 15 matrix
+
+       1.00        1.00        1.00        1.00     ...
+Real 1 x 7 matrix
+
+       1.00        1.00        2.00        2.00     ...
+</pre>
+<p class="comment">Fungsi `flipx()` dan `flipy()` membalikkan urutan baris atau kolom
+dari sebuah matriks. Artinya, fungsi `flipx()` membalikkan secara
+horizontal.
+</p>
+<pre class="prompt">&gt;flipx(1:4) //membalik elemen2 vektor baris
+</pre>
+<pre class="output">       4.00        3.00        2.00        1.00 
+</pre>
+<pre class="prompt">&gt;flipx(1:5) //membalik elemen2 vektor baris
+</pre>
+<pre class="output">       5.00        4.00        3.00        2.00        1.00 
+</pre>
+<p class="comment">Untuk rotasi, Euler memiliki fungsi `rotleft()` dan `rotright()`.
+</p>
+<pre class="prompt">&gt;rotleft(1:4)
+</pre>
+<pre class="output">       2.00        3.00        4.00        1.00 
+</pre>
+<pre class="prompt">&gt;rotleft(1:5) // memutar elemen2 vektor baris
+</pre>
+<pre class="output">       2.00        3.00        4.00        5.00        1.00 
+</pre>
+<p class="comment">Fungsi khusus adalah `drop(v,i)`, yang menghapus elemen dengan indeks
+yang ada di `i` dari vektor `v`.
+</p>
+<pre class="prompt">&gt;drop(11:19,4)
+</pre>
+<pre class="output">Real 1 x 8 matrix
+
+      11.00       12.00       13.00       15.00     ...
+</pre>
+<pre class="prompt">&gt;drop(10:20,3)
+</pre>
+<pre class="output">Real 1 x 10 matrix
+
+      10.00       11.00       13.00       14.00     ...
+</pre>
+<p class="comment">Perhatikan bahwa vektor `i` dalam `drop(v,i)` mengacu pada indeks
+elemen di `v`, bukan nilai elemen. Jika Anda ingin menghapus elemen,
+Anda perlu menemukan elemen tersebut terlebih dahulu. Fungsi
+`indexof(v,x)` dapat digunakan untuk menemukan elemen `x` dalam vektor
+`v` yang terurut.
+</p>
+<pre class="prompt">&gt;w=primes(10), i=indexof(w,11:15), drop(w,i)
+</pre>
+<pre class="output">       2.00        3.00        5.00        7.00 
+       0.00        0.00        0.00        0.00        0.00 
+       2.00        3.00        5.00        7.00 
+</pre>
+<pre class="prompt">&gt;v=primes(50), i=indexof(v,10:20), drop(v,i)
+</pre>
+<pre class="output">Real 1 x 15 matrix
+
+       2.00        3.00        5.00        7.00     ...
+Real 1 x 11 matrix
+
+       0.00        5.00        0.00        6.00     ...
+Real 1 x 11 matrix
+
+       2.00        3.00        5.00        7.00     ...
+</pre>
+<p class="comment">Seperti yang Anda lihat, tidak masalah untuk menyertakan indeks di
+luar rentang (seperti 0), indeks ganda, atau indeks yang tidak
+terurut.
+</p>
+<pre class="prompt">&gt;drop(1:9,shuffle([2,2,5,5,9]))
+</pre>
+<pre class="output">Real 1 x 6 matrix
+
+       1.00        3.00        4.00        6.00     ...
+</pre>
+<pre class="prompt">&gt;drop(1:10,shuffle([0,0,5,5,7,12,12]))
+</pre>
+<pre class="output">Real 1 x 8 matrix
+
+       1.00        2.00        3.00        4.00     ...
+</pre>
+<p class="comment">Ada beberapa fungsi khusus untuk mengatur diagonal atau menghasilkan
+matriks diagonal.
+</p>
+<p class="comment">Kita mulai dengan matriks identitas.
+</p>
+<pre class="prompt">&gt;B=id(4) // matriks identitas 4x4
+</pre>
+<pre class="output">       1.00        0.00        0.00        0.00 
+       0.00        1.00        0.00        0.00 
+       0.00        0.00        1.00        0.00 
+       0.00        0.00        0.00        1.00 
+</pre>
+<pre class="prompt">&gt;A=id(5) // matriks identitas 5x5
+</pre>
+<pre class="output">       1.00        0.00        0.00        0.00        0.00 
+       0.00        1.00        0.00        0.00        0.00 
+       0.00        0.00        1.00        0.00        0.00 
+       0.00        0.00        0.00        1.00        0.00 
+       0.00        0.00        0.00        0.00        1.00 
+</pre>
+<p class="comment">Kemudian kita atur diagonal bawah (-1) menjadi 1:4.
+</p>
+<pre class="prompt">&gt;setdiag(B,2,1:3) //mengganti diagonal di bawah diagonal utama
+</pre>
+<pre class="output">       1.00        0.00        1.00        0.00 
+       0.00        1.00        0.00        2.00 
+       0.00        0.00        1.00        0.00 
+       0.00        0.00        0.00        1.00 
+</pre>
+<pre class="prompt">&gt;setdiag(A,-1,1:4) //mengganti diagonal di bawah diagonal utama
+</pre>
+<pre class="output">       1.00        0.00        0.00        0.00        0.00 
+       1.00        1.00        0.00        0.00        0.00 
+       0.00        2.00        1.00        0.00        0.00 
+       0.00        0.00        3.00        1.00        0.00 
+       0.00        0.00        0.00        4.00        1.00 
+</pre>
+<pre class="prompt">&gt;function tridiag (n,a,b,c) := setdiag(setdiag(b*id(n),1,c),-1,a); ...
+ tridiag(4,2,8,3)
+</pre>
+<pre class="output">       8.00        3.00        0.00        0.00 
+       2.00        8.00        3.00        0.00 
+       0.00        2.00        8.00        3.00 
+       0.00        0.00        2.00        8.00 
+</pre>
+<p class="comment">Perhatikan bahwa kita tidak mengubah matriks A. Kita mendapatkan
+matriks baru sebagai hasil dari setdiag().
+</p>
+<p class="comment">Berikut adalah fungsi yang mengembalikan matriks tri-diagonal.
+</p>
+<pre class="prompt">&gt;function tridiag (n,a,b,c) := setdiag(setdiag(b*id(n),1,c),-1,a); ...
+ tridiag(5,1,2,3)
+</pre>
+<pre class="output">       2.00        3.00        0.00        0.00        0.00 
+       1.00        2.00        3.00        0.00        0.00 
+       0.00        1.00        2.00        3.00        0.00 
+       0.00        0.00        1.00        2.00        3.00 
+       0.00        0.00        0.00        1.00        2.00 
+</pre>
+<p class="comment">Diagonal dari sebuah matriks juga dapat diekstraksi dari matriks
+tersebut. Untuk menunjukkan ini, kita menyusun ulang vektor 1:9
+menjadi matriks 3x3.
+</p>
+<pre class="prompt">&gt;B=redim(1:4,3,3)
+</pre>
+<pre class="output">       1.00        2.00        3.00 
+       4.00        0.00        0.00 
+       0.00        0.00        0.00 
+</pre>
+<pre class="prompt">&gt;A=redim(1:9,3,3)
+</pre>
+<pre class="output">       1.00        2.00        3.00 
+       4.00        5.00        6.00 
+       7.00        8.00        9.00 
+</pre>
+<p class="comment">Sekarang kita dapat mengekstrak diagonalnya.
+</p>
+<pre class="prompt">&gt;d=getdiag(A,0)
+</pre>
+<pre class="output">       1.00        5.00        9.00 
+</pre>
+<p class="comment">Misalnya, kita dapat membagi matriks dengan diagonalnya. Bahasa
+matriks akan memastikan bahwa vektor kolom \(d\) diterapkan pada
+matriks baris demi baris.
+</p>
+<pre class="prompt">&gt;fraction B/d'
+</pre>
+<pre class="output">        1         2         3 
+      4/5         0         0 
+        0         0         0 
+</pre>
+<pre class="prompt">&gt;fraction A/d'
+</pre>
+<pre class="output">        1         2         3 
+      4/5         1       6/5 
+      7/9       8/9         1 
+</pre>
+<h1 class="comment"><a name="Vectorization">Vectorization</a></h1>
+<p class="comment">Hampir semua fungsi di Euler juga bekerja untuk input matriks dan
+vektor, kapan pun itu masuk akal.
+</p>
+<p class="comment">Misalnya, fungsi `sqrt()` menghitung akar kuadrat dari semua elemen
+vektor atau matriks.
+</p>
+<pre class="prompt">&gt;sqrt(1:4)
+</pre>
+<pre class="output">       1.00        1.41        1.73        2.00 
+</pre>
+<pre class="prompt">&gt;sqrt(1:3)
+</pre>
+<pre class="output">       1.00        1.41        1.73 
+</pre>
+<p class="comment">Jadi Anda dapat dengan mudah membuat tabel nilai. Ini adalah salah
+satu cara untuk memplot sebuah fungsi (alternatifnya menggunakan
+ekspresi).
+</p>
+<pre class="prompt">&gt;a=2:2.23:4; b=log(a)/a^2;
+&gt;x=1:0.01:5; y=log(x)/x^2; // terlalu panjang untuk ditampikan
+</pre>
+<p class="comment">Dengan ini dan operator titik dua `a:delta:b`, vektor nilai fungsi
+dapat dengan mudah dihasilkan.
+</p>
+<p class="comment">Dalam contoh berikut, kita menghasilkan vektor nilai `t[i]` dengan
+jarak 0.1 dari -1 hingga 1. Kemudian kita menghasilkan vektor nilai
+dari fungsi
+</p>
+<p class="comment">\[ s = t^3 - t \]
+</p>
+<pre class="prompt">&gt;s=-2:0.56:2; u=s^3-s
+</pre>
+<pre class="output">Real 1 x 8 matrix
+
+      -6.00       -1.55        0.20        0.29     ...
+</pre>
+<pre class="prompt">&gt;t=-1:0.1:1; s=t^3-t
+</pre>
+<pre class="output">Real 1 x 21 matrix
+
+       0.00        0.17        0.29        0.36     ...
+</pre>
+<p class="comment">EMT memperluas operator untuk skalar, vektor, dan matriks dengan cara
+yang jelas.
+</p>
+<p class="comment">Misalnya, vektor kolom dikalikan dengan vektor baris akan diperluas
+menjadi matriks, jika operator diterapkan. Berikut ini, \( v' \)
+adalah vektor yang ditranspose (vektor kolom).
+</p>
+<pre class="prompt">&gt;shortest (2:4)*(2:4)'
+</pre>
+<pre class="output">     4      6      8 
+     6      9     12 
+     8     12     16 
+</pre>
+<pre class="prompt">&gt;shortest (1:5)*(1:5)'
+</pre>
+<pre class="output">     1      2      3      4      5 
+     2      4      6      8     10 
+     3      6      9     12     15 
+     4      8     12     16     20 
+     5     10     15     20     25 
+</pre>
+<p class="comment">Perhatikan bahwa ini sangat berbeda dari produk matriks. Produk
+matriks ditunjukkan dengan titik "." di EMT.
+</p>
+<pre class="prompt">&gt;(1:5).(1:5)'
+</pre>
+<pre class="output">      55.00 
+</pre>
+<p class="comment">Secara default, vektor baris dicetak dalam format ringkas.
+</p>
+<pre class="prompt">&gt;[2,5,7,9]
+</pre>
+<pre class="output">       2.00        5.00        7.00        9.00 
+</pre>
+<pre class="prompt">&gt;[1,2,3,4]
+</pre>
+<pre class="output">       1.00        2.00        3.00        4.00 
+</pre>
+<p class="comment">Untuk matriks, operator khusus `.` menunjukkan perkalian matriks, dan
+`A'` menunjukkan transpose. Matriks 1x1 dapat digunakan seperti
+bilangan riil.
+</p>
+<pre class="prompt">&gt;v:=[1,2]; v.v', %^2
+</pre>
+<pre class="output">       5.00 
+      25.00 
+</pre>
+<p class="comment">Untuk mentranspose matriks, kita menggunakan tanda kutip (apostrophe).
+</p>
+<pre class="prompt">&gt;v=1:4; v'
+</pre>
+<pre class="output">       1.00 
+       2.00 
+       3.00 
+       4.00 
+</pre>
+<p class="comment">Jadi kita dapat menghitung matriks A dikali vektor b.
+</p>
+<pre class="output">Cannot multiply 2x4 and 2x4 matrix
+Error in:
+C=[2,3,5,6;7,8,9,5]; C.A ...
+                        ^
+</pre>
+<pre class="prompt">&gt;A=[1,2,3,4;5,6,7,8]; A.v'
+</pre>
+<pre class="output">      60.00 
+     140.00 
+</pre>
+<p class="comment">Perhatikan bahwa v masih merupakan vektor baris. Jadi, \( v' \cdot v
+\) berbeda dari \( v \cdot v' \).
+</p>
+<pre class="prompt">&gt;v'.v
+</pre>
+<pre class="output">       1.00        2.00        3.00        4.00 
+       2.00        4.00        6.00        8.00 
+       3.00        6.00        9.00       12.00 
+       4.00        8.00       12.00       16.00 
+</pre>
+<p class="comment">\( v \cdot v' \) menghitung norma dari \( v \) kuadrat untuk vektor
+baris \( v \). Hasilnya adalah vektor 1x1, yang berfungsi seperti
+bilangan nyata.
+</p>
+<pre class="prompt">&gt;v.v'
+</pre>
+<pre class="output">      30.00 
+</pre>
+<p class="comment">There is also the function norm (along with many other function of
+Linear Algebra).
+</p>
+<pre class="prompt">&gt;norm(v)^2
+</pre>
+<pre class="output">      30.00 
+</pre>
+<p class="comment">Operator dan fungsi mengikuti bahasa matriks dari Euler.
+</p>
+<p class="comment">Berikut adalah ringkasan aturannya:
+</p>
+<ul class="comment">
+<li>
+Fungsi yang diterapkan pada vektor atau matriks diterapkan pada
+setiap elemen.
+</li>
+</ul>
+<ul class="comment">
+<li>
+Operator yang beroperasi pada dua matriks dengan ukuran yang sama
+diterapkan pada elemen-elemen matriks secara berpasangan.
+</li>
+</ul>
+<ul class="comment">
+<li>
+Jika kedua matriks memiliki dimensi yang berbeda, keduanya diperluas
+dengan cara yang masuk akal, sehingga memiliki ukuran yang sama.
+</li>
+</ul>
+<p class="comment">Misalnya, nilai skalar dikalikan dengan vektor mengalikan nilai
+tersebut dengan setiap elemen vektor. Atau matriks dikalikan dengan
+vektor (dengan *, bukan .) memperluas vektor ke ukuran matriks dengan
+menduplikasinya.
+</p>
+<p class="comment">Berikut adalah kasus sederhana dengan operator ^.
+</p>
+<pre class="prompt">&gt;[1,2,3]^2
+</pre>
+<pre class="output">       1.00        4.00        9.00 
+</pre>
+<p class="comment">Berikut adalah kasus yang lebih rumit. Vektor baris dikalikan dengan
+vektor kolom memperluas kedua vektor dengan menduplikasi.
+</p>
+<pre class="prompt">&gt;v:=[1,2,3]; v*v'
+</pre>
+<pre class="output">       1.00        2.00        3.00 
+       2.00        4.00        6.00 
+       3.00        6.00        9.00 
+</pre>
+<p class="comment">Perhatikan bahwa produk skalar menggunakan produk matriks, bukan `*`!
+</p>
+<pre class="prompt">&gt;v.v'
+</pre>
+<pre class="output">      14.00 
+</pre>
+<p class="comment">Ada banyak fungsi untuk matriks. Berikut daftar singkatnya. Anda
+disarankan untuk merujuk ke dokumentasi untuk informasi lebih lanjut
+tentang perintah-perintah ini:
+</p>
+<ul class="comment">
+<li>
+`sum`, `prod`: Menghitung jumlah dan produk dari baris.
+</li>
+<li>
+`cumsum`, `cumprod`: Melakukan hal yang sama secara kumulatif.
+</li>
+<li>
+`extrema`: Menghitung nilai ekstrem dari setiap baris.
+</li>
+<li>
+`diag(A, i)`: Mengembalikan diagonal ke-i dari matriks A.
+</li>
+<li>
+`setdiag(A, i, v)`: Menetapkan diagonal ke-i dari matriks A dengan
+nilai v.
+</li>
+<li>
+`id(n)`: Matriks identitas berukuran n.
+</li>
+<li>
+`det(A)`: Determinan dari matriks A.
+</li>
+<li>
+`charpoly(A)`: Polinom karakteristik dari matriks A.
+</li>
+<li>
+`eigenvalues(A)`: Eigenvalues dari matriks A.
+</li>
+</ul>
+<pre class="prompt">&gt;v*v, sum(v*v), cumsum(v*v)
+</pre>
+<pre class="output">       1.00        4.00        9.00 
+      14.00 
+       1.00        5.00       14.00 
+</pre>
+<p class="comment">Operator `:` menghasilkan vektor baris yang terdistribusi merata,
+dengan opsi ukuran langkah.
+</p>
+<pre class="prompt">&gt;2:5, 1:3:9
+</pre>
+<pre class="output">       2.00        3.00        4.00        5.00 
+       1.00        4.00        7.00 
+</pre>
+<pre class="prompt">&gt;1:4, 1:2:10
+</pre>
+<pre class="output">       1.00        2.00        3.00        4.00 
+       1.00        3.00        5.00        7.00        9.00 
+</pre>
+<p class="comment">Untuk menggabungkan matriks dan vektor, gunakan operator "|" dan "_".
+</p>
+<pre class="prompt">&gt;[1,2,3]|[4,5], [1,2,3]_1
+</pre>
+<pre class="output">       1.00        2.00        3.00        4.00        5.00 
+       1.00        2.00        3.00 
+       1.00        1.00        1.00 
+</pre>
+<p class="comment">Elemen-elemen dari matriks dirujuk dengan "A[i,j]".
+</p>
+<pre class="prompt">&gt;A:=[1,2,3;4,5,6;7,8,9]; A[2,3]
+</pre>
+<pre class="output">       6.00 
+</pre>
+<p class="comment">For row or column vectors, v[i] is the i-th element of the vector. For
+matrices, this returns the complete i-th row of the matrix.
+</p>
+<pre class="prompt">&gt;v:=[2,4,6,8]; v[3], A[3]
+</pre>
+<pre class="output">       6.00 
+       7.00        8.00        9.00 
+</pre>
+<p class="comment">The indices can also be row vectors of indices. : denotes all indices.
+</p>
+<pre class="prompt">&gt;v[1:2], A[:,2]
+</pre>
+<pre class="output">       2.00        4.00 
+       2.00 
+       5.00 
+       8.00 
+</pre>
+<p class="comment">A short form for : is omitting the index completely.
+</p>
+<pre class="prompt">&gt;A[,2:3]
+</pre>
+<pre class="output">       2.00        3.00 
+       5.00        6.00 
+       8.00        9.00 
+</pre>
+<p class="comment">For purposes of vectorization, the elements of a matrix can be accessed as if
+they were vectors.
+</p>
+<pre class="prompt">&gt;A{4}
+</pre>
+<pre class="output">       4.00 
+</pre>
+<p class="comment">A matrix can also be flattened, using the redim() function. This is
+implemented in the function flatten().
+</p>
+<pre class="prompt">&gt;redim(A,1,prod(size(A))), flatten(A)
+</pre>
+<pre class="output">Real 1 x 9 matrix
+
+       1.00        2.00        3.00        4.00     ...
+Real 1 x 9 matrix
+
+       1.00        2.00        3.00        4.00     ...
+</pre>
+<p class="comment">To use matrices for tables, let us reset to the default format, and
+compute a table of sine and cosine values. Note that angles are in
+radians by default.
+</p>
+<pre class="prompt">&gt;defformat; w=0°:45°:360°; w=w'; deg(w)
+</pre>
+<pre class="output">            0 
+           45 
+           90 
+          135 
+          180 
+          225 
+          270 
+          315 
+          360 
+</pre>
+<p class="comment">Now we append columns to a matrix.
+</p>
+<pre class="prompt">&gt;M = deg(w)|w|cos(w)|sin(w)
+</pre>
+<pre class="output">            0             0             1             0 
+           45      0.785398      0.707107      0.707107 
+           90        1.5708             0             1 
+          135       2.35619     -0.707107      0.707107 
+          180       3.14159            -1             0 
+          225       3.92699     -0.707107     -0.707107 
+          270       4.71239             0            -1 
+          315       5.49779      0.707107     -0.707107 
+          360       6.28319             1             0 
+</pre>
+<p class="comment">Dengan menggunakan bahasa matriks, kita dapat menghasilkan beberapa
+tabel dari beberapa fungsi sekaligus.
+</p>
+<p class="comment">Dalam contoh berikut, kita menghitung \( t[j]^i \) untuk \( i \) dari
+1 hingga \( n \). Kita mendapatkan matriks, di mana setiap baris
+adalah tabel dari \( t^i \) untuk satu \( i \). Artinya, matriks
+memiliki elemen \( a_{i,j} = t_j^i \), dengan \( 1 \le j \le 101 \),
+dan \( 1 \le i \le n \).
+</p>
+<p class="comment">Fungsi yang tidak bekerja untuk masukan vektor harus "vektorisasi".
+Ini dapat dicapai dengan kata kunci "map" dalam definisi fungsi.
+Kemudian fungsi akan dievaluasi untuk setiap elemen dari parameter
+vektor.
+</p>
+<p class="comment">Integrasi numerik `integrate()` hanya bekerja untuk batas interval
+skalar. Jadi kita perlu vektorisasi fungsi ini.
+</p>
+<pre class="prompt">&gt;function map f(x) := integrate("x^x",1,x)
+</pre>
+<p class="comment">Kata kunci "map" vektorisasi fungsi. Fungsi ini sekarang akan bekerja
+untuk vektor angka.
+</p>
+<pre class="prompt">&gt;f([1:5])
+</pre>
+<pre class="output">[0,  2.05045,  13.7251,  113.336,  1241.03]
+</pre>
+<h1 class="comment"><a name="Sub-Matrices_and_Matrix-Elements">Sub-Matrices and Matrix-Elements</a></h1>
+<p class="comment">Untuk mengakses elemen matriks, gunakan notasi kurung siku.
+</p>
+<pre class="prompt">&gt;A=[1,2,3;4,5,6;7,8,9], A[2,2]
+</pre>
+<pre class="output">            1             2             3 
+            4             5             6 
+            7             8             9 
+5
+</pre>
+<p class="comment">We can access a complete line of a matrix.
+</p>
+<pre class="prompt">&gt;A[2]
+</pre>
+<pre class="output">[4,  5,  6]
+</pre>
+<p class="comment">"Dalam kasus vektor baris atau kolom, ini mengembalikan elemen dari
+vektor tersebut."
+</p>
+<pre class="prompt">&gt;v=1:3; v[2]
+</pre>
+<pre class="output">2
+</pre>
+<p class="comment">Untuk memastikan Anda mendapatkan baris pertama dari matriks 1×n dan
+m×n, tentukan semua kolom dengan indeks kedua yang kosong.
+</p>
+<pre class="prompt">&gt;A[2,]
+</pre>
+<pre class="output">[4,  5,  6]
+</pre>
+<p class="comment">Jika indeksnya adalah vektor indeks, Euler akan mengembalikan baris
+yang sesuai dari matriks.
+</p>
+<p class="comment">Di sini kita ingin baris pertama dan kedua dari A.
+</p>
+<pre class="prompt">&gt;A[[1,2]]
+</pre>
+<pre class="output">            1             2             3 
+            4             5             6 
+</pre>
+<p class="comment">Kita bahkan bisa mengurutkan ulang A menggunakan vektor indeks.
+Tepatnya, kita tidak mengubah A di sini, tetapi menghitung versi A
+yang diurutkan ulang.
+</p>
+<pre class="prompt">&gt;A[[3,2,1]]
+</pre>
+<pre class="output">            7             8             9 
+            4             5             6 
+            1             2             3 
+</pre>
+<p class="comment">Trik indeks juga berfungsi dengan kolom.
+</p>
+<p class="comment">Contoh ini memilih semua baris dari A serta kolom kedua dan ketiga.
+</p>
+<pre class="prompt">&gt;A[1:3,2:3]
+</pre>
+<pre class="output">            2             3 
+            5             6 
+            8             9 
+</pre>
+<p class="comment">For abbreviation ":" denotes all row or column indices.
+</p>
+<pre class="prompt">&gt;A[:,3]
+</pre>
+<pre class="output">            3 
+            6 
+            9 
+</pre>
+<p class="comment">Alternatively, leave the first index empty.
+</p>
+<pre class="prompt">&gt;A[,2:3]
+</pre>
+<pre class="output">            2             3 
+            5             6 
+            8             9 
+</pre>
+<p class="comment">We can also get the last line of A.
+</p>
+<pre class="prompt">&gt;A[-1]
+</pre>
+<pre class="output">[7,  8,  9]
+</pre>
+<p class="comment">Now let us change elements of A by assigning a submatrix of A to some
+value. This does in fact change the stored matrix A.
+</p>
+<pre class="prompt">&gt;A[1,1]=4
+</pre>
+<pre class="output">            4             2             3 
+            4             5             6 
+            7             8             9 
+</pre>
+<p class="comment">We can also assign a value to a row of A.
+</p>
+<pre class="prompt">&gt;A[1]=[-1,-1,-1]
+</pre>
+<pre class="output">           -1            -1            -1 
+            4             5             6 
+            7             8             9 
+</pre>
+<p class="comment">We can even assign to a sub-matrix if it has the proper size.
+</p>
+<pre class="prompt">&gt;A[1:2,1:2]=[5,6;7,8]
+</pre>
+<pre class="output">            5             6            -1 
+            7             8             6 
+            7             8             9 
+</pre>
+<p class="comment">Moreover, some shortcuts are allowed.
+</p>
+<pre class="prompt">&gt;A[1:2,1:2]=0
+</pre>
+<pre class="output">            0             0            -1 
+            0             0             6 
+            7             8             9 
+</pre>
+<p class="comment">Peringatan: Indeks di luar batas akan mengembalikan matriks kosong
+atau pesan kesalahan, tergantung pada pengaturan sistem. Pengaturan
+default adalah pesan kesalahan. Namun, ingat bahwa indeks negatif
+dapat digunakan untuk mengakses elemen matriks dengan menghitung dari
+akhir.
+</p>
+<pre class="prompt">&gt;A[4]
+</pre>
+<pre class="output">Row index 4 out of bounds!
+Error in:
+A[4] ...
+    ^
+</pre>
+<h1 class="comment"><a name="Sorting_and_Shuffling">Sorting and Shuffling</a></h1>
+<p class="comment">Fungsi `sort()` mengurutkan vektor baris.
+</p>
+<pre class="prompt">&gt;Peringatan: Indeks di luar batas akan mengembalikan matriks kosong atau pesan kesalahan, tergantung pada pengaturan sistem. Pengaturan default adalah pesan kesalahan. Namun, ingat bahwa indeks negatif dapat digunakan untuk mengakses elemen matriks dengan menghitung dari akhir.sort([5,6,4,8,1,9])
+</pre>
+<pre class="output">[1,  4,  5,  6,  8,  9]
+</pre>
+<p class="comment">Seringkali perlu mengetahui indeks dari vektor yang diurutkan dalam
+vektor asli. Ini dapat digunakan untuk mengurutkan vektor lain dengan
+cara yang sama.
+</p>
+<p class="comment">Mari kita acak sebuah vektor.
+</p>
+<pre class="prompt">&gt;v=shuffle(1:10)
+</pre>
+<pre class="output">[4,  5,  10,  6,  8,  9,  1,  7,  2,  3]
+</pre>
+<p class="comment">Indeks-indeks tersebut berisi urutan yang benar dari v.
+</p>
+<pre class="prompt">&gt;{vs,ind}=sort(v); v[ind]
+</pre>
+<pre class="output">[1,  2,  3,  4,  5,  6,  7,  8,  9,  10]
+</pre>
+<p class="comment">This works for string vectors too.
+</p>
+<pre class="prompt">&gt;s=["a","d","e","a","aa","e"]
+</pre>
+<pre class="output">a
+d
+e
+a
+aa
+e
+</pre>
+<pre class="prompt">&gt;{ss,ind}=sort(s); ss
+</pre>
+<pre class="output">a
+a
+aa
+d
+e
+e
+</pre>
+<p class="comment">As you see, the position of double entries is somewhat random.
+</p>
+<pre class="prompt">&gt;ind
+</pre>
+<pre class="output">[4,  1,  5,  2,  6,  3]
+</pre>
+<p class="comment">The function unique returns a sorted list of unique elements of a
+vector.
+</p>
+<pre class="prompt">&gt;intrandom(1,10,10), unique(%)
+</pre>
+<pre class="output">[4,  4,  9,  2,  6,  5,  10,  6,  5,  1]
+[1,  2,  4,  5,  6,  9,  10]
+</pre>
+<p class="comment">This works for string vectors too.
+</p>
+<pre class="prompt">&gt;unique(s)
+</pre>
+<pre class="output">a
+aa
+d
+e
+</pre>
+<h1 class="comment"><a name="Aljabar_Linear">Aljabar Linear</a></h1>
+<p class="comment">EMT memiliki banyak fungsi untuk menyelesaikan sistem linier, sistem
+jarang, atau masalah regresi.
+</p>
+<p class="comment">Untuk sistem linier \(Ax = b\), Anda dapat menggunakan algoritma
+Gauss, matriks invers, atau regresi linier. Operator \(A \backslash
+b\) menggunakan versi dari algoritma Gauss.
+</p>
+<pre class="prompt">&gt;A=[1,2;3,4]; b=[5;6]; A\b
+</pre>
+<pre class="output">      -4.00 
+       4.50 
+</pre>
+<p class="comment">Untuk contoh lainnya, kita menghasilkan matriks 200x200 dan jumlah
+dari baris-barisnya. Kemudian kita menyelesaikan \(Ax = b\)
+menggunakan matriks invers. Kita mengukur kesalahan sebagai deviasi
+maksimal dari semua elemen dari 1, yang tentu saja merupakan solusi
+yang benar.
+</p>
+<pre class="prompt">&gt;A=normal(200,200); b=sum(A); longest totalmax(abs(inv(A).b-1))
+</pre>
+<pre class="output">  3.623767952376511e-13 
+</pre>
+<p class="comment">Jika sistem tidak memiliki solusi, regresi linier meminimalkan norma
+dari kesalahan \(Ax - b\).
+</p>
+<pre class="prompt">&gt;A=[1,2,3;4,5,6;7,8,9]
+</pre>
+<pre class="output">       1.00        2.00        3.00 
+       4.00        5.00        6.00 
+       7.00        8.00        9.00 
+</pre>
+<p class="comment">Determinan dari matriks ini adalah 0.
+</p>
+<pre class="prompt">&gt;det(A)
+</pre>
+<pre class="output">       0.00 
+</pre>
+<h1 class="comment"><a name="Sub_Matrices_and_Matrix_Element">Sub Matrices and Matrix Element</a></h1>
+<p class="comment">Matriks simbolik dapat didefinisikan dengan Maxima. Tentu saja, Maxima
+dapat digunakan untuk masalah aljabar linier sederhana seperti itu.
+Kita dapat mendefinisikan matriks untuk Euler dan Maxima dengan &amp;:=,
+dan kemudian menggunakannya dalam ekspresi simbolik. Bentuk umum [...]
+untuk mendefinisikan matriks dapat digunakan di Euler untuk
+mendefinisikan matriks simbolik.
+</p>
+<pre class="prompt">&gt;A &amp;= [a,1,1;1,a,1;1,1,a]; $A
+&gt;$&amp;det(A), $&amp;factor(%)
+&gt;$&amp;invert(A) with a=0
+&gt;A &amp;= [1,a;b,2]; $A
+</pre>
+<p class="comment">Seperti semua variabel simbolik, matriks simbolik ini dapat digunakan
+dalam ekspresi simbolik lainnya.
+</p>
+<pre class="prompt">&gt;$&amp;det(A-x*ident(2)), $&amp;solve(%,x)
+</pre>
+<p class="comment">The eigenvalues can also be computed automatically. The result is a
+vector with two vectors of eigenvalues and multiplicities.
+</p>
+<pre class="prompt">&gt;$&amp;eigenvalues([a,1;1,a])
+</pre>
+<p class="comment">To extract a specific eigenvector needs careful indexing.
+</p>
+<pre class="prompt">&gt;$&amp;eigenvectors([a,1;1,a]), &amp;%[2][1][1]
+</pre>
+<pre class="output">
+                               [1, - 1]
+
+</pre>
+<p class="comment">Nilai eigen juga dapat dihitung secara otomatis. Hasilnya adalah
+vektor dengan dua vektor: satu untuk nilai eigen dan satu lagi untuk
+multikapasitas.
+</p>
+<pre class="prompt">&gt;A(a=4,b=5)
+</pre>
+<pre class="output">       1.00        4.00 
+       5.00        2.00 
+</pre>
+<p class="comment">Dalam ekspresi simbolik, gunakan `with`.
+</p>
+<pre class="prompt">&gt;$&amp;A with [a=4,b=5]
+</pre>
+<p class="comment">Akses ke baris-baris matriks simbolik bekerja sama seperti pada
+matriks numerik.
+</p>
+<pre class="prompt">&gt;$&amp;A[1]
+</pre>
+<p class="comment">Ekspresi simbolik dapat berisi penugasan. Dan itu mengubah matriks A.
+</p>
+<pre class="prompt">&gt;&amp;A[1,1]:=t+1; $&amp;A
+</pre>
+<p class="comment">Ada fungsi simbolik di Maxima untuk membuat vektor dan matriks. Untuk
+ini, lihat dokumentasi Maxima atau tutorial tentang Maxima di EMT.
+</p>
+<pre class="prompt">&gt;v &amp;= makelist(1/(i+j),i,1,3); $v
+</pre>
+<pre class="prompt">&gt;B &amp;:= [1,2;3,4]; $B, $&amp;invert(B)
+</pre>
+<p class="comment">Hasilnya dapat dievaluasi secara numerik di Euler. Untuk informasi
+lebih lanjut tentang Maxima, lihat pengantar tentang Maxima.
+</p>
+<pre class="prompt">&gt;$&amp;invert(B)()
+</pre>
+<pre class="output">      -2.00        1.00 
+       1.50       -0.50 
+</pre>
+<p class="comment">Euler juga memiliki fungsi yang kuat, xinv(), yang melakukan usaha
+lebih besar dan mendapatkan hasil yang lebih akurat.
+</p>
+<p class="comment">Perhatikan bahwa dengan &amp;:=, matriks B telah didefinisikan sebagai
+simbolik dalam ekspresi simbolik dan sebagai numerik dalam ekspresi
+numerik. Jadi kita dapat menggunakannya di sini.
+</p>
+<pre class="prompt">&gt;longest B.xinv(B)
+</pre>
+<pre class="output">                      1                       0 
+                      0                       1 
+</pre>
+<p class="comment">Misalnya, nilai eigen dari A dapat dihitung secara numerik.
+</p>
+<pre class="prompt">&gt;A=[1,2,3;4,5,6;7,8,9]; real(eigenvalues(A))
+</pre>
+<pre class="output">      16.12       -1.12       -0.00 
+</pre>
+<p class="comment">Atau secara simbolis. Lihat tutorial tentang Maxima untuk detailnya.
+</p>
+<pre class="prompt">&gt;$&amp;eigenvalues(@A)
+</pre>
+<h1 class="comment"><a name="Numerical_Values_in_symbolic_Expressions">Numerical Values in symbolic Expressions</a></h1>
+<p class="comment">Sebuah ekspresi simbolik hanya berupa string yang berisi sebuah
+ekspresi. Jika kita ingin mendefinisikan nilai baik untuk ekspresi
+simbolik maupun ekspresi numerik, kita harus menggunakan "&amp;:=".
+</p>
+<pre class="prompt">&gt;A &amp;:= [1,pi;4,5]
+</pre>
+<pre class="output">            1       3.14159 
+            4             5 
+</pre>
+<p class="comment">Masih ada perbedaan antara bentuk numerik dan simbolik. Saat
+mentransfer matriks ke bentuk simbolik, pendekatan pecahan untuk
+bilangan real akan digunakan.
+</p>
+<pre class="prompt">&gt;$&amp;A
+</pre>
+<p class="comment">Untuk menghindari hal ini, ada fungsi `mxmset(variable)`.
+</p>
+<pre class="prompt">&gt;mxmset(A); $&amp;A
+</pre>
+<p class="comment">Maxima juga dapat melakukan perhitungan dengan angka floating point,
+bahkan dengan angka floating point besar hingga 32 digit. Namun,
+evaluasinya akan jauh lebih lambat.
+</p>
+<pre class="prompt">&gt;$&amp;bfloat(sqrt(2)), $&amp;float(sqrt(2))
+</pre>
+<p class="comment">The precision of the big floating point numbers can be changed.
+</p>
+<pre class="prompt">&gt;&amp;fpprec:=100; &amp;bfloat(pi)
+</pre>
+<pre class="output">
+        3.14159265358979323846264338327950288419716939937510582097494\
+4592307816406286208998628034825342117068b0
+
+</pre>
+<p class="comment">A numerical variable can be used in any symbolic expressions using
+"@var".
+</p>
+<p class="comment">Note that this is only necessary, if the variable has been defined
+with ":=" or "=" as a numerical variable.
+</p>
+<pre class="prompt">&gt;B:=[1,pi;3,4]; $&amp;det(@B)
+</pre>
+<h1 class="comment"><a name="Demo_-_Tingkat_Bunga">Demo - Tingkat Bunga</a></h1>
+<p class="comment">Di bawah ini, kita menggunakan Euler Math Toolbox (EMT) untuk
+menghitung tingkat bunga. Kita melakukannya secara numerik dan
+simbolik untuk menunjukkan bagaimana Euler dapat digunakan untuk
+menyelesaikan masalah kehidupan nyata.
+</p>
+<p class="comment">Misalkan Anda memiliki modal awal sebesar 5000 (misalnya dalam dolar).
+</p>
+<pre class="prompt">&gt;L=2000
+</pre>
+<pre class="output">2000
+</pre>
+<pre class="prompt">&gt;K=5000
+</pre>
+<pre class="output">5000
+</pre>
+<p class="comment">Sekarang kita asumsikan tingkat bunga sebesar 3% per tahun. Mari
+tambahkan satu tingkat bunga sederhana dan hitung hasilnya.
+</p>
+<pre class="prompt">&gt;L*2.56
+</pre>
+<pre class="output">5120
+</pre>
+<pre class="prompt">&gt;K*1.03
+</pre>
+<pre class="output">5150
+</pre>
+<p class="comment">Euler would understand the following syntax too.
+</p>
+<pre class="prompt">&gt;K+K*3%
+</pre>
+<pre class="output">5150
+</pre>
+<p class="comment">But it is easier to use the factor
+</p>
+<pre class="prompt">&gt;m=1+4%, L*m
+</pre>
+<pre class="output">1.04
+2080
+</pre>
+<pre class="prompt">&gt;q=1+3%, K*q
+</pre>
+<pre class="output">1.03
+5150
+</pre>
+<p class="comment">For 10 years, we can simply multiply the factors and get the final value with
+compound interest rates.
+</p>
+<pre class="prompt">&gt;K*q^10
+</pre>
+<pre class="output">6719.58189672
+</pre>
+<p class="comment">For our purposes, we can set the format to 2 digits after the decimal dot.
+</p>
+<pre class="prompt">&gt;format(14,5); L*m^12
+</pre>
+<pre class="output">   3202.06444 
+</pre>
+<pre class="prompt">&gt;format(12,2); L*m^10
+</pre>
+<pre class="output">    2960.49 
+</pre>
+<p class="comment">Let us print that rounded to 2 digits in a complete sentence.
+</p>
+<pre class="prompt">&gt;"Starting from " + K + "$ you get " + round(K*q^10,2) + "$."
+</pre>
+<pre class="output">Starting from 5000$ you get 6719.58$.
+</pre>
+<p class="comment">What if we want to know the intermediate results from year 1 to year 9? For
+this, Euler's matrix language is a big help. You do not have to write a loop,
+but simply enter
+</p>
+<pre class="prompt">&gt;K*q^(0:10)
+</pre>
+<pre class="output">Real 1 x 11 matrix
+
+    5000.00     5150.00     5304.50     5463.64     ...
+</pre>
+<p class="comment">How does this miracle work? First the expression 0:10 returns a vector of
+integers.
+</p>
+<pre class="prompt">&gt;short 0:10
+</pre>
+<pre class="output">[0,  1,  2,  3,  4,  5,  6,  7,  8,  9,  10]
+</pre>
+<p class="comment">Then all operators and functions in Euler can be applied to vectors element
+for element. So
+</p>
+<pre class="prompt">&gt;short q^(0:10)
+</pre>
+<pre class="output">[1,  1.03,  1.0609,  1.0927,  1.1255,  1.1593,  1.1941,  1.2299,
+1.2668,  1.3048,  1.3439]
+</pre>
+<p class="comment">is a vector of factors q^0 to q^10. This is multiplied by K, and we get the
+vector of values.
+</p>
+<pre class="prompt">&gt;VK=K*q^(0:10);
+</pre>
+<p class="comment">Of course, the realistic way to compute these interest rates would be to
+round to the nearest cent after each year. Let us add a function for this.
+</p>
+<pre class="prompt">&gt;function oneyear (K) := round(K*q,2)
+</pre>
+<p class="comment">Let us compare the two results, with and without rounding.
+</p>
+<pre class="prompt">&gt;longest oneyear(1234.57), longest 1234.57*q
+</pre>
+<pre class="output">                1271.61 
+              1271.6071 
+</pre>
+<p class="comment">Now there is no simple formula for the n-th year, and we must loop over the
+years. Euler provides many solutions for this.
+</p>
+<p class="comment">The easiest way is the function iterate, which iterates a given function a
+number of times.
+</p>
+<pre class="prompt">&gt;VKr=iterate("oneyear",5000,10)
+</pre>
+<pre class="output">Real 1 x 11 matrix
+
+    5000.00     5150.00     5304.50     5463.64     ...
+</pre>
+<p class="comment">We can print that in a friendly way, using our format with fixed decimal
+places.
+</p>
+<pre class="prompt">&gt;VKr'
+</pre>
+<pre class="output">    5000.00 
+    5150.00 
+    5304.50 
+    5463.64 
+    5627.55 
+    5796.38 
+    5970.27 
+    6149.38 
+    6333.86 
+    6523.88 
+    6719.60 
+</pre>
+<p class="comment">To get a specific element of the vector, we use indices in square brackets.
+</p>
+<pre class="prompt">&gt;VKr[2], VKr[1:3]
+</pre>
+<pre class="output">    5150.00 
+    5000.00     5150.00     5304.50 
+</pre>
+<p class="comment">Surprisingly, we can also use a vector of indices. Remember that 1:3 produced
+the vector [1,2,3].
+</p>
+<p class="comment">Let us compare the last element of the rounded values with the full values.
+</p>
+<pre class="prompt">&gt;VKr[-1], VK[-1]
+</pre>
+<pre class="output">    6719.60 
+    6719.58 
+</pre>
+<p class="comment">Perbedaannya sangat kecil.
+</p>
+<h2 class="comment">Menyelesaikan Persamaan</h2>
+<p class="comment">Sekarang kita mengambil fungsi yang lebih canggih, yang menambahkan
+sejumlah uang tertentu setiap tahun.
+</p>
+<pre class="prompt">&gt;function onepay (K) := K*q+R
+</pre>
+<p class="comment">Kita tidak perlu menentukan \( q \) atau \( R \) untuk mendefinisikan
+fungsi. Hanya saat menjalankan perintah, kita harus mendefinisikan
+nilai-nilai ini. Kita pilih \( R = 200 \).
+</p>
+<pre class="prompt">&gt;R=200; iterate("onepay",5000,10)
+</pre>
+<pre class="output">Real 1 x 11 matrix
+
+    5000.00     5350.00     5710.50     6081.82     ...
+</pre>
+<p class="comment">Bagaimana jika kita menghapus jumlah yang sama setiap tahun?
+</p>
+<pre class="prompt">&gt;R=-200; iterate("onepay",5000,10)
+</pre>
+<pre class="output">Real 1 x 11 matrix
+
+    5000.00     4950.00     4898.50     4845.45     ...
+</pre>
+<p class="comment">Kita melihat bahwa uang berkurang. Jelas bahwa jika kita hanya
+mendapatkan 150 dalam bunga pada tahun pertama, tetapi menghapus 200,
+kita kehilangan uang setiap tahun.
+</p>
+<p class="comment">Bagaimana kita bisa menentukan berapa tahun uang tersebut akan
+bertahan? Kita harus menulis sebuah loop untuk ini. Cara termudah
+adalah dengan melakukan iterasi cukup lama.
+</p>
+<pre class="prompt">&gt;VKR=iterate("onepay",5000,50)
+</pre>
+<pre class="output">Real 1 x 51 matrix
+
+    5000.00     4950.00     4898.50     4845.45     ...
+</pre>
+<p class="comment">Dengan menggunakan bahasa matriks, kita dapat menentukan nilai negatif
+pertama dengan cara berikut.
+</p>
+<pre class="prompt">&gt;min(nonzeros(VKR&lt;0))
+</pre>
+<pre class="output">      48.00 
+</pre>
+<p class="comment">Alasan untuk ini adalah bahwa `nonzeros(VKR&lt;0)` mengembalikan vektor
+indeks \( i \), di mana \( VKR[i] &lt; 0 \), dan `min` menghitung indeks
+minimum.
+</p>
+<p class="comment">Karena vektor selalu dimulai dengan indeks 1, jawabannya adalah 47
+tahun.
+</p>
+<p class="comment">Fungsi `iterate()` memiliki satu trik lagi. Fungsi ini dapat menerima
+kondisi akhir sebagai argumen. Kemudian, ia akan mengembalikan nilai
+dan jumlah iterasi.
+</p>
+<pre class="prompt">&gt;{x,n}=iterate("onepay",5000,till="x&lt;0"); x, n,
+</pre>
+<pre class="output">     -19.83 
+      47.00 
+</pre>
+<p class="comment">Mari kita coba menjawab pertanyaan yang lebih ambigu. Misalkan kita
+tahu bahwa nilai uang menjadi 0 setelah 50 tahun. Berapa tingkat suku
+bunganya?
+</p>
+<p class="comment">Ini adalah pertanyaan yang hanya bisa dijawab secara numerik. Di bawah
+ini, kita akan menurunkan rumus yang diperlukan. Kemudian, Anda akan
+melihat bahwa tidak ada rumus sederhana untuk tingkat bunga. Namun,
+untuk saat ini, kita akan mencari solusi numerik.
+</p>
+<p class="comment">Langkah pertama adalah mendefinisikan fungsi yang melakukan iterasi
+sebanyak \(n\) kali. Kita tambahkan semua parameter ke dalam fungsi
+ini.
+</p>
+<pre class="prompt">&gt;function f(K,R,P,n) := iterate("x*(1+P/100)+R",K,n;P,R)[-1]
+</pre>
+<p class="comment">Iterasinya sama seperti sebelumnya:
+</p>
+<p class="comment">\[
+<br />x_{n+1} = x_n \cdot \left(1+ \frac{P}{100}\right) + R
+<br />\]
+</p>
+<p class="comment">Namun, kali ini kita tidak lagi menggunakan nilai global dari \(R\)
+dalam ekspresi kita. Fungsi-fungsi seperti `iterate()` memiliki trik
+khusus di Euler. Anda bisa meneruskan nilai variabel dalam ekspresi
+sebagai parameter dengan menggunakan titik koma. Dalam hal ini,
+variabel \(P\) dan \(R\).
+</p>
+<p class="comment">Selain itu, kita hanya tertarik pada nilai terakhir. Jadi, kita ambil
+indeks [-1].
+</p>
+<p class="comment">Mari kita coba sebuah tes.
+</p>
+<pre class="prompt">&gt;f(5000,-200,3,47)
+</pre>
+<pre class="output">     -19.83 
+</pre>
+<p class="comment">Sekarang kita dapat menyelesaikan masalah kita.
+</p>
+<pre class="prompt">&gt;solve("f(5000,-200,x,50)",3)
+</pre>
+<pre class="output">       3.15 
+</pre>
+<p class="comment">Rutin `solve` menyelesaikan ekspresi=0 untuk variabel \( x \).
+Jawabannya adalah 3,15% per tahun. Kami menggunakan nilai awal 3%
+untuk algoritme. Fungsi `solve()` selalu memerlukan nilai awal.
+</p>
+<p class="comment">Kita dapat menggunakan fungsi yang sama untuk menyelesaikan pertanyaan
+berikut: Berapa banyak yang dapat kita tarik per tahun agar modal awal
+habis setelah 20 tahun dengan asumsi suku bunga 3% per tahun.
+</p>
+<pre class="prompt">&gt;solve("f(5000,x,3,20)",-200)
+</pre>
+<pre class="output">    -336.08 
+</pre>
+<p class="comment">Perhatikan bahwa Anda tidak dapat menyelesaikan untuk jumlah tahun,
+karena fungsi kami menganggap \( n \) sebagai nilai bilangan bulat.
+</p>
+<h2 class="comment">Solusi Simbolik untuk Masalah Suku Bunga</h2>
+<p class="comment">Kita dapat menggunakan bagian simbolik dari Euler untuk mempelajari
+masalah ini. Pertama, kita mendefinisikan fungsi `onepay()` secara
+simbolik.
+</p>
+<pre class="prompt">&gt;function op(K) &amp;= K*q+R; $&amp;op(K)
+</pre>
+<p class="comment">Kita dapat mengiterasi ini
+</p>
+<pre class="prompt">&gt;$&amp;op(op(op(op(K)))), $&amp;expand(%)
+</pre>
+<p class="comment">Kita melihat pola. Setelah \( n \) periode, kita memiliki
+</p>
+<p class="comment">\[ K_n = q^n K + R (1 + q + \ldots + q^{n-1}) = q^n K + \frac{q^n -
+1}{q - 1} R \]
+</p>
+<p class="comment">Formula ini adalah formula untuk jumlah geometrik, yang dikenal oleh
+Maxima.
+</p>
+<pre class="prompt">&gt;&amp;sum(q^k,k,0,n-1); $&amp; % = ev(%,simpsum)
+</pre>
+<p class="comment">Ini sedikit rumit. Jumlahnya dievaluasi dengan flag "simpsum" untuk
+menguranginya menjadi bentuk pecahan.
+</p>
+<p class="comment">Mari kita buat fungsi untuk ini.
+</p>
+<pre class="prompt">&gt;function fs(K,R,P,n) &amp;= (1+P/100)^n*K + ((1+P/100)^n-1)/(P/100)*R; $&amp;fs(K,R,P,n)
+</pre>
+<p class="comment">Fungsi ini melakukan hal yang sama seperti fungsi \( f \) kita
+sebelumnya. Namun, fungsi ini lebih efektif.
+</p>
+<pre class="prompt">&gt;longest f(5000,-200,3,47), longest fs(5000,-200,3,47)
+</pre>
+<pre class="output">     -19.82504734650985 
+     -19.82504734652684 
+</pre>
+<p class="comment">Fungsi ini melakukan hal yang sama seperti fungsi \( f \) kita
+sebelumnya. Namun, fungsinya lebih efektif.
+</p>
+<pre class="prompt">&gt;solve("fs(5000,-330,3,x)",30)
+</pre>
+<pre class="output">      20.51 
+</pre>
+<p class="comment">Kita juga dapat menggunakan sisi simbolik Euler untuk menghitung
+rumus-rumus untuk pembayaran.
+</p>
+<p class="comment">Misalkan kita mendapatkan pinjaman sebesar \( K \), dan membayar \( n
+\) pembayaran sebesar \( R \) (dimulai setelah tahun pertama)
+meninggalkan utang sisa sebesar \( K_n \) (pada saat pembayaran
+terakhir). Rumus untuk ini adalah jelas
+</p>
+<pre class="prompt">&gt;equ &amp;= fs(K,R,P,n)=Kn; $&amp;equ
+</pre>
+<p class="comment">Biasanya rumus ini diberikan dalam bentuk
+</p>
+<pre class="prompt">&gt;equ &amp;= (equ with P=100*i); $&amp;equ
+</pre>
+<p class="comment">Kita dapat menyelesaikan untuk tingkat \( R \) secara simbolik.
+</p>
+<pre class="prompt">&gt;$&amp;solve(equ,R)
+</pre>
+<p class="comment">Seperti yang Anda lihat dari rumusnya, fungsi ini mengembalikan
+kesalahan floating point untuk \( i=0 \). Namun, Euler tetap
+memplotnya.
+</p>
+<p class="comment">Tentu saja, kita memiliki limit berikut.
+</p>
+<pre class="prompt">&gt;$&amp;limit(R(5000,0,x,10),x,0)
+</pre>
+<p class="comment">Jelas, tanpa bunga kita harus membayar kembali 10 cicilan sebesar 500.
+</p>
+<p class="comment">Persamaan ini juga dapat diselesaikan untuk \( n \). Akan terlihat
+lebih baik jika kita menerapkan beberapa penyederhanaan pada persamaan
+tersebut.
+</p>
+<pre class="prompt">&gt;fn &amp;= solve(equ,n) | ratsimp; $&amp;fn
+</pre>
+</body>
+</html>
