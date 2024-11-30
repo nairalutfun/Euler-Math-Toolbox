@@ -1,0 +1,3250 @@
+﻿% Kelompok 5 (Geometri) Kelas Matematika E
+% 
+% 1. Rasdiana Putri 23030630033: sub materi 3 dan 11
+% 
+% 2. Zahra Safaina Putri 23030630034: sub materi 4 dan 10
+% 
+% 3. Amir Dwi Cahya 23030630048: sub materi 5, 6, 7, dan 8
+% 
+% 4. Tyas Sahriana 23030630049: sub materi 3 dan 11
+% 
+% 5. Michelia Kirana A 23030630054: sub materi 4 dan 10
+% 
+% 6. Naira Lutfun Nisa 23030630055: sub materi 1, 2, dan 9
+% 
+% 7. Alika Azimatinur Raudha 23030630056: sub materi 1, 2, dan 9
+% 
+% 8. Nur Muhammad Al Fahamiey 23030630058: sub materi 5, 6, 7, dan 8
+% 
+% Sub Materi yang Kami Kerjakan:
+%% 1. memanggil program geometry.e untuk menggunakan
+% perintah-perintah/fungsi-fungsi geometri;
+% 
+% 2. mengatur luas bidang koordinat untuk menggambar objek-objek
+% geometri;
+% 
+% 3. menggambar titik, ruas garis, garis, segi banyak, lingkaran,
+% ellips, parabola, hiperbola, dan objek-objek geometri lainnya;
+% 
+% 4. menentukan titik tengah suatu ruas garis, titik potong dua garis,
+% titik potong garis dan lingkaran, titik potong dua lingkaran;
+% 
+% 5. menentukan persamaan garis yang melalui dua titik, garis sumbu
+% suatu ruas garis, garis bagi sudut, garis berat, dll.;
+% 
+% 6. menentukan titik pusat dan jari-jari suatu lingkaran;
+% 
+% 7. menentukan persamaan lingkaran yang melalui tiga titik;
+% 
+% 8. menentukan titik pusat dan jari-jari lingkaran luar dan lingkaran
+% dalam suatu segitiga;
+% 
+% 9. menentukan persamaan dan menggambar parabola yang ditentukkan titik
+% fokus dan garis arahnya;
+% 
+% 10. menentukan persamaan dan menggambar ellips yang diketahui kedua
+% titik fokusnya;
+% 
+% 11. melakukan berbagai perhitungan geometris, seperti jarak dua titik
+% (panjang ruas garis), luas segitiga, keliling segitiga, luas
+% lingkaran, keliling lingkaran, dan sebagainya;
+% 
+% * Visualisasi dan Perhitungan Geometri dengan EMT
+% 
+% Euler menyediakan beberapa fungsi untuk melakukan visualisasi dan
+% perhitungan geometri, baik secara numerik maupun analitik (seperti
+% biasanya tentunya, menggunakan Maxima). Fungsi-fungsi untuk
+% visualisasi dan perhitungan geometeri tersebut disimpan di dalam file
+% program "geometry.e", sehingga file tersebut harus dipanggil sebelum
+% menggunakan fungsi-fungsi atau perintah-perintah untuk geometri.
+>load geometry
+Numerical and symbolic geometry.
+% * Sub Materi 1
+% 
+% ** Fungsi-fungsi Geometri
+% 
+% Fungsi-fungsi untuk Menggambar Objek Geometri:
+% 
+% - defaultd:=textheight()*1.5: nilai asli untuk parameter d
+%% Fungsi ini
+%% - setPlotRange(x1,x2,y1,y2): menentukan rentang x dan y pada bidang
+% koordinat. Fungsi ini menunjukkan rentang koordinat yang akan kita
+% pakai.
+%% setPlotRange(2,3,-2,-3):
+%% - setPlotRange(r): pusat bidang koordinat (0,0) dan batas-batas
+% sumbu-x dan y adalah -r sd r. Dalam perintah ini, rentang x dan y
+% diatur secara otomatis dengan pusat koordinat di (0, 0) dan batas pada
+% -r hingga r untuk kedua sumbu. Ini berarti bahwa rentang untuk sumbu x
+% dan y akan simetris dengan pusat di titik nol.
+%% - plotPoint (P, "P"): menggambar titik P dan diberi label "P".
+%% - plotSegment (A,B, "AB", d): menggambar ruas garis AB, diberi label
+% "AB" sejauh d.
+%% - plotLine (g, "g", d): menggambar garis g diberi label "g" sejauh d
+%% - plotCircle (c,"c",v,d): Menggambar lingkaran c dan diberi label "c"
+%% - plotLabel (label, P, V, d): menuliskan label pada posisi P
+% 
+% Fungsi-fungsi Geometri Analitik (numerik maupun simbolik):
+% 
+% - turn(v, phi): memutar vektor v sejauh phi.
+%% Memutar vektor v sejauh sudut phi (dalam radian atau derajat) dari
+% posisi awalnya. Fungsi ini mengubah arah vektor tanpa mengubah
+% panjangnya.
+%% - turnLeft(v):   memutar vektor v ke kiri.
+%% Memutar vektor v ke kiri (biasanya sebesar 90 derajat berlawanan arah
+% jarum jam).
+%% - turnRight(v):  memutar vektor v ke kanan.
+%% Memutar vektor v ke kanan (biasanya sebesar 90 derajat searah jarum
+% jam).
+%% - normalize(v): normal vektor v.
+%% Mengubah vektor v menjadi vektor satuan (vektor dengan panjang 1)
+% dengan mempertahankan arah vektor.
+% 
+% 
+% - crossProduct(v, w): hasil kali silang vektorv dan w.
+%% Menghitung hasil kali silang dua vektor v dan w. Hasilnya adalah
+% vektor baru yang tegak lurus terhadap kedua vektor asal dalam ruang 3
+% dimensi.
+%% - lineThrough(A, B): garis melalui A dan B, hasilnya [a,b,c] sdh.
+% ax+by=c.
+%% Menghitung persamaan garis yang melalui dua titik A dan B. Hasilnya
+% dalam bentuk persamaan ax + by = c.
+%% - lineWithDirection(A,v): garis melalui A searah vektor v.
+%% Menghasilkan persamaan garis yang melalui titik A dan searah dengan
+% vektor v. Ini berguna untuk mendefinisikan garis berdasarkan titik dan
+% arah.
+%% - getLineDirection(g): vektor arah (gradien) garis g.
+%% Menghasilkan vektor arah dari garis g. Vektor arah ini biasanya
+% ditentukan dari gradien atau kemiringan garis.
+%% - getNormal(g): vektor normal (tegak lurus) garis g.
+%% Menghasilkan vektor normal atau tegak lurus terhadap garis g. Vektor
+% normal ini penting dalam banyak aplikasi seperti perhitungan pantulan
+% atau bidang normal.
+%% - getPointOnLine(g):  titik pada garis gMenghasilkan vektor arah dari
+% garis g.
+%% Menghasilkan titik yang terletak pada garis g. Titik ini biasanya
+% diambil dari koordinat pada garis yang memenuhi persamaan garis
+% tersebut.
+%% - perpendicular(A, g):  mencari garis melalui A yang tegak lurus
+% terhadap garis g
+%% - parallel (A, g):  garis melalui A sejajar garis g
+%% - lineIntersection(g, h): mencari titik potong antara garis g dan
+% garis h
+%% - projectToLine(A, g):   proyeksi titik A pada garis g atau mencari
+% titik pada garis g yang merupakan proyeksi dari titik A.
+%% - distance(A, B):  mencari perhitungan jarak titik A dan titik B pada
+% bidang kartesius.
+%% - distanceSquared(A, B):  mencari kuadrat dari jarak antara titik A
+% dan titik B
+%% - quadrance(A, B): mencari kuadrat jarak antara titik A dan titik B
+%% - areaTriangle(A, B, C): mencari perhitungan luas segitiga ABC
+%% - computeAngle(A, B, C): mencari perhitungan berapa besar sudut <ABC
+%% - angleBisector(A, B, C): mencari perhitungan garis bagi (pembagi)
+% sudut <ABC, titik B yang merupakan titik tengah antara titik A dan C
+%% - circleWithCenter (A, r): mencari lingkaran dengan pusat A dan
+% jari-jari r
+%% - getCircleCenter(c): mencari sebuah titik pusat pada lingkaran c
+%% - getCircleRadius(c): mencari perhitungan jari-jari dari lingkaran c
+%% - circleThrough(A,B,C): mencari persamaan lingkaran yang melalui tiga
+% titik yang berikan (titik A, B, C)
+%% - middlePerpendicular(A, B): mencari garis tegak lurus melalui titik
+% tengah dari AB
+%% - lineCircleIntersections(g, c): mencari perhitungan titik potong
+% garis g dan lingkran c
+%% - circleCircleIntersections (c1, c2): mencari perhitungan titik potong
+% lingkaran c1 dan c2
+%% - planeThrough(A, B, C): mencari persamaan bidang melalui titik A, B,
+% C di dalam ruang tiga dimensi.
+% 
+% **  Fungsi-fungsi Khusus Untuk Geometri Simbolik:
+% 
+% 
+% - getLineEquation (g,x,y): persamaan garis g dinyatakan dalam x dan y,
+% artinya mencari persamaan garis g yang akan melewati dua titik yaitu x
+% dan y dalam kartesius.
+%% - getHesseForm (g,x,y,A): bentuk Hesse garis g dinyatakan dalam x dan
+% y dengan titik A pada sisi positif (kanan/atas) garis
+%% - quad(A,B): mencari persamaan kuadrat panjang jarak antara kedua
+% titik A dan B
+%% - spread(a,b,c): Spread segitiga dengan panjang sisi-sisi a,b,c, yakni
+% sin(alpha)^2 dengan alpha sudut yang menghadap sisi a.
+%% - crosslaw(a,b,c,sa): persamaan 3 quads dan 1 spread pada segitiga
+% dengan panjang sisi a, b, c.
+%% - triplespread(sa,sb,sc): persamaan 3 spread sa,sb,sc yang memebntuk
+% suatu segitiga dan fungsi ini untuk menghitung spread dari ketiga sisi
+% segitiga
+%% - doublespread(sa): Spread sudut rangkap Spread 2*phi, dengan
+% sa=sin(phi)^2 spread a.
+% 
+% * Sub Materi 2 
+% 
+% 
+% ** Menentukan Luas Bidang Koordinat
+% 
+% Sebelum kita membuat atau menggambarkan objek geometri, tentunya
+% sebelum itu kita harus membuat sebuah bidang koordinat, sampai
+% didefinisikan bidang koordinat yang baru.
+% 
+% Jika ingin membuat bidang koordinat kita dapat menggunakan
+% 
+% setPlotRange(x1,x2,y1,y2):
+% 
+% keterangan :
+%% - x1,x2 adalah panjang garis koordinat x yang akan dibuat dari x1
+% sampai x2
+%% - y1,y2 adalah lebar garis koordinat y yang akan dibuat dari y1 sampai
+% y2
+>setPlotRange(x1,x2,y1,y2); // Menentukan rentang koordinat
+Variable or function x1 not found.
+Error in:
+setPlotRange(x1,x2,y1,y2); // Menentukan rentang koordinat ...
+               ^
+% Sebagai contoh:
+% 
+% Akan dibuatkan luas bidang koordinat dengan panjang 5 satuan sisi x
+% dan lebar 5 satuan sisi y, gambarkanlah bidang koordinat tersebut!
+>setPlotRange(1,5,1,5); 
+>aspect(1); 
+% Dari hasil grafik dapat dilihat bahwa panjang dan lebar grafiknya
+% sebesar 5 satuan. Dimulai dari titik (1,1) sampai (5,5)
+% 
+% 
+% ** Contoh
+% 
+% 1. Buatkanlah sebuah bidang koordinat dengan panjang dan lebar 8
+% satuan dimulai titik koordinat (-1,1) sampai dengan (7,7)
+% 
+% x1 =-1 dan x2 =7
+%% y1 =-1 dan y2 =7
+>load geometry
+Numerical and symbolic geometry.
+>setPlotRange(-1,7,-1,7);
+>aspect(1): 
+>setPlotRange(-2,10,-1,10); //
+>A=[1,5]; plotPoint(A,"A"); // Membuat titik A
+>B=[4,1]; plotPoint(B,"B"); //Membuat titik B
+>plotSegment(A,B,"c"); //Membuat garis dengan menghubungkan titik A dan B
+>aspect(1) ; plotSegment(A,B): //Menampilkan hasil plot 
+% Dilihat dari gambar grafik tersebut bidang koordinat dengan rentang -1
+% sampai 10 satuan, dan digambarkan sebuah garis AB dengan titik
+% A(1,5)dan B(4,1)
+% 
+% 3. Akan dibuat sebuah bidang koordinat dengan rentang koordinat x,
+% x1=-10 dan x2=50, rentang koordinat y, y=-10 dan y2=-100!
+>setPlotRange(-10,50,-10,100);
+>aspect(1):
+% ** Latihan
+% 
+% Buatlah sebuah bidang koordinat dengan rentang koordinat x 100 satuan
+% dimulai dan rentang koordinay y 100 satuan dimulai dari titik (0,0).
+% Kemudian buatkanlah titik D(58,82),E(15,90), dan F(80,41)!
+>setPlotRange(0,100,0,100); //membuat bidang koordinat
+>D=[58,82]; plotPoint(D,"D"); //titik D
+>E=[15,90]; plotPoint(E,"E"); //titik E
+>F=[80,41]; plotPoint(F,"F"); //titik F
+>aspect(1):
+>
+% * Sub Materi 3
+% * Menggambar Titik, Ruas Garis, Garis, Segi Banyak, 
+% * Lingkaran, Elips, Parabola, Hiperbola
+% 
+% 
+% ** 1) Menggambar Titik
+% 
+% Titik merupakan suatu tempat/posisi dalam ruang. Sebuah titik tidak
+% memiliki ukuran dan dimensi, tetapi menunjukkan lokasi yang pasti.
+% Serangkaian titik menyusun garis, ruas garis, sinar, dan bidang. Titik
+% diberi nama dengan huruf besar miring ditempatkan di sebelahnya.
+% Sebuah titik dimodelkan dengan sebuah noktah.
+% 
+% Untuk menggambar objek-objek geometri, langkah pertama adalah
+% menentukan rentang sumbu-sumbu koordinat. Semua objek geometri akan
+% digambar pada satu bidang koordinat, sampai didefinisikan bidang
+% koordinat yang baru.
+% 
+% Perintah untuk menggambar titik sebagai berikut.
+>load geometry
+Numerical and symbolic geometry.
+>setPlotRange(-5,5,-5,5); // mendefinisikan bidang koordinat baru
+>A=[3,2]; plotPoint(A,"A"): // definisi dan gambar titik
+% ** 2) Menggambar Garis
+% 
+% Sebuah garis dipikirkan sebagai suatu himpunan titik berderet yang
+% panjang tak terbatas, tetapi tidak memiliki lebar. Garis terdiri dari
+% serangkaian titik-titik tak terhingga. Sebuah garis dinamai dengan
+% salah satu huruf kecil italic atau dengan menyebutkan dua titik pada
+% garis tersebut.
+% 
+% Dalam sistem koordinat dua dimensi, garis dapat digambar menggunakan
+% persamaan linear, seperti
+% 
+% latex: y = mx + b
+% 
+% di mana
+%% m adalah kemiringan dan
+%% b adalah titik potong dengan sumbu y.
+% 
+% Misalkan, terdapat garis
+% 
+% latex: y = 2x + 3
+>plot2d("2x+3"):
+>
+% ** Latihan
+%% Soal Benar Salah
+%% Tentukan pernyataan di bawah, benar atau salah.
+% 
+% a. Diberikan garis dengan persamaan
+% 
+% latex: y=3x+2.
+%% Garis ini memiliki gradien 3 dan memotong sumbu y di titik (0,2).
+% 
+% b. Dua garis dengan persamaan
+% 
+% latex: y=4x+1, y=3x+1
+% 
+% adalah garis yang sejajar.
+% 
+% c. Garis dengan persamaan
+%% latex: -4x-y=8
+%% memiliki gambar dengan kemiringan ke kiri(turun ke bawah).
+>
+% Kunci jawaban:
+%% a. Diberikan garis dengan persamaan
+% 
+% latex: y=3x+2.
+% 
+% Garis ini memiliki gradien 3 dan memotong sumbu y di titik (0,2).
+% 
+% Jawaban: Benar
+%% Koefisien 3 pada variabel x menyatakan gradien. Lalu, saat memotong
+% sumbu y, berarti x = 0, sehingga didapat y = 2. Titiknya: (0,2).
+>plot2d("3*x+2"):
+% b. Dua garis dengan persamaan
+% 
+% latex: y=4x+1, y=3x+1
+% 
+% adalah garis yang sejajar.
+% 
+% Jawaban: Salah
+%% Karena 2 garis tersebut mempunyai kemiringan yang berbeda, yakni 4 dan
+% 3.
+>plot2d("4*x+1",color=red); plot2d("3*x+1",>add):
+% Dapat dilihat bahwa gambar tidak sejajar.
+% 
+% c. Garis dengan persamaan
+%% latex: -4x-y=8
+%% memiliki gambar dengan kemiringan ke kiri.
+% 
+% Jawaban: Benar
+%% latex: -4x-y=8
+%% latex: y=-4x-8
+%% Garis ini punya kemiringan -4 (negatif), sehingga gambarnya punya
+% kemiringan ke kiri (turun ke bawah).
+>plot2d("-4*x-8"):
+>
+>
+% ** 3) Menggambar Ruas Garis
+% 
+% Ruas garis atau segmen garis adalah bagian dari garis yang memiliki
+% dua titik ujung. Berbeda dengan garis yang tidak memiliki batas dan
+% terus memanjang di kedua arah, ruas garis memiliki panjang yang
+% terbatas karena terbatas oleh dua titik tersebut.
+% 
+% Ruas garis dapat digunakan untuk membentuk objek geometri, salah
+% satunya adalah segitiga.
+>setPlotRange(-2,2,-2,2); // mendefinisikan bidang koordinat baru
+% Misalkan diberikan tiga titik.
+>A=[0,-1]; plotPoint(A,"A");
+>B=[-1,0]; plotPoint(B,"B");
+>C=[1,1]; plotPoint(C,"C");
+% Lalu, akan kita buat ruas garis.
+>plotSegment(A,B,"c"): // c=AB
+>plotSegment(B,C,"a"): // a=BC
+>plotSegment(A,C,"b"): // b=AC
+% Dari ruas garis di atas, yaitu ruas garis
+% 
+% latex: AB, BC, AC
+% 
+% membentuk segitiga di atas.
+>reset;
+>
+% ** 4) Menggambar segi banyak
+% 
+% Akan digambar segi-n beraturan jika diketahui titik pusat O, n, dan
+% jarak titik pusat ke titik-titik sudut segi-n tersebut (jari-jari
+% lingkaran luar segi-n), r.
+% 
+% Contoh: Menggambar segi 6
+% 
+>n = 6; // Jumlah sisi
+>r = 1; // Jarak titik pusat ke sudut
+>O = [0, 0]
+[0,  0]
+>t = linspace(0, 2*pi, n); // Sudut untuk titik-titik sudut
+>x = r * cos(t);
+>y = r * sin(t);
+>setPlotRange(-2,2,-2,2); 
+>plot(x, y): //  Gambar segi-n
+% ** Latihan Soal
+% 
+% Gambarkan plot segi-8, dengan jarak titik pusat ke titik sudutnya
+% adalah 2
+>n = 8; // Jumlah sisi
+>r = 1; // Jari-jari
+>O = [0, 0]
+[0,  0]
+>t = linspace(0, 2*pi, n); // Sudut untuk titik-titik sudut
+>x = r * cos(t);
+>y = r * sin(t);
+>plot(x, y): //  Gambar segi-n 
+% ** 5) Menggambar Lingkaran
+%% Lingkaran adalah himpunan semua titik dalam bidang yang memiliki jarak
+% yang sama dari sebuah titik tetap, yang disebut pusat lingkaran. Jarak
+% tetap ini disebut jari-jari lingkaran.
+% 
+% Persamaan umum lingkaran ada 2 yaitu
+%% 1) Persamaan lingkaran dengan pusat (0,0)
+%% latex: x^2+y^2=r^2
+%% 2) Persamaan lingkaran dengan pusat (h,k)
+%% latex: (x-h)^2+(y-k)^2=r^2
+% 
+% Untuk menggambar lingkaran di EMT, kita dapat menggunakan perintah
+% plotCircle, circleTrough dan circleWithCenter
+% 
+% 1) Menggambar dengan perintah circleThrough
+%% perintah ini dapat digunakan untuk menggambar lingkaran yang melalui 3
+% titik
+% 
+% Contoh: Menggambar lingkaran yang melalui titik (0,2), (3,5), dan
+% (6,2)
+>setPlotRange(-7,7,-7,7);
+>A=[0,2]; plotPoint(A,"A");
+>B=[3,5]; plotPoint(B,"B");
+>C=[6,2]; plotPoint(C,"C");
+>c=circleThrough(A,B,C);
+>plotCircle(c):
+% 2) Menggambar dengan perintah circleWithCenter
+%% Perintah ini digunakan untuk menggambar lingkaran yang telah diketahui
+% titik pusat dan jari-jari nya. Baris perintah berupa
+% circleWithCenter(A,r) dengan A adalah pusat dan r adalah jari-jarinya.
+% 
+% Contoh:
+%% Gambar Lingkaran yang memiliki persamaan
+%% latex: x^2+y^2+4x-6y+4=0
+>setPlotRange(-6,6,-6,6);
+% latex: x^2+y^2+4x-6y+4=0
+%% latex: x^2+4x+y^2-6y+4+9-9=0
+%% latex: (x^2+4x+4)+(y^2-6y+9)=9
+%% latex: (x+2)^2+(y-3)^2 = 3^2
+%% jadi, pusat lingkaran tersebut adalah (-2,3) dan jari-jarinya 3
+>A=[-2,3]; plotPoint(A,"A");
+>r = 3;
+>d=circleWithCenter(A,r);
+>plotCircle(d):
+% ** LATIHAN SOAL
+%% Gambarlah lingkaran yang melalui tiga titik berikut ini:
+%% A = [-4,0], B = [4,0], C = [0,4]
+>setPlotRange(-10,10,-10,10);
+>A=[-4,0]; plotPoint(A,"A");
+>B=[4,0]; plotPoint(B,"B");
+>C=[0,4]; plotPoint(C,"C");
+>c=circleThrough(A,B,C);
+>plotCircle(c):
+% ** 6) Menggambar ellips
+%% Elips adalah bentuk geometri dua dimensi yang dapat didefinisikan
+% sebagai himpunan semua titik dalam bidang, di mana jumlah jarak dari
+% dua titik tetap yang disebut fokus ke setiap titik pada elips adalah
+% konstan. Untuk menggambar ellips kita dapat menggunakan perintah plot.
+% 
+% Persamaan umum ellips:
+%% 1) ellips dengan pusat (0,0)
+%% latex: \frac{x^2}{a^2} + \frac{y^2}{b^2} = 1
+%% 2) ellips dengan pusat (h,k)
+%% latex: \frac{(x-h)^2}{a^2} + \frac{(y-k)^2}{b^2} = 1
+%% dengan
+%% a = setengah panjang sumbu x
+%% b = setengah panjang sumbu y
+%% jika a>b maka ellips horizontal, jika a<b maka ellips vertikal
+% 
+% Menggambar ellips dengan pusat (0,0)
+% 
+% Contoh:
+%% Gambar ellips yang memiliki persamaan
+%% latex: \frac{x^2}{25}+\frac{y^2}{9} = 1
+>setPlotRange(-10,10,-10,10); // Mengatur bidang koordinat
+% latex: \frac{x^2}{25}+\frac{y^2}{9} = 1
+%% latex: a^2 = 25, a = 5
+%% latex: b^2 = 9, b = 3
+% 
+% a>b, maka gambarnya akan berupa ellips horizontal
+>a=5; // sumbu semi mayor x
+>b=3; // sumbu semi minor y
+>t = linspace(0, 2*pi, 100); // parameter t
+>x = a * cos(t); // koordinat x
+>y = b * sin(t); // koordinat y
+>plot(x,y):
+% Cara lain:
+>x=linspace(0,2*pi,100); plot2d(sin(x),0.6*cos(x);r=2):
+% Menggambar Ellips dengan pusat (h,k)
+% 
+% Contoh:
+%% Gambar ellips yang mempunyai persamaan
+%% latex: \frac{x^2-8x+16}{25} + \frac{y^2+4y+4}{9} =1
+>setPlotRange(-10,10,-10,10); // Mengatur bidang koordinat
+% latex: \frac{x^2-8x+16}{25} + \frac{y^2+4y+4}{9} = 1
+%% latex: a^2 = 25, a = 5
+%% latex: b^2 = 9, b = 3
+% 
+% a>b, maka gambarnya akan berupa ellips horizontal
+>a=5; // sumbu semi mayor
+>b=3; // sumbu semi minor
+>t = linspace(0, 2*pi, 100); // parameter t
+% latex: \frac{x^2-8x+16}{25} + \frac{y^2+4y+4}{9} = 1
+%% latex: (x^2-8x+16) = (x-4)^2
+%% latex: (y^2+4y+4) = (y+2)^2
+%% latex: \frac{(x-4)^2}{25} + \frac{(y+2)^2}{9} = 1
+% 
+% Jadi, pusat ellips tersebut adalah (4,-2)
+>x = 4+ a * cos(t); // koordinat x
+>y = -2+ b * sin(t); // koordinat x
+>plot(x,y):
+% ** LATIHAN SOAL
+%% Gambar ellips yang mempunyai persamaan
+%% latex: \frac{x^2}{16} + \frac{y^2}{36} =1
+>setPlotRange(-16,16,-16,16);
+>a=4;
+>b=6;
+>t = linspace(0, 2*pi, 100);
+>x = a*cos(t);
+>y = b*sin(t);
+>plot(x,y):
+>reset;
+% * 7) Menggambar Parabola
+% 
+% Parabola adalah tempat kedudukan titik-titik yang jaraknya ke suatu
+% titik tertentu sama dengan jaraknya ke suatu garis tertentu. Bentuk
+% standar parabola(terbuka ke atas atau ke bawah) dapat dituliskan:
+% 
+% latex: y = ax^2+bx+c=0
+% 
+% a: menentukan kelengkungan parabola; jika a > 0, parabola terbuka ke
+% atas; jika a < 0, parabola terbuka ke bawah.
+%% b: menggeser parabola ke kiri atau kanan.
+%% c: menentukan titik potong parabola dengan sumbu y.
+% 
+% Sementara itu, parabola dengan sumbu simetri horizontal (terbuka ke
+% kanan atau kiri) berbentuk:
+% 
+% latex: x = ay^2 + by + c
+% 
+% Jika a > 0, terbuka ke kanan;  jika a < 0, terbuka ke kiri.
+% 
+% Pada subbab ini, akan digambar parabola yang sudah diketahui
+% persamaannya dan diketahui titik-titik yang diberikan.
+% 
+% ** Menggambar Parabola yang Diketahui Persamaannya
+%% Misalkan, suatu parabola sudah diketahui persamaannya.
+% 
+% Contoh:
+%% Gambarkan parabola dengan persamaan:
+% 
+% latex: y = 2x^2+4x+2
+>plot2d("2*x^2+4*x+2",-40,40):
+% Karena a = 2, berarti a > 0. Parabola terbuka ke atas.
+% 
+% Contoh lain:
+%% Gambarkan parabola dengan persamaan:
+% 
+% latex: y = -3x^2+4x-12
+>plot2d("-3*x^2+4*x-12",-30,30):
+% Persamaan di atas menunjukkan bahwa nilai a = -3, berarti a < 0, maka
+% parabola terbuka ke bawah.
+% 
+% Contoh selanjutnya:
+%% Parabola terbuka ke kanan atau kiri
+% 
+% Diberikan persamaan parabola berikut, gambarkan.
+% 
+% latex: x = y^2+6y
+% 
+% latex: x = -5y^2+10y+20
+>plot2d("y^2+6*y")
+Error : y^2+6*y does not produce a real or column vector
+
+Error generated by error() command
+
+ %ploteval:
+    error(f$|" does not produce a real or column vector"); 
+adaptiveevalone:
+    s=%ploteval(g$,t;args());
+Try "trace errors" to inspect local variables after errors.
+plot2d:
+    dw/n,dw/n^2,dw/n,auto;args());
+>y := -40:0.1:40; // rentang nilai y, langkah 0,1
+>x := y^2 + 6*y;
+>plot2d(x, y, style="lines"):
+% Karena persamaan tersebut adalah persamaan berbasis y (bukan x), kita
+% perlu menggunakan plot parametrik. Kita bisa mengekspresikan x sebagai
+% fungsi dari y dan kemudian menggambar x terhadap y.
+% 
+% Seperti yang kita lihat, a > 0 pada persamaan parabola sumbu simetri
+% horizontal, terbuka ke kanan.
+>y := -40:0.1:40;
+>x := -5*y^2 + 10*y+20;
+>plot2d(x, y, style="lines"):
+% a < 0, terbuka ke kiri.
+% 
+% ** Menggambar Parabola yang Melalui Tiga Titik
+% 
+% Contoh:
+% 
+% Gambarkan parabola yang melalui titik A=(0,-4), B=(1,0), dan C=(4,0).
+% 
+% Langkahnya:
+%% - Menggunakan persamaan parabolanya. Untuk soal ini, gunakan sumbu
+% simetri vertikal. Maka, menggunakan persamaan:
+% 
+% latex: y= ax^2+bx+c.
+% 
+% - Substitusikan koordinat titik-titik yang diketahui ke persamaan
+% tersebut.
+%% - Selesaikan SPL yang terbentuk untuk mendapatkan nilai-nilai a, b, c.
+%% - Didapatkan persamaan parabolanya, lalu gambar menggunakan fungsi
+% plot2d.
+% 
+>load geometry
+Numerical and symbolic geometry.
+>setPlotRange(5); A=[0,-4]; B=[1,0]; C=[4,0];
+>plotPoint(A,"A"); plotPoint(B,"B"); plotPoint(C,"C"):
+% Substitusi titik A, B, C ke persamaan parabola
+% 
+% latex: y = ax^2+bx+c
+% 
+% Titik A(0,-4)
+% 
+% latex: -4 = a(0)^2+b(0)+c
+%% latex: c = -4
+% 
+% Titik B(1,0)
+% 
+% latex: 0 = a(1)^2+b(1)+c
+%% latex: 0 = a+b+c
+%% latex: a+b =-c
+% 
+% Titik C(4,0)
+%% latex: 0 = a(4)^2+b(4)+c
+%% latex: 0 = 16a+4b+c
+%% latex: 16a+4b =-c
+% 
+>sol &= solve([a+b=-c,16*a+4*b=-c,c=-4],[a,b,c]); $sol
+% Dari 3 persamaan tadi, gunakan proses substitusi dan eliminasi untuk
+% mendapatkan nilai a, b, dan c.
+% 
+% Dari titik A, didapat bahwa
+%% latex: c = -4
+% 
+% Substitusikan ke
+%% latex: a+b=-c, 16+4b=-c
+% 
+% Didapatkan:
+%% latex: a+b=4
+%% latex: 16a+4b=4
+% 
+% Eliminasi
+% 
+% latex: a + b (4) = 4(4)
+% 
+% latex: 4a+4b=16
+%% latex: 16a+4b=4
+% 
+% Kurangkan, didapat:
+%% latex: -12a=12
+%% latex: a = -1
+% 
+% Substitusikan ke
+%% latex: a + b = 4
+%% latex: -1+b=4
+%% latex: b=5
+% 
+% Maka, didapatkan bahwa
+%% latex: a=-1, b=5, c=-4
+% 
+% Persamaan parabolanya menjadi
+%% latex: y=x^2+5x-4
+>function f(x)&=-x^2+5*x-4; $f(x)
+>plot2d("-x^2+5*x-4",-100,105):
+% ** Latihan
+% 
+% 1. Gambarkan plot parabola terbuka ke atas/bawah yang diketahui a = 2,
+% sedangkan b = 3, dan c=0.
+% 
+% Maka, persamaan menjadi:
+%% latex: y=2x^2+3x
+>plot2d("2*x^2+3*x",-60,60):
+% 2. Diketahui persamaan parabola
+% 
+% latex: y=ax^2+bx+c
+% 
+% Suatu parabola melalui titik A=(1,2), B=(2,3), dan C=(3,8). Tentukan
+% persamaan parabola dan buatlah gambarnya.
+% 
+>
+
+% Jawaban:
+%% Substitusi titik A, B, C ke persamaan parabola
+% 
+% latex: y = ax^2+bx+c
+% 
+% Titik A(1,2)
+% 
+% latex: 2 = a(1)^2+b(1)+c
+%% latex: 2 = a+b+c
+% 
+% Titik B(2,3)
+% 
+% latex: 3 = a(2)^2+b(2)+c
+%% latex: 3 = 4a+2b+c
+% 
+% Titik C(3,8)
+%% latex: 8 = a(3)^2+b(3)+c
+%% latex: 8 = 9a+3b+c
+% 
+% Didapat 3 persamaan:
+%% latex: 2 = a+b+c ... (1)
+%% latex: 3 = 4a+2b+c...(2)
+%% latex: 8 = 9a+3b+c...(3)
+% 
+% Selesaikan dengan SPL.
+%% Eliminasi (1) dan (2)
+%% latex: 2 = a+b+c
+%% latex: 3 = 4a+2b+c
+%% menjadi
+%% latex: -1 =-3a+b ...(4)
+% 
+% Eliminasi (1) dan (3)
+%% latex: 2 = a+b+c
+%% latex: 8 = 9a+3b+c
+%% menjadi
+%% latex: -6 =-8a-2b...(6)
+% 
+% Eliminasi (4) dan (6)
+%% latex: -1 =-3a+b
+%% latex: -6 =-8a-2b
+%% menjadi
+%% latex: b =- 5, a =2
+% 
+% Substitusi ke (1)
+%% latex: 2 = a+b+c
+%% latex: 2 = 2-5+c
+%% latex: c = 5
+% 
+% Jadi, a = 2, b=-5, c=5
+% 
+% Persamaan parabola menjadi:
+%% latex: y=2x^2-5x+5
+>load geometry
+Numerical and symbolic geometry.
+>reset;
+>setPlotRange(10); A=[1,2]; B=[2,3]; C=[3,8];
+>plotPoint(A,"A"); plotPoint(B,"B"); plotPoint(C,"C"):
+>sol &= solve([a+b+c=2,4*a+2*b+c=3,9*a+3*b+c=8],[a,b,c]); $sol
+>function f(x)&=2*x^2-5*x+5; $f(x)
+>plot2d("2*x^2-5*x+5",-100,105):
+>
+>
+% 
+% 
+% * 8) Menggambar Hiperbola
+% 
+% Hiperbola adalah tempat kedudukan titik-titik yang selisih jaraknya ke
+% dua titik tertentu tetap. Hiperbola memiliki bentuk persamaan umum:
+% 
+% Hiperbola vertikal (terbuka ke atas atau bawah)
+% 
+% latex: \frac{(y-k)^2}{a^2}-\frac{(x-h)^2}{b^2}=1
+% 
+% Hiperbola horizontal (terbuka ke kanan atau kiri)
+% 
+% latex: \frac{(x-h)^2}{a^2}-\frac{(y-k)^2}{b^2}=1
+% 
+% Dengan (h, k) adalah pusatnya.
+% 
+% Misalkan, diberikan suatu hiperbola dengan persamaan
+% 
+% latex: \frac{x^2}{1}-\frac{y^2}{0,25}=1
+% 
+% Gambarkan hiperbolanya.
+% 
+>a = 1; // Jarak dari pusat ke titik pada sumbu x
+>b = 0.5; // Jarak dari pusat ke titik pada sumbu y
+>t = linspace(-2, 2, 100);
+>x = [a * cosh(t), -a * cosh(t)];
+>y = [b * sinh(t), b * sinh(t)];
+>plot2d(x, y):
+>
+>
+% * Sub Materi 4
+% 
+% 
+% ** Menentukan Titik Tengah Ruas Garis
+% 
+% Titik tengah dari ruas garis adalah titik yang membagi ruas garis
+% tersebut menjadi dua bagian yang sama panjang. Misalkan titik A(x1,y1)
+% dan B(x2,y2), maka titik tengah M dari ruas AB dapat dihitung dengan:
+% 
+% latex: M = \left (\frac {x_1+x_2} {2}, \frac {y_1+y_2} {2} \right)
+>load geometry
+Numerical and symbolic geometry.
+>A := [11,-2];
+>B := [-5,16];
+>M := (A + B)/2;
+>M
+[3,  7]
+% 
+% 
+% Menggunakan cara manual
+%% Titik tengah:
+%% latex: \left(\frac{x_1 + x_2}{2}, \frac{y_1 + y_2}{2}\right)
+% 
+% 
+% Diketahui:
+% 
+% A = (11, -2)
+% 
+% B = (-5, 16)
+% 
+% 
+% Tentukan titik tengah?
+%% latex: x = \frac{x_1 + x_2}{2} = \frac{11 + (-5)}{2} = 3
+%% latex: y = \frac{y_1 + y_2}{2} = \frac{-2 + 16}{2} = 7
+% 
+% 
+% Jadi, titik tengahnya adalah (3, 7)
+>function f(x) := 2x+3;
+>a := 2; b := 0; c := 3; // ketika memotong di sumbu x (y=0)
+>X := -(c / a); 
+>X // hasilnya (X,0) = (-1.5,0)
+>a := 0; b := -1; c := 3; // ketika memotong di sumbu y (x=0)
+>Y := -(c / b) // hasilnya (0,Y) = (0,3)
+>C := [-1.5,0]; // Menentukan titik tengah
+>D := [0,3];
+>M := (C + D)/2;
+>M
+% 
+% Diketahui fungsi:
+%% latex: f(x) = 2x + 3
+% 
+% Tentukan titik potong dengan sumbu x dan y:
+% 
+% Untuk sumbu x (y = 0):
+%% latex: 0 = 2x + 3
+%% latex: x = -\frac{3}{2} = -1.5
+% 
+% 
+% Untuk sumbu y (x = 0):
+%% latex: y = 2(0) + 3
+%% latex: y = 3
+% 
+% 
+% Jadi, titik potong dengan sumbu x dan y adalah
+%% latex: (-1.5, 0) dan (0, 3).
+% 
+% 
+% Tentukan titik tengah?
+%% latex: x = \frac{x_1 + x_2}{2} = \frac{-1,5 + 0}{2} = -0.75
+%% latex: y = \frac{y_1 + y_2}{2} = \frac{0 + 3}{2} = 1.5
+% 
+% 
+% Jadi, titik tengahnya adalah (-0.75, 1.5)
+% 
+% 
+% ** LATIHAN SOAL
+% 
+% 1. Diketahui titik A(2, 3) dan B(8, 7). Tentukan koordinat titik
+% tengah ruas garis AB.
+% 
+>A := [2,3];
+>B := [8,7];
+>M(A,B) := (A + B)/2;
+>M
+% 
+% 2. Diketahui persamaan garis 3x+4y-12=0. Tentukan titik tengah dari
+% segmen garis yang menghubungkan dua titik potong garis tersebut dengan
+% sumbu koordinat.
+>function f(x) := (3/4)x-3;
+>a := 3/4; b := 0; c := -3; // ketika memotong di sumbu x (y=0)
+>X := -(c / a);
+>X // hasilnya (X,0) = (4,0)
+>a := 0; b := -1; c := -3; // ketika memotong di sumbu y (x=0)
+>Y := -(c / b) // hasilnya (0,Y) = (0,-3)
+>J := [4,0]; // Menentukan titik tengah
+>K := [0,-3];
+>M := (J + K)/2;
+>M
+% 
+% ** Titik Potong Dua Garis
+% 
+% Titik potong dua garis adalah titik di mana kedua garis tersebut
+% berinterseksi atau bertemu. Dalam sistem koordinat dua dimensi, setiap
+% garis dapat dinyatakan dengan persamaan linear, biasanya dalam bentuk
+%% y=mx+b, di mana m adalah kemiringan garis dan b adalah titik potong
+% garis dengan sumbu-y.
+% 
+>A &= [1,2]; B &= [4,6]; C &= [2,5];
+>p &= lineThrough(A,B)
+>$getLineEquation(p,x,y), $solve(%,y) | expand
+>q &= lineThrough(A,C)
+>$getLineEquation(q,x,y), $solve(%,y) | expand
+>H &= lineIntersection(p,q)
+% 
+% 
+% Menggunakan cara manual
+%% A = (1,2)
+%% B = (4,6)
+%% C = (2,5)
+% 
+% 
+% Persamaan garis melalui A dan B:
+%% latex: \frac{x-x_1}{x_2-x_1} = \frac{y-y_1}{y_2-y_1}
+%% latex: \Rightarrow \frac{x-1}{4-1} = \frac{y-2}{6-2}
+%% latex: \Rightarrow \frac{x-1}{3} = \frac{y-2}{4}
+%% latex: \Rightarrow 4(x-1) = 3(y-2)
+%% latex: \Rightarrow 4x - 4 = 3y - 6
+%% latex: \Rightarrow y = \frac{4}{3}x + \frac{2}{3} \quad ...(1)
+% 
+% 
+% Persamaan garis melalui A dan C:
+%% latex: \frac{x-x_1}{x_2-x_1} = \frac{y-y_1}{y_2-y_1}
+%% latex: \Rightarrow \frac{x-1}{2-1} = \frac{y-2}{5-2}
+%% latex: \Rightarrow x-1 = \frac{y-2}{3}
+%% latex: \Rightarrow 3x - 3 = y - 2
+%% latex: \Rightarrow y = 3x - 1 \quad ...(2)
+% 
+% 
+% Substitusi (2) ke (1):
+%% latex: 3x - 1 = \frac{4}{3}x + \frac{2}{3}
+%% latex: \Rightarrow 9x - 3 = 4x + 2
+%% latex: \Rightarrow 5x = 5
+%% latex: \Rightarrow x = 1
+% 
+% 
+% Substitusi x = 1 ke (2):
+%% latex: y = 3(1) - 1
+%% latex: \Rightarrow y = 2
+% 
+% 
+% Jadi, titik potong adalah (1,2).
+% 
+% ** LATIHAN SOAL
+% 
+% 1. Diketahui A(2,3), B(5,8), C(4,1). Tentukan persamaan garis yang
+% melaui titik AB dan persamaan garis yang melalui titik BC. Apakah
+% kedua garis berpotongan? Jika iya, di titik berapa?
+% 
+>A &= [2,3]; B &= [5,8]; C &= [4,1]; 
+>t &= lineThrough(A,B)
+>$getLineEquation(t,x,y), $solve(%,y) | expand 
+>u &= lineThrough(B,C)
+>$getLineEquation(u,x,y), $solve(%,y) | expand
+>plot2d(["(5/3)*x-1/3", "7*x-27"],-5,10,5,10):
+>H &= lineIntersection(t,u)
+>plot2d(["(5/3)*x-1/3", "7*x-27"],-10,10,0,15); plot2d(5,8,>points,style="ow",>add):
+% Ya, kedua garis berpotongan. 
+% 
+% 2. Diketahui A(2,3), B(5,6), C(4,5). Tentukan persamaan garis yang
+% melaui titik AB dan persamaan garis yang melalui titik AC. Apakah
+% kedua garis berpotongan? Jika iya, di titik berapa?
+% 
+>A &= [1,2]; B &= [4,5]; C &= [3,4]; 
+>v &= lineThrough(A,B)
+>$getLineEquation(v,x,y), $solve(%,y) | expand
+>w &= lineThrough(A,C)
+>$getLineEquation(w,x,y), $solve(%,y) | expand
+% 
+% Didapat bahwa persamaan garisnya adalah sama, artinya kedua garis
+% berimpit. Pada kasus ini, titik potongnya adalah berada di sepanjang
+% garis. Namun, titik potong pada garis yang berimpit adalah tidak
+% berbeda atau tidak unik.
+%% Berikut ditunjukkan plotnya.
+% 
+>plot2d(["x+1", "x+1"],-5,10,5,10):
+% 
+% ** Menentukan Titik Potong Garis dan Lingkaran
+% 
+% Titik potong antara garis dan lingkaran adalah titik-titik di mana
+% kedua objek tersebut berpotongan yang secara geometris ada tiga
+% kemungkinan dengan melalui rumus
+% 
+% latex: D = b^2-4ac
+% 
+% dengan D = nilai Diskriminan persamaan kuadrat, a = koefisien x^2 atau
+% y^2, b = koefisien x atau y, dan c = konstanta. Saat nilai D diperoleh
+% maka akan ada tiga kemungkinan, yaitu:
+% 
+% 1. D > 0 (memotong di dua titik)
+%% 2. D = 0 (memotong di satu titik/menyinggung)
+%% 3. D < 0 (tidak ada titik potong)
+% 
+% 
+% Mendefinisikan titik A dan c berpusat di titik A dengan jari-jari 4
+% 
+>A &:= [1,0]; c=circleWithCenter(A,4);
+>B &:= [1,2]; C &:= [2,1]; // mendefinisikan titik B dan C
+>l=lineThrough(B,C); // Membuat garis l melalui titik B dan C
+>setPlotRange(5); // Mengatur jangkauan garis sumbu x dan y
+>plotCircle(c); // Menampilkan lingkaran c
+>plotLine(l): // Menampilkan garis l
+% 
+% Perpotongan garis dengan lingkaran menghasilkan dua titik dan jumlah
+% titik potong
+>{P1,P2,f}=lineCircleIntersections(l,c);
+>P1, P2, f // P1=titik potong 1, P2=titik potong 2, f=jumlah titik potong
+>plotPoint(P1); plotPoint(P2):
+>c &= circleWithCenter(A,4) // Definisi c=lingkaran dengan pusat A & jari-jari 4
+% 
+% Keterangan hasil
+%% 1: koordinat x pusat lingkaran, yaitu 1.
+%% 0: koordinat y dari pusat lingkaran, yaitu 0.
+%% 4: Jari-jari lingkaran, yaitu 4.
+% 
+% Diketahui:
+%% A=(1,0); B=(1,2); C=(2,1)
+% 
+% Rumus persamaan lingkaran dengan pusat (h,k) das jari-jari r
+%% latex: (x-h)^2+(y-k)^2=r^2
+% 
+% Pusat A(1,0) dan r = 4.
+%% latex: (x-1)^2+(y-0)^2 = 4^2
+%% latex: (x-1)^2+y^2 = 16
+%% latex: x^2-2x+1+y^2=16
+%% latex: x^2+y^2-2x-15=0
+% 
+>l &= lineThrough(B,C) // garis l melalui BC menghasilkan koef x,y,c(konstanta)
+>$getLineEquation(l,x,y), $solve(%,y) // persamaan garis l menggunakan EMT
+% 
+% Menggunakan cara manual
+%% Diketahui:
+%%  B(x1,y1) = B(1,2)
+%%  C(x2,y2) = C(2,1)
+% 
+%  Rumus menentukan persamaan garis melalui dua titik, yaitu
+% 
+% latex: \frac {y_2-y_1} {y-y_1} = \frac {x_2-x_1} {x-x_1}
+%% latex: \frac {1-2} {y-2} = \frac {2-1} {x-1}
+%% latex: \frac {-1} {y-2} = \frac {1} {x-1}
+%% latex: -1(x-1) = 1(y-2)
+%% latex: -x+1 = y-2
+%% latex: y+x=3
+%% latex: y = 3-x
+%% Terbukti.
+% 
+>$lineCircleIntersections(l,c) | radcan, // titik potong lingkaran c dan garis l
+% 
+% Substitusi y=3-x ke persamaan
+%% latex: x^2+y^2-2x-15=0
+%% latex: x^2+(3-x)^2-2x-15=0
+%% latex: x^2+9-6x+x^2-2x-15=0
+%% latex: 2x^2-8x-6=0
+%% latex: x^2-4x-3=0
+% 
+% Cek apakah memotong atau tidak
+%% latex: D = b^2-4ac
+%% latex: D = (-4)^2-4(1)(-3)
+%% latex: D = 16+12 = 28 > 0
+% 
+% karena D > 0, maka memotong di dua titik.
+% 
+% Mencari titik potong:
+%% latex: x_{1,2} = \frac {-b \pm \sqrt{b^2-4ac}} {2a}
+%% latex:         = \frac {-b \pm \sqrt{D}} {2a}
+%% latex:         = \frac {-(-4) \pm \sqrt{28}} {2.1}
+%% latex:         = \frac {4 \pm \sqrt{28}} {2}
+%% latex:         = \frac {4 \pm 2\sqrt{7}} {2}
+%% latex:         = 2 \pm \sqrt{7}
+%% latex: x_1 = 2+\sqrt{7} = 4.4645
+%% latex: x_2 = 2-\sqrt{7} = -0.645
+% 
+% menentukan y1 dan y2 dengan substitusi x1 dan x2 ke persamaan y=3-x
+%% latex: 3-(2 + \sqrt{7}) = 1+\sqrt{7} = -1.645
+%% latex: 3-(2 - \sqrt{7}) = 1-\sqrt{7} = 3.645
+% 
+% Jadi, titik potongnya adalah
+%% latex: (2+\sqrt{7},1+\sqrt{7}) (2-\sqrt{7},1-\sqrt{7})
+%% atau
+%% latex: (4.4645,-1.645) (-0.645,3.645)
+% 
+% 
+% 
+% Akan ditunjukkan bahwa sudut-sudut yang menghadap busur yang sama
+% adalah sama besar
+% 
+>C=A+normalize([-2,-3])*4; plotPoint(C); plotSegment(P1,C); plotSegment(P2,C);
+>degprint(computeAngle(P1,C,P2))
+>C=A+normalize([-4,-3])*4; plotPoint(C); plotSegment(P1,C); plotSegment(P2,C); 
+>degprint(computeAngle(P1,C,P2))
+>insimg;
+% 
+% image: SudutKel.JPEG
+% 
+% latex: m \angle PRQ = m \angle PSQ
+% 
+% Diketahui sudut pusat = 2*sudut keliling
+%% latex: \angle POQ = 2\angle PSQ
+%% latex: \angle POQ = 2\angle PRQ
+%% latex: 2\angle PSQ = 2\angle PRQ
+%% latex: \angle PSQ = \angle PRQ
+%% Terbukti.
+% 
+% ** LATIHAN SOAL
+%% 1. Diketahui sebuah lingkaran dengan pusat di titik O(2,3) dengan r=5
+% dan sebuah garis yang melalui A(1,1) dan B(4,5). Tentukan titik
+% perpotongan garis dan lingkaran tersebut.
+% 
+>O &:= [2,3]; c=circleWithCenter(O,5);
+>A &:= [1,1]; B &:= [4,5]; l=lineThrough(A,B);
+>setPlotRange(10); plotCircle(c); plotLine(l):
+>{P1,P2,f}=lineCircleIntersections(l,c);
+>P1, P2, f
+% 
+% 2. Dari soal no 1, Tentukanlah besar sudut keliling yang dibentuk
+% menghadap busur AB. tunjukkan juga bahwa sudut kelilingnya adalah sama
+>plotPoint(P1); plotPoint(P2):
+>$lineCircleIntersections(l,c) | radcan, // titik potong lingkaran c dan garis l
+>M=O+normalize([-5,-1])*5; plotPoint(M); plotSegment(P1,M); plotSegment(P2,M);
+>degprint(computeAngle(P1,M,P2))
+>N=O+normalize([-2,3])*5; plotPoint(N); plotSegment(P1,N); plotSegment(P2,N);
+>degprint(computeAngle(P1,N,P2))
+>insimg:
+% 
+% ** Titik Potong 2 Lingkaran
+% 
+>A=[1,3]; B=[-1,-2];
+>c1=circleWithCenter(A,4);
+>c2=circleWithCenter(B,6);
+>{P1,P2,f}=circleCircleIntersections(c1,c2);
+>l=lineThrough(P1,P2);
+>setPlotRange(5); plotCircle(c1); plotCircle(c2);
+>plotPoint(A); plotPoint(B); plotPoint(P1); plotPoint(P2); plotLine(l):
+>{P1,P2}=circleCircleIntersections(c1,c2)
+>P1, P2
+% 
+% Apakah berpotongan untuk pusat A dan B dengan masing-masing
+% jari-jarinya?
+%% A=(1,3), r=4
+%% B=(-1,-2), r=6
+% 
+% Persamaan lingkaran A dengan pusat (h,k) dan jari-jari r:
+%% latex: (x-h)^2+(y-k)^2=r^2
+%% latex: \Rightarrow (x-1)^2 + (y-3)^2 = 4^2
+% 
+% latex: \Rightarrow x^2 - 2x + 1 + y^2 - 10y + 25 = 16
+% 
+% latex: \Rightarrow x^2 + y^2 - 2x - 10y + 10 = 0 \quad ... (1)
+% 
+% Persamaan Lingkaran B dengan pusat (h,k) dan jari-jari r:
+%% latex: (x+1)^2 + (y+2)^2 = 6^2
+% 
+% latex: \Rightarrow x^2 + 2x + 1 + y^2 + 4y + 4 = 36
+% 
+% latex: \Rightarrow x^2 + y^2 + 2x + 4y - 31 = 0 \quad ... (2)
+% 
+% 
+% kurangkan persamaan (2) dari persamaan (1):
+% 
+% latex: \Rightarrow -4x - 14y + 41 = 0
+%% latex: \Rightarrow 4x = 41 - 14y
+%% latex: \Rightarrow x = \frac{41 - 14y}{4}
+% 
+% 
+% Substitusi nilai x ke persamaan (1):
+% 
+% latex: \left(\frac{41 - 14y}{4}\right)^2 + y^2 - 2\left(\frac{41 - 14y}{4}\right) - 10y + 10 = 0
+%% latex: 116y^2 - 516y + 329 = 0
+% 
+% latex: \Rightarrow 116y^2 - 516y + 329 = 0
+% 
+% 
+% Cek apakah memotong atau tidak:
+% 
+% latex: D = b^2 - 4ac
+%% latex: \Rightarrow (-516)^2 - 4\cdot 116 \cdot 329 = 113600 > 0, D > 0
+%% latex: y_{1,2} = \frac{-b \pm \sqrt{D}}{2a}
+%% latex: \frac{-(-516) \pm \sqrt{113600}}{2 \cdot 116}
+%% latex: \frac{516 \pm \sqrt{16 \cdot 7100}}{232}
+%% latex: \frac{516 \pm 40 \sqrt{71}}{232}
+% 
+% latex: y_1 = \frac{516 + 40 \sqrt{71}}{232}
+%% latex: \approx 3.676, \quad x = \frac{25 - 10(3.676)}{4}
+%% latex: \approx -2.940
+%% latex: y_2 = \frac{516 - 40 \sqrt{71}}{232}
+%% latex: \approx 0.771, \quad x = \frac{25 - 10(0.771)}{4}
+%% latex: \approx 4.322
+%% latex: \Rightarrow \text{Titik potong: } (-2.940, 3.676) \text{ dan } (4.322, 0.771)
+% 
+% ** LATIHAN  SOAL
+% 
+% 1. Diketahui dua lingkaran dengan pusat K(2,3) dengan r=4 dan pusat
+% L(6,7) dengan r=3. Tunjukan titik potong kedua lingkaran tersebut.
+% 
+>K=[2,3]; L=[6,7];
+>c1=circleWithCenter(K,4);
+>c2=circleWithCenter(L,3);
+>{Z1,Z2,f}=circleCircleIntersections(c1,c2);
+>l=lineThrough(P1,P2);
+>setPlotRange(10); plotCircle(c1); plotCircle(c2);
+>plotPoint(K); plotPoint(L); plotPoint(Z1); plotPoint(Z2); plotLine(l):
+>{Z1,Z2}=circleCircleIntersections(c1,c2)
+>Z1, Z2
+% 
+% 2. Diketahui dua lingkaran dengan pusat M(2,1) dengan r=6 dan pusat
+% N(5,5) dengan r=-3. Apakah kedua lingkaran mempunyai titik potong?
+% Mengapa?
+% 
+% Perhatikan jari-jari lingkaran kedua yaitu r=-3, hal ini sangat ganjil
+% karena r adalah jarak atau panjang yang selalu bernilai positif atau
+% 0. Adapun lingkaran tersebut akan menjadi tidak valid.
+%% Jadi, bisa disimpulkan bahwa tidak ada perpotongan antar kedua
+% lingkaran tersebut.
+% 
+% 3. Diketahui dua lingkaran dengan pusat R(1,1) dengan r=3 dan pusat
+% S(8,1) dengan r=2. Apakah kedua lingkaran mempunyai titik potong? Jika
+% tidak maka bagaimana kedudukannya?
+% 
+>R=[1,1]; S=[8,1];
+>c1=circleWithCenter(R,3);
+>c2=circleWithCenter(S,2);
+>{P1,P2,f}=circleCircleIntersections(c1,c2);
+>l=lineThrough(P1,P2);
+>setPlotRange(15); plotCircle(c1); plotCircle(c2);
+>plotPoint(R); plotPoint(S); plotPoint(P1); plotPoint(P2); plotLine(l):
+% 
+%  Terlihat bahwa lingkaran R dan S tidak berpotongan sehingga kondisi
+%%  seperti ini tidak memungkinkan untuk mendapatkan titik potong kedua
+%%  lingkaran tersebut. Atau simplenya lingkaran R dan S adalah saling
+%%  asing.
+% 
+> 
+% * Persamaan Garis Melalui Dua Titik
+>load geometry
+Numerical and symbolic geometry.
+% latex: \text{Misalkan terdapat dua titik } A(x_1, y_1) \text{ dan } B(x_2, y_2).
+%% latex: \text{Gradien garis } m \text{ dari garis yang melalui dua titik } A \text{ dan } B \text{ adalah:}
+%% latex: m = \frac{y_2 - y_1}{x_2 - x_1}
+%% latex: \text{Dengan gradien } m \text{ dan titik } A(x_1, y_1), \text{ persamaan garis dalam bentuk titik-kemiringan (point-slope) adalah:}
+%% latex: y - y_1 = m(x - x_1)
+%% latex: \text{Setelah disederhanakan, bentuk eksplisit dari persamaan garis tersebut adalah:}
+%% latex: y = mx + c
+%% latex: \text{Atau dalam bentuk umum:}
+%% latex: Ax + By + C = 0
+%% latex: \text{Dimana } A, B, \text{ dan } C \text{ adalah konstanta-konstanta yang menentukan garis linear.}
+% 
+% diberikan titik
+%% latex: A(2,1)\text{dan}B(-1,-4)
+>A &= [2,1]; B &= [-1,-4]; // menentukan dua titik A, B
+% Fungsi untuk garis dan lingkaran bekerja seperti fungsi Euler, tetapi
+% menyediakan komputasi simbolis
+>c &= lineThrough(A,B) // c=AB
+
+                             [5, - 3, 7]
+
+>function f(x)
+$endfunction
+% Kita bisa mendapatkan persamaan untuk sebuah garis dengan mudah.
+% dengan Fungsi:
+%% getLineEquation (g,x,y): persamaan garis g dinyatakan dalam x dan y
+>$getLineEquation(c,x,y), $solve(%,y) | expand // persamaan garis c
+>$getLineEquation(lineThrough([2,1],[-1,-4]),x,y), $solve(%,y) // persamaan garis melalui(x1, y1) dan (x2, y2)
+% Pembuktian secara manual:
+%% latex: A = (2, 1), \quad B = (-1, -4)
+%% latex: \text{Gradien } m = \frac{y_2 - y_1}{x_2 - x_1} = \frac{-4 - 1}{-1 - 2} = \frac{-5}{-3} = \frac{5}{3}
+%% latex: \text{Persamaan garis: }
+%% latex: y - y_A = m(x - x_A)
+%% latex: y - 1 = \frac{5}{3}(x - 2)
+%% latex: y - 1 = \frac{5}{3}x - \frac{10}{3}
+%% latex: y = \frac{5}{3}x - \frac{10}{3} + 1
+%% latex: y = \frac{5}{3}x - \frac{7}{3}
+%% latex: \text{Kalikan dengan 3 untuk menghilangkan penyebut:}
+%% latex: 3y = 5x - 7
+%% latex: 5x - 3y - 7 = 0
+>function f(x):=(5x/3)-(7/3);
+>plot2d("(5x/3)-(7/3)",r=4,grid=8): 
+>
+% ** Latihan
+% 
+% Tentukan persamaan garis yang melalui titik A(2,3) dan B(4,1)
+>E = [2,3]; //mendefinisikan titik E
+>F = [4,1]; //mendefinisikan titik F
+>$getLineEquation(lineThrough([2,3],[4,1]),x,y), $solve(%,y) 
+>
+% pembuktian manual:
+%% latex: A = (2, 3), \quad B = (4, 1) 
+%% latex: \text{Gradien } m = \frac{y_2 - y_1}{x_2 - x_1} = \frac{1 - 3}{4 - 2} = \frac{-2}{2} = -1
+%% latex: \text{Persamaan garis: }
+%% latex: y - y_A = m(x - x_A) 
+%% latex: y - 3 = -1(x - 2) 
+%% latex: y - 3 = -x + 2 
+%% latex: y = -x + 2 + 3 
+%% latex: y = -x + 5 
+%% latex: \text{Kalikan dengan -1 untuk menghilangkan tanda negatif:}
+%% latex: x + y - 5 = 0
+>function f(x):=-x+5;
+>plot2d("-x+5",r=6,grid=8,>frame):
+% 
+% 
+% 
+% 
+% 
+>
+>
+% * Garis Sumbu
+>
+% Garis sumbu pada dua lingkaran biasanya merujuk pada garis yang
+% menghubungkan pusat dua lingkaran dan berada di tengah-tengah antara
+% kedua lingkaran tersebut. Dalam konteks geometri, garis sumbu dapat
+% membantu menentukan lokasi persimpangan atau titik-titik lain yang
+% berkaitan dengan kedua lingkaran.
+%% Berikut adalah langkah-langkah menggambar garis sumbu ruas garis AB:
+% 
+% 1. Gambar lingkaran dengan pusat A melalui B.
+%% 2. Gambar lingkaran dengan pusat B melalui A.
+%% 3. Tarik garis melallui kedua titik potong kedua lingkaran tersebut.
+% Garis ini merupakan garis sumbu (melalui titik tengah dan tegak lurus)
+% AB.
+>A=[2,2]; B=[-1,-2]; //mendefinisikan titik
+>c1=circleWithCenter(A,distance(A,B)); //membuat lingkaran c1 berpusat di titik A dan jari-jarinya adalah jarak titik A dengan B 
+>c2=circleWithCenter(B,distance(A,B)); //membuat lingkaran c2 berpusat di titik B dan jari-jarinya adalah jarak titik A dengan B
+>{P1,P2,f}=circleCircleIntersections(c1,c2); //mencari titik potong lingkaran c1 dan c2 
+>l=lineThrough(P1,P2); //membuat garis yang melalui titik potong dua lingkaran
+>setPlotRange(8); plotCircle(c1); plotCircle(c2): //menggambar lingkaran di bidang grafik
+>plotPoint(A); plotPoint(B); plotSegment(A,B); plotLine(l):
+% 
+% Selanjutnya, kami melakukan hal yang sama di Maxima dengan koordinat
+% umum.
+>A &= [x1,y1]; B &= [x2,y2];
+>c1 &= circleWithCenter(A,distance(A,B));
+>c2 &= circleWithCenter(B,distance(A,B));
+>P &= circleCircleIntersections(c1,c2); P1 &= P[1]; P2 &= P[2];
+% Persamaan untuk persimpangan cukup rumit. Tetapi kita dapat
+% menyederhanakannya, jika kita menyelesaikan untuk y.
+>g &= getLineEquation(lineThrough(P1,P2),x,y);
+>$solve(g,y)
+% Persamaan untuk persimpangan cukup rumit. Tetapi kita dapat
+% menyederhanakannya, jika kita menyelesaikan untuk y.
+>$solve(getLineEquation(middlePerpendicular(A,B),x,y),y)
+>h &=getLineEquation(lineThrough(A,B),x,y);
+>$solve(h,y)
+% Perhatikan hasil kali gradien garis g dan h adalah:
+% 
+% latex: \frac{-(x_2-x_1)}{(y_2-y_1)}\times \frac{(y_2-y_1)}{(x_2-x_1)} = -1.
+% 
+% Artinya kedua garis tegak lurus.
+% 
+> 
+% * Garis Bagi Sudut
+>
+% Garis bagi sudut adalah garis, sinar, atau ruas garis yang membagi
+% sudut menjadi dua bagian yang sama besar (kongruen). Garis bagi sudut
+% juga merupakan tempat kedudukan titik-titik yang memiliki jarak yang
+% sama dengan kedua lengan sudut.
+%% Untuk menggambar objek-objek geometri, langkah pertama adalah
+% menentukan rentang sumbu-sumbu koordinat. Semua objek geometri akan
+% digambar pada satu bidang koordinat, sampai didefinisikan bidang
+% koordinat yang baru.
+>setPlotRange(-0.5,2.5,-0.5,2.5); // mendefinisikan bidang koordinat baru 
+% Sekarang, tetapkan tiga titik dan plotkan
+>A=[1,0]; plotPoint(A,"A"); // definisi dan gambar tiga titik
+>B=[0,1]; plotPoint(B,"B");
+>C=[2,2]; plotPoint(C,"C"); 
+% Kemudian tiga segmen.
+>plotSegment(A,B,"c"); // c=AB
+>plotSegment(B,C,"a"); // a=BC
+>plotSegment(A,C,"b"); // b=AC 
+>l=angleBisector(A,C,B); // garis bagi <ACB
+>degprint(computeAngle(A,C,B))
+36°52'11.63''
+>g=angleBisector(C,A,B); // garis bagi <CAB
+>degprint(computeAngle(C,A,B))
+71°33'54.18''
+>j=angleBisector(A,B,C); // garis bagi <ABC
+>degprint(computeAngle(A,B,C))
+71°33'54.18''
+>color(5); plotLine(l); plotLine(g); plotLine(j); color(1): 
+% ** Latihan
+% 
+% diberikan tiga titik A(1,2), B(5,6), C(3,4)
+>setPlotRange(-10,10,-10,10); // mendefinisikan bidang koordinat baru 
+% Sekarang, tetapkan tiga titik dan plotkan
+>G=[5,1]; plotPoint(G,"G"); // definisi dan gambar tiga titik
+>H=[-4,2]; plotPoint(H,"H");
+>I=[0,7]; plotPoint(I,"I"); 
+% Kemudian tiga segmen.
+>plotSegment(G,H,"c"); // c=AB
+>plotSegment(G,I,"a"); // a=BC
+>plotSegment(H,I,"b"); // b=AC 
+>l=angleBisector(G,H,I); // garis bagi <GHI 
+>computeAngle(G,H,I)*(180/pi)
+57.6803834918
+>g=angleBisector(G,I,H); // garis bagi <GIH
+>computeAngle(G,I,H)*(180/pi)
+78.4653793464
+>j=angleBisector(I,G,H); // garis bagi <IGH
+>computeAngle(I,G,H)*(180/pi)
+43.8542371618
+>color(5); plotLine(l); plotLine(g); plotLine(j); color(1):
+>
+
+% * Sub Materi 5
+% 
+% 
+% ** Garis berat pada segitiga
+%% Garis berat adalah garis yang ditarik dari salah satu titik sudut
+% segitiga menuju titik tengah sisi yang berhadapan. Jadi, garis ini
+% membagi sisi yang berhadapan menjadi dua bagian yang sama panjang.
+%% alam segitiga, terdapat tiga garis berat, dan ketiga garis tersebut
+% akan bertemu di satu titik yang disebut titik berat (centroid). Titik
+% berat adalah titik yang menjadi pusat massa dari segitiga, di mana
+% segitiga dapat seimbang jika ditopang pada titik ini.
+>                                                                                   
+>
+>load geometry
+Numerical and symbolic geometry.
+% latex: AD = m_a
+% 
+% latex: BD = CD = \frac{c}{2}
+%% latex: AB^2 = AD^2 + BD^2
+%% latex: AC^2 = AD^2 + CD^2
+%% latex: b^2 = m_a^2 + \left(\frac{c}{2}\right)^2
+%% latex: c^2 = m_a^2 + \left(\frac{b}{2}\right)^2
+%% latex: b^2 + c^2 = 2m_a^2 + 2\left(\frac{a}{2}\right)^2
+%% latex: m_a^2 = \frac{2b^2 + 2c^2 - a^2}{4}
+%% latex: m_a = \frac{1}{2} \sqrt{2b^2 + 2c^2 - a^2}
+>function m(a,b,c) := ((sqrt(2*B^2 + 2*C-A^2)/2)
+>setPlotRange(-0.5,2.5,-0.5,2.5); // mendefinisikan bidang koordinat baru 
+% Sekarang tetapkan tiga poin dan plot mereka.
+>A=[1,0]; plotPoint(A,"A"); // definisi dan gambar tiga titik
+>B=[0,1]; plotPoint(B,"B");
+>C=[2,2]; plotPoint(C,"C");
+% Kemudian tiga segmen.
+>plotSegment(A,B,"c"); // c=AB
+>plotSegment(B,C,"a"); // a=BC
+>plotSegment(A,C,"b"); // b=AC
+>plotCircle(LL()); plotPoint(O(),"O"):
+Function LL not found.
+Try list ... to find functions!
+Error in:
+plotCircle(LL()); plotPoint(O(),"O"): ...
+               ^
+>function median := m(a,b,c)
+>m(2,2,1)
+Closing bracket ) missing!
+Try "trace errors" to inspect local variables after errors.
+m:
+    useglobal; return ((sqrt(2*B^2 + 2*C-A^2)/2) 
+Error in:
+m(2,2,1) ...
+        ^
+>
+% ** Garis Euler
+%% Garis Euler adalah garis yang ditentukan dari sembarang segitiga yang
+% tidak sama sisi. Ini adalah garis tengah segitiga, dan melewati
+% beberapa titik penting yang ditentukan dari segitiga, termasuk
+% orthocenter, circumcenter, centroid, titik Exeter dan pusat lingkaran
+% sembilan titik segitiga.
+% 
+% Orthocenter: Titik perpotongan garis tinggi.
+% 
+% Circumcenter: Titik pusat lingkaran luar segitiga.
+% 
+% Centroid: Titik berat atau pusat massa segitiga.
+% 
+% Titik Exeter: Titik istimewa yang terletak pada sumbu Euler.
+% 
+% Pusat Lingkaran sembilan titik: Titik pusat lingkaran sembilan titik
+% yang melalui beberapa titik penting pada segitiga.
+% 
+% Pertama, mendefinisikan sudut-sudut segitiga yang akan digunakan dalam
+% menghitung garis euler. Sudut-sudut ini akan diekspresikan dalam
+% bentuk simbolik atau aljabar, sehingga mempermudah perhitungan lebih
+% lanjut yang berkaitan dengan segitiga tersebut.
+>
+>A::=[-1,-1]; B::=[2,0]; C::=[1,2];
+% Untuk memplot objek geometris, kita menyiapkan area plot, dan
+% menambahkan titik-titiknya. Semua plot objek geometris ditambahkan ke
+% plot saat ini.
+>setPlotRange(3); plotPoint(A,"A"); plotPoint(B,"B"); plotPoint(C,"C");
+% Kita juga bisa menambahkan sisi-sisi segitiga.
+>plotSegment(A,B,""); plotSegment(B,C,""); plotSegment(C,A,""):
+% Berikut ini adalah luas area segitiga, dengan menggunakan rumus
+% determinan. Tentu saja, kita harus mengambil nilai absolut dari hasil
+% ini.
+>$areaTriangle(A,B,C)
+% Kita dapat menghitung koefisien dari sisi c.
+>c &= lineThrough(A,B)
+
+                            [- 1, 3, - 2]
+
+% Dan juga mendapatkan formula untuk baris ini.
+>$getLineEquation(c,x,y)
+% Untuk bentuk Hesse, kita perlu menentukan sebuah titik, sehingga titik
+% tersebut berada di sisi positif dari bentuk Hesse. Memasukkan titik
+% tersebut akan menghasilkan jarak positif ke garis.
+>$getHesseForm(c,x,y,C), $at(%,[x=C[1],y=C[2]])
+% Sekarang kita menghitung keliling ABC.  
+>LL &= circleThrough(A,B,C); $getCircleEquation(LL,x,y)
+>O &= getCircleCenter(LL); $O
+% Plot lingkaran dan pusatnya. Cu dan U adalah simbolik. Kami
+% mengevaluasi ekspresi ini untuk Euler
+>plotCircle(LL()); plotPoint(O(),"O"):
+% Kita dapat menghitung perpotongan ketinggian di ABC (pusat
+% ortosentrum) secara numerik dengan rumus berikut ini.
+>H &= lineIntersection(perpendicular(A,lineThrough(C,B)),...
+>  perpendicular(B,lineThrough(A,C))); $H
+% Sekarang kita dapat menghitung garis Euler dari segitiga tersebut.
+>el &= lineThrough(H,O); $getLineEquation(el,x,y)
+% Tambahkan ke plot kita.
+>plotPoint(H(),"H"); plotLine(el(),"Garis Euler"):
+% Pusat gravitasi harus berada pada garis ini.
+>M &= (A+B+C)/3; $getLineEquation(el,x,y) with [x=M[1],y=M[2]]
+>plotPoint(M(),"M"): // titik berat
+% Teori mengatakan bahwa MH = 2*MO. Kita perlu menyederhanakan dengan
+% radcan untuk mencapai hal ini.
+>$distance(M,H)/distance(M,O)|radcan
+% Fungsi-fungsi ini juga mencakup fungsi untuk sudut.
+>$computeAngle(A,C,B), degprint(%())
+60°15'18.43''
+% Persamaan untuk bagian tengah lingkaran tidak terlalu bagus.
+>Q &= lineIntersection(angleBisector(A,C,B),angleBisector(C,B,A))|radcan; $Q
+% Mari kita hitung juga ekspresi untuk jari-jari lingkaran yang
+% tertulis.
+>r &= distance(Q,projectToLine(Q,lineThrough(A,B)))|ratsimp; $r
+>LD &=  circleWithCenter(Q,r); // Lingkaran dalam
+% Mari kita tambahkan ini ke dalam plot.
+>color(5); plotCircle(LD()):
+
+
+% ** Sub Materi 6
+%% ** Titik Pusat
+%% 1. Titik Pusat Lingkaran Dalam (Incenter)
+%% Titik pusat lingkaran dalam adalah titik perpotongan dari tiga garis
+% bagi sudut dalam segitiga. Rumus untuk mencari koordinat incenter (I)
+% dari segitiga dengan titik-titik sudut A(x1, y1), B(x2, y2),
+% C(x3,y3)adalah:
+% 
+% latex: x_I = \frac{a \cdot x_1 + b \cdot x_2 + c \cdot x_3}{a + b + c}
+% 
+% latex: y_I = \frac{a \cdot y_1 + b \cdot y_2 + c \cdot y_3}{a + b + c}
+% 
+% latex: a = \sqrt{(x_2 - x_3)^2 + (y_2 - y_3)^2}
+% 
+% latex: b = \sqrt{(x_1 - x_3)^2 + (y_1 - y_3)^2}
+% 
+% latex: c = \sqrt{(x_1 - x_2)^2 + (y_1 - y_2)^2}
+>load geometry
+Numerical and symbolic geometry.
+>setPlotRange(-0.5,2.5,-0.5,2.5); // mendefinisikan bidang koordinat baru 
+% Sekarang tetapkan tiga poin dan plot mereka.
+>A=[1,0]; plotPoint(A,"A"); // definisi dan gambar tiga titik
+>B=[0,1]; plotPoint(B,"B");
+>C=[2,2]; plotPoint(C,"C");
+% Kemudian tiga segmen.
+>plotSegment(A,B,"c"); // c=AB
+>plotSegment(B,C,"a"); // a=BC
+>plotSegment(A,C,"b"); // b=AC
+>
+>l=angleBisector(A,C,B); // garis bagi <ACB
+>g=angleBisector(C,A,B); // garis bagi <CAB
+>P=lineIntersection(l,g) // titik potong kedua garis bagi sudut
+[0.86038,  0.86038]
+>color(5); plotLine(l); plotLine(g); color(1); // gambar kedua garis bagi sudut
+>plotPoint(P,"P"); // gambar titik potongnya
+>r=norm(P-projectToLine(P,lineThrough(A,B))) // jari-jari lingkaran dalam
+0.509653732104
+% latex: a = \sqrt{(0 - 2)^2 + (1 - 2)^2} = \sqrt{4 + 1} = \sqrt{5}
+% 
+% latex: b = \sqrt{(1 - 2)^2 + (0 - 2)^2} = \sqrt{1 + 4} = \sqrt{5}
+% 
+% latex: c = \sqrt{(1 - 0)^2 + (0 - 1)^2} = \sqrt{1 + 1} = \sqrt{2}
+% 
+% latex: x_I = \frac{a \cdot x_1 + b \cdot x_2 + c \cdot x_3}{a + b + c}
+% 
+% latex: y_I = \frac{a \cdot y_1 + b \cdot y_2 + c \cdot y_3}{a + b + c}
+% 
+% latex: x_I = \frac{\sqrt{5} \cdot 1 + \sqrt{5} \cdot 0 + \sqrt{2} \cdot 2}{\sqrt{5} + \sqrt{5} + \sqrt{2}}
+% 
+% 
+% latex: x_I = \frac{\sqrt{5} + 2\sqrt{2}}{2\sqrt{5} + \sqrt{2}}
+% 
+% 
+% latex: y_I = \frac{\sqrt{5} \cdot 0 + \sqrt{5} \cdot 1 + \sqrt{2} \cdot 2}{\sqrt{5} + \sqrt{5} + \sqrt{2}}
+% 
+% 
+% latex: y_I = \frac{\sqrt{5} + 2\sqrt{2}}{2\sqrt{5} + \sqrt{2}}
+% 
+% 4. Hasil akhir untuk koordinat incenter  P adalah:
+%% latex: \left( \frac{\sqrt{5} + 2\sqrt{2}}{2\sqrt{5} + \sqrt{2}}, \frac{\sqrt{5} + 2\sqrt{2}}{2\sqrt{5} + \sqrt{2}} \right)
+% 
+% Hasil ini mendekati nilai (0.86038, 0.86038) .
+>
+>color(5); plotLine(l); plotLine(g); color(1); // gambar kedua garis bagi sudut
+>plotPoint(P,"P"); // gambar titik potongnya       
+>plotCircle(circleWithCenter(P,r),"Lingkaran dalam segitiga ABC"): // gambar lingkaran dalam
+% 2. Titik Pusat Lingkaran Luar (Circumcenter)
+%% Titik pusat lingkaran luar adalah titik perpotongan dari tiga garis
+% tengah tegak lurus (garis yang tegak lurus dan melalui titik tengah
+% sisi-sisi segitiga). Rumus koordinat circumcenter (O) dapat dihitung
+% menggunakan determinan atau secara simbolik dengan EMT.
+% 
+% #Menentukan Titik Tengah dari Dua Sisi
+%% Kita mulai dengan dua sisi segitiga:
+% 
+% Sisi B: Titik tengah M_AB dariB adalah:
+%% latex: M_{AB} = \left( \frac{x_1 + x_2}{2}, \frac{y_1 + y_2}{2} \right)
+% 
+% Sisi C: Titik tengah M_BC dari C adalah:
+%% latex: M_{BC} = \left( \frac{x_2 + x_3}{2}, \frac{y_2 + y_3}{2} \right)
+% 
+% #Menentukan Kemiringan Sisi dan Sumbu Tegak Lurus
+%% Selanjutnya, kita hitung kemiringan dari
+%% AB dan BC untuk menentukan kemiringan garis sumbu tegak lurus.
+% 
+% Kemiringan AB:
+% 
+% latex: m_{AB} = \frac{y_2 - y_1}{x_2 - x_1}
+% 
+% Kemiringan sumbu tegak lurus dari AB adalah negatif kebalikannya:
+%% latex: m_{\perp AB} = -\frac{1}{m_{AB}} = -\frac{x_2 - x_1}{y_2 - y_1}
+% 
+% Kemiringan BC:
+%% latex: m_{BC} = \frac{y_3 - y_2}{x_3 - x_2}
+% 
+% 
+% Kemiringan sumbu tegak lurus dariBC adalah:
+%% latex: m_{\perp BC} = -\frac{1}{m_{BC}} = -\frac{x_3 - x_2}{y_3 - y_2}
+% 
+% #Menyusun Persamaan Garis Sumbu Tegak Lurus
+%% Menggunakan rumus garis
+%% latex: y - y_0 = m(x - x_0)
+%% kita dapatkan persamaan sumbu tegak lurus untuk sisi AB dan BC.
+%% Persamaan Sumbu Tegak Lurus Sisi AB melalui M_AB
+% 
+% 
+% latex: y - \frac{y_1 + y_2}{2} = -\frac{x_2 - x_1}{y_2 - y_1} \left( x - \frac{x_1 + x_2}{2} \right)
+% 
+% Persamaan Sumbu Tegak Lurus Sisi C melalui M_BC:
+% 
+% latex: y - \frac{y_2 + y_3}{2} = -\frac{x_3 - x_2}{y_3 - y_2} \left( x - \frac{x_2 + x_3}{2} \right)
+% 
+% 
+% #Menemukan Titik Potong Kedua Persamaan
+%% Titik potong dari dua garis ini memberikan koordinat circumcenter
+%% O(x,y). Setelah menyelesaikan sistem persamaan ini, kita memperoleh:
+% 
+% latex: x = \frac{(x_1^2 + y_1^2)(y_2 - y_3) + (x_2^2 + y_2^2)(y_3 - y_1) + (x_3^2 + y_3^2)(y_1 - y_2)}{2 \left( x_1(y_2 - y_3) + x_2(y_3 - y_1) + x_3(y_1 - y_2) \right)}
+% 
+% 
+% latex: y = \frac{(x_1^2 + y_1^2)(x_3 - x_2) + (x_2^2 + y_2^2)(x_1 - x_3) + (x_3^2 + y_3^2)(x_2 - x_1)}{2 \left( x_1(y_2 - y_3) + x_2(y_3 - y_1) + x_3(y_1 - y_2) \right)}
+>
+>c=circleThrough(A,B,C); // lingkaran luar segitiga ABC
+>R=getCircleRadius(c); // jari2 lingkaran luar
+>O=getCircleCenter(c); // titik pusat lingkaran c
+>plotPoint(O,"O"); // gambar titik "O"
+>plotCircle(c,"Lingkaran luar segitiga ABC"):
+% latex: x = \frac{(1^2 + 0^2)(1 - 2) + (0^2 + 1^2)(2 - 0) + (2^2 + 2^2)(0 - 1)}{2 \left( 1(1 - 2) + 0(2 - 0) + 2(0 - 1) \right)}
+% 
+% latex: = \frac{(1)(-1) + (1)(2) + (8)(-1)}{2(-3)} = \frac{-1 + 2 - 8}{-6} = \frac{-7}{-6} = 1.167
+% 
+% latex: y = \frac{(1^2 + 0^2)(2 - 0) + (0^2 + 1^2)(1 - 2) + (2^2 + 2^2)(0 - 1)}{2 \left( 1(1 - 2) + 0(2 - 0) + 2(0 - 1) \right)}
+% 
+% latex: = \frac{(1)(2) + (1)(-1) + (8)(-1)}{-6} = \frac{2 - 1 - 8}{-6} = \frac{-7}{-6} = 1.167
+>O, R
+[1.16667,  1.16667]
+1.17851130198
+% ** Latihan lingkaran dalam
+% 
+% 1. Tentukan ketiga titik singgung lingkaran dalam dengan sisi-sisi
+% segitiga ABC.
+%% A=[-2,1]; 
+%% B=[1,-2]; 
+%% C=[4,4]; 
+>setPlotRange(-2.5,4.5,-2.5,4.5);
+>A=[-2,1]; plotPoint(A,"A");
+>B=[1,-2]; plotPoint(B,"B");
+>C=[4,4]; plotPoint(C,"C");
+% 2. Gambar segitiga dengan titik-titik sudut ketiga titik singgung
+% tersebut.
+>plotSegment(A,B,"c")
+>plotSegment(B,C,"a")
+>plotSegment(A,C,"b")
+>aspect(1):
+% 3. Tunjukkan bahwa garis bagi sudut yang ke tiga juga melalui titik
+% pusat lingkaran dalam.
+>l=angleBisector(A,C,B);
+>g=angleBisector(C,A,B);
+>P=lineIntersection(l,g)
+[0.581139,  0.581139]
+% latex: a = \sqrt{(4 - 6)^2 + (7 - 2)^2} = \sqrt{(-2)^2 + 5^2} = \sqrt{4 + 25} = \sqrt{29}
+% 
+% latex: b = \sqrt{(2 - 6)^2 + (3 - 2)^2} = \sqrt{(-4)^2 + 1^2} = \sqrt{16 + 1} = \sqrt{17}
+% 
+% latex: c = \sqrt{(2 - 4)^2 + (3 - 7)^2} = \sqrt{(-2)^2 + (-4)^2} = \sqrt{4 + 16} = \sqrt{20}
+% 
+% latex: x_I = \frac{\sqrt{29} \cdot 2 + \sqrt{17} \cdot 4 + \sqrt{20} \cdot 6}{\sqrt{29} + \sqrt{17} + \sqrt{20}}
+% 
+% latex: y_I = \frac{\sqrt{29} \cdot 3 + \sqrt{17} \cdot 7 + \sqrt{20} \cdot 2}{\sqrt{29} + \sqrt{17} + \sqrt{20}}
+% 
+% Hasil akhir untuk koordinat incenter  P adalah:
+%% latex: (\frac{\sqrt{29} \cdot 2 + \sqrt{17} \cdot 4 + \sqrt{20} \cdot 6}{\sqrt{29} + \sqrt{17} + \sqrt{20}}, \frac{\sqrt{29} \cdot 3 + \sqrt{17} \cdot 7 + \sqrt{20} \cdot 2}{\sqrt{29} + \sqrt{17} + \sqrt{20}})
+% 
+% Hasil ini mendekati nilai (0.581139, 0.583119).
+>color(5); plotLine(l); plotLine(g); color(1);
+>plotPoint(P,"P"); // gambar titik potongnya 
+% Jadi, terbukti bahwa garis bagi sudut yang ketiga juga melalui titik
+% pusat lingkaran dalam.
+>r=norm(P-projectToLine(P,lineThrough(A,B)))
+1.52896119631
+>plotCircle(circleWithCenter(P,r),"Lingkaran dalam segitiga ABC"):
+% ** Latian lingkaran luar
+%% 1. Tentukan titik pusat dari lingkaran luar segitiga dengan koordinat:
+%% A=[-4,1]
+%% B= [3,-2]
+%% C= [1,4]
+>setPlotRange(-5,4.5,-5,4.5);
+>A=[-4,1]; plotPoint(A,"A");
+>B=[3,-2]; plotPoint(B,"B");
+>C=[1,4]; plotPoint(C,"C");    
+% 2. Gambar segitiga dengan titik-titik sudut ketiga titik singgung
+% tersebut.
+>plotSegment(A,B,"c")
+>plotSegment(B,C,"a")
+>plotSegment(A,C,"b")
+>aspect(1):
+>l=angleBisector(A,C,B);
+>g=angleBisector(C,A,B);
+>P=lineIntersection(l,g)
+[-0.00958929,  1.27082]
+% latex: a = \sqrt{(3 - 1)^2 + (-2 - 4)^2} = \sqrt{2^2 + (-6)^2} = \sqrt{4 + 36} = \sqrt{40}
+% 
+% latex: b = \sqrt{(-4 - 1)^2 + (1 - 4)^2} = \sqrt{(-5)^2 + (-3)^2} = \sqrt{25 + 9} = \sqrt{34}
+% 
+% latex: c = \sqrt{(-4 - 3)^2 + (1 - (-2))^2} = \sqrt{(-7)^2 + 3^2} = \sqrt{49 + 9} = \sqrt{58}
+% 
+% latex: x_I = \frac{\sqrt{40} \cdot (-4) + \sqrt{34} \cdot 3 + \sqrt{58} \cdot 1}{\sqrt{40} + \sqrt{34} + \sqrt{58}}
+% 
+% latex: y_I = \frac{\sqrt{40} \cdot 1 + \sqrt{34} \cdot (-2) + \sqrt{58} \cdot 4}{\sqrt{40} + \sqrt{34} + \sqrt{58}}
+% 
+% Hasil akhir untuk koordinat incenter  P adalah:
+%% latex: (\frac{\sqrt{40} \cdot (-4) + \sqrt{34} \cdot 3 + \sqrt{58} \cdot 1}{\sqrt{40} + \sqrt{34} + \sqrt{58}}, \frac{\sqrt{40} \cdot 1 + \sqrt{34} \cdot (-2) + \sqrt{58} \cdot 4}{\sqrt{40} + \sqrt{34} + \sqrt{58}}
+% 
+% 
+% Hasil ini mendekati nilai (-0.0958929, 01.27082).
+>color(5); plotLine(l); plotLine(g); color(1);
+>plotPoint(P,"P");
+>
+>c=circleThrough(A,B,C); // lingkaran luar segitiga ABC
+>R=getCircleRadius(c); // jari2 lingkaran luar
+>O=getCircleCenter(c); // titik pusat lingkaran c
+>plotPoint(O,"O"); // gambar titik "O"
+>plotCircle(c,"Lingkaran luar segitiga ABC"):
+% latex: x = \frac{((-4)^2 + 1^2)(-2 - 4) + (3^2 + (-2)^2)(4 - 1) + (1^2 + 4^2)(1 + 2)}{2 \left( (-4)(-2 - 4) + 3(4 - 1) + 1(1 + 2) \right)}
+%% latex: = \frac{(16 + 1)(-6) + (9 + 4)(3) + (1 + 16)(3)}{2 \cdot (24 + 9 + 3)}
+% 
+% latex: =\frac{17 \cdot (-6) + 13 \cdot 3 + 17 \cdot 3}{2 \cdot 36}
+% 
+% latex: =\frac{-102 + 39 + 51}{72}
+%% latex: = \frac{-12}{72} = -0.167
+% 
+% latex: y = \frac{(16 + 1)(1 - 3) + (9 + 4)(-4 - 1) + (1 + 16)(3 + 4)}{2 \cdot 36}
+% 
+% latex: = \frac{17 \cdot (-2) + 13 \cdot (-5) + 17 \cdot 7}{72}
+% 
+% latex: = \frac{-34 - 65 + 119}{72}
+%% latex: = \frac{20}{72} = 0.278
+>O, R
+[-0.166667,  0.277778]
+3.90077548479
+>
+% ** Sub Materi 7
+%% ** Menentukan Persamaan Lingkaran Melalui Tiga Titik
+% 
+% Diberikan tiga titik A(1,2), B(4,6), dan C(5,2). Tentukan persamaan
+% lingkaran yang melalui ketiga titik tersebut.
+% 
+% Penyelesaian:
+%% Persamaan umum lingkaran:
+%% latex: x^2+y^2+Dx+Ey+F=0
+% 
+% Substitusi masing-masing ititk ke persamaan umum lingkaran
+%% Titik A(1,2)
+%% latex: 1^2+2^2+D.1+E.2+F=0
+%% latex: D+2E+F=-5 ...(i)
+% 
+% Titik B(4,6)
+%% latex: 4^2+6^2+D.4+E.6+F=0
+%% latex: 4D+6E+F=-52 ...(ii)
+% 
+% Titik C(5,2)
+%% latex: 5^2+2^2+D.5+E.2+F=0
+%% latex: 5D+2E+F=-29 ...(iii)
+% 
+% Eliminasi (i) dan (ii)
+%% latex: (4D+6E+F)-(D+2E+F)=-52+5
+%% latex: 3D+4E=-47...(iv)
+% 
+% Eliminasi (i) dan (iii)
+%% latex: (5D+2E+F)-(D+2E+F)=-29+5
+%% latex: 4D=-24
+%% latex: D=-6
+% 
+% Substitusi D=-6  ke persamaan (iv)
+%% latex: 3(-6)+4E=-47
+%% latex: -18+4E=-47
+%% latex: 4E=-29
+%% latex: E=-\frac{29}{4}
+% 
+% Substitusikan D dan E ke persamaan (i)
+%% latex: -6+2(-\frac{29}{4})+F=-5
+%% latex: -6-\frac{29}{2}+F=-5
+%% latex: F=-5+6+\frac{29}{2}
+%% latex: \frac{29}{2}+1=\frac{31}{2}
+% 
+% Substitusikan nilai D, E, F ke persamaan umum lingkaran
+%% latex: x^2+y^2-6x-\frac{29}{4}y+\frac{31}{2}=0
+%% atau
+%% latex: 4x^2+4y^2-24x-29y+62=0
+% 
+% Jadi persamaan lingkaran yang melalui A(1,2), B(4,6), dan C(5,2)
+% adalah
+%% latex: 4x^2+4y^2-24x-29y+62=0
+>load geometry
+Numerical and symbolic geometry.
+>A::=[1,2]; B::=[4,6]; C::=[5,2];
+>LL &= circleThrough(A,B,C);
+>O &= getCircleCenter(LL); $O
+>setPlotRange(-0.5,7,-0.5,7); plotCircle(LL()); plotPoint(O(),"O"):
+>
+
+>
+% * Sub Materi 8
+% 
+% ** Jari-jari lingkaran
+% 
+%  Jari-jari lingkaran adalah jarak terpendek antara titik pusat
+% lingkaran dengan titik manapun pada lingkaran itu sendiri. Jari-jari
+% seringkali disimbolkan dengan huruf r.
+% 
+% ** Lingkaran dalam segitiga
+%% Misalkan sebuah segitiga memiliki panjang sisi a, b, dan c. Luas
+% segitiga juga dapat dihitung sebagai hasil kali dari inradius dan
+% semi-perimeter. Ini berasal dari fakta bahwa luas segitiga dapat
+% dinyatakan sebagai jumlah dari tiga segitiga kecil yang masing-masing
+% terbentuk oleh radius lingkaran dalam dan satu sisi segitiga.
+%% Semi-perimeter dari segitiga adalah:
+% 
+% latex: s = \frac{a + b + c}{2}
+% 
+% Jika kita bagi segitiga menjadi tiga segitiga kecil yang masing-masing
+% terbentuk oleh inradius r dan masing-masing sisi, maka luas segitiga
+% total A adalah penjumlahan dari luas ketiga segitiga kecil tersebut:
+% 
+% 
+% Luas segitiga dengan sisi a dan tinggi r:
+%% latex:  a = \frac{1}{2} \cdot a \cdot r
+% 
+% Luas segitiga dengan sisi dan tinggi r:
+%% latex: b = \frac{1}{2} \cdot b \cdot r
+% 
+% Luas segitiga dengan sisi dan tinggi r:
+%% latex: c = \frac{1}{2} \cdot c \cdot r
+% 
+% Maka diperoleh A
+%% latex: A = \text{Luas}_a + \text{Luas}_b + \text{Luas}_c
+%% latex: A = \frac{1}{2} \cdot a \cdot r + \frac{1}{2} \cdot b \cdot r + \frac{1}{2} \cdot c \cdot r
+%% latex: A = \frac{1}{2} \cdot (a + b + c) \cdot r
+% 
+% Sehingga r adalah
+%% latex: r = \frac{\sqrt{s(s-a)(s-b)(s-c)}\quad }{s}
+% 
+% ** Lingkaran luar segitiga
+%% Hubungan Sisi dan Sudut dalam Lingkaran Luar
+%% alam lingkaran luar, ada hubungan antara panjang sisi segitiga, sudut
+% berhadapan, dan circumradius. Berdasarkan aturan sinus, kita memiliki:
+% 
+% latex: \frac{a}{\sin A} = \frac{b}{\sin B} = \frac{c}{\sin C} = 2r
+% 
+% Dari hubungan ini, kita bisa menyusun ulang untuk mendapatkan
+% circumradius r dalam bentuk:
+%% latex: r = \frac{a}{2 \sin A} = \frac{b}{2 \sin B} = \frac{c}{2 \sin C}
+% 
+% Luas Segitiga dengan Inradius dan Circumradius
+%% Luas segitiga juga dapat dihitung menggunakan circumradius dan
+% sisi-sisi segitiga. Ada rumus trigonometri untuk luas segitiga:
+% 
+% latex: A = \frac{1}{2} \cdot a \cdot b \cdot \sin C
+% 
+% Dengan menggunakan aturan sinus
+%% latex: sin C = \frac{c}{2R}
+%% kita substitusikan nilai didalam rumus luas segitiga:
+% 
+% latex: A = \frac{a \cdot b \cdot c}{4r}
+% 
+% Dari sini, kita bisa menyusun ulang untuk mendapatkan:
+%% latex: R = \frac{abc}{4 \sqrt{s(s-a)(s-b)(s-c)}}
+% 
+% 
+>
+>setPlotRange(-5,4.5,-5,4.5);
+>A=[-4,1]; plotPoint(A,"A");
+>B=[4,-2]; plotPoint(B,"B");
+>C=[4,2]; plotPoint(C,"C");
+% 2. Gambar segitiga dengan titik-titik sudut ketiga titik singgung
+% tersebut.
+>plotSegment(A,B,"c")
+>plotSegment(B,C,"a")
+>plotSegment(A,C,"b")
+>aspect(1):
+% 3. Tunjukkan bahwa garis bagi sudut yang ke tiga juga melalui titik
+% pusat lingkaran dalam.
+>l=angleBisector(A,C,B);
+>g=angleBisector(C,A,B);
+>P=lineIntersection(l,g)
+[2.44707,  0.240873]
+% latex: a = \sqrt{(1 - 3)^2 + (4 - (-2))^2} = \sqrt{(-2)^2 + (6)^2} = \sqrt{4 + 36} = \sqrt{40}
+% 
+% latex: b = \sqrt{(1 - (-4))^2 + (4 - 1)^2} = \sqrt{(5)^2 + (3)^2} = \sqrt{25 + 9} = \sqrt{34}
+% 
+% latex: c = \sqrt{(3 - (-4))^2 + (-2 - 1)^2} = \sqrt{(7)^2 + (-3)^2} = \sqrt{49 + 9} = \sqrt{58}
+% 
+% latex: x_I = \frac{a \cdot x_A + b \cdot x_B + c \cdot x_C}{a + b + c} = \frac{\sqrt{40} \cdot (-4) + \sqrt{34} \cdot 3 + \sqrt{58} \cdot 1}{\sqrt{40} + \sqrt{34} + \sqrt{58}}
+% 
+% latex: y_I = \frac{a \cdot y_A + b \cdot y_B + c \cdot y_C}{a + b + c} = \frac{\sqrt{40} \cdot 1 + \sqrt{34} \cdot (-2) + \sqrt{58} \cdot 4}{\sqrt{40} + \sqrt{34} + \sqrt{58}}
+% 
+% Hasil akhir untuk koordinat incenter  P adalah:
+%% latex: (\frac{\sqrt{40} \cdot (-4) + \sqrt{34} \cdot 3 + \sqrt{58} \cdot 1}{\sqrt{40} + \sqrt{34} + \sqrt{58}},\frac{\sqrt{40} \cdot 1 + \sqrt{34} \cdot (-2) + \sqrt{58} \cdot 4}{\sqrt{40} + \sqrt{34} + \sqrt{58}})
+% 
+% 
+% Hasil ini mendekati nilai (2.44707, 0.240873).
+>color(5); plotLine(l); plotLine(g); color(1);
+>plotPoint(P,"P"); 
+>plotCircle(circleWithCenter(P,r),"Lingkaran dalam segitiga ABC"):
+% Jadi, terbukti bahwa garis bagi sudut yang ketiga juga melalui titik
+% pusat lingkaran dalam.
+>
+>
+>
+>R=getCircleRadius(c); // jari2 lingkaran luar
+>O, R
+[-0.166667,  0.277778]
+3.90077548479
+% latex: s = \frac{a + b + c}{2} = \frac{4 + \sqrt{65} + \sqrt{73}}{2}
+% 
+% latex: = \frac{4 + 8.062 + 8.544}{2} \approx \frac{20.606}{2} \approx 10.303
+% 
+% latex: r = \frac{abc}{4 \sqrt{s(s-a)(s-b)(s-c)}}
+% 
+% latex: A = \sqrt{s \cdot (s-a) \cdot (s-b) \cdot (s-c)}
+%% latex: = \sqrt{10.303 \cdot 6.303 \cdot 2.241 \cdot 1.759}
+%% latex: \approx \sqrt{238.1227} \approx 15.43
+% 
+% latex: r = \frac{abc}{4A}
+%% latex: = \frac{4 \cdot \sqrt{65} \cdot \sqrt{73}}{4 \cdot 15.43}
+% 
+% latex: = \frac{\sqrt{65 \cdot 73}}{15.43}
+%% latex: \approx \frac{68.88}{15.43}
+%% latex: \approx 3.02
+>
+>c=circleThrough(A,B,C); // lingkaran luar segitiga ABC
+>R=getCircleRadius(c); // jari2 lingkaran luar
+>O=getCircleCenter(c); // titik pusat lingkaran c
+>plotPoint(O,"O"); // gambar titik "O"
+>plotCircle(c,"Lingkaran luar segitiga ABC"):
+>O=getCircleCenter(c); // titik pusat lingkaran c
+>O, R
+[0.1875,  0]
+4.30524752482
+% ** Latihan
+%% Cari panjang jari-jari lingkaran dalam dan lingkaran luar dengan
+% koordinat yang diketahui adalah:
+%% A =(-3,2)
+%% B =(1,-1)
+%% C = (3,1)
+>setPlotRange(-5,4.5,-5,4.5);
+>A=[-3,2]; plotPoint(A,"A");
+>B=[1,-1]; plotPoint(B,"B");
+>C=[3,1]; plotPoint(C,"C");
+% 2. Gambar segitiga dengan titik-titik sudut ketiga titik singgung
+% tersebut.
+>plotSegment(A,B,"c")
+>plotSegment(B,C,"a")
+>plotSegment(A,C,"b")
+>aspect(1):
+% 3. Tunjukkan bahwa garis bagi sudut yang ke tiga juga melalui titik
+% pusat lingkaran dalam.
+>l=angleBisector(A,C,B);
+>g=angleBisector(C,A,B);
+>P=lineIntersection(l,g)
+[0.905565,  0.328807]
+% latex: a = \sqrt{(3 - 1)^2 + (1 - (-1))^2} = \sqrt{(2)^2 + (2)^2} = \sqrt{4 + 4} = \sqrt{8}
+% 
+% latex: b = \sqrt{(3 - (-3))^2 + (1 - 2)^2} = \sqrt{(6)^2 + (-1)^2} = \sqrt{36 + 1} = \sqrt{37}
+% 
+% latex: c = \sqrt{(1 - (-3))^2 + (-1 - 2)^2} = \sqrt{(4)^2 + (-3)^2} = \sqrt{16 + 9} = \sqrt{25}
+% 
+% 
+% Hasil untuk nilai P
+% 
+% latex: x_I = \frac{\sqrt{8} \cdot (-3) + \sqrt{37} \cdot 1 + \sqrt{25} \cdot 3}{\sqrt{8} + \sqrt{37} + \sqrt{25}},y_I = \frac{\sqrt{8} \cdot 2 + \sqrt{37} \cdot (-1) + \sqrt{25} \cdot 1}{\sqrt{8} + \sqrt{37} + \sqrt{25}})
+% 
+% Maka diperoleh (0.905565, 0.328807)
+>color(5); plotLine(l); plotLine(g); color(1);
+>plotPoint(P,"P");
+>plotCircle(circleWithCenter(P,r),"Lingkaran dalam segitiga ABC"):
+>
+% Jadi, terbukti bahwa garis bagi sudut yang ketiga juga melalui titik
+% pusat lingkaran dalam.
+% 
+% 
+% 4. Gambar jari-jari lingkaran dalam.
+% 
+% 
+% latex: a = \sqrt{(x_B - x_C)^2 + (y_B - y_C)^2} = \sqrt{(1 - 3)^2 + (-1 - 1)^2} = \sqrt{(-2)^2 + (-2)^2} = \sqrt{4 + 4} = \sqrt{8} \approx 2.828
+% 
+% latex: b = \sqrt{(x_A - x_C)^2 + (y_A - y_C)^2} = \sqrt{(-3 - 3)^2 + (2 - 1)^2} = \sqrt{(-6)^2 + (1)^2} = \sqrt{36 + 1} = \sqrt{37} \approx 6.083
+% 
+% latex: c = \sqrt{(x_A - x_B)^2 + (y_A - y_B)^2} = \sqrt{(-3 - 1)^2 + (2 - (-1))^2} = \sqrt{(-4)^2 + (3)^2} = \sqrt{16 + 9} = \sqrt{25} = 5
+% 
+% latex: s = \frac{a + b + c}{2} = \frac{\sqrt{8} + \sqrt{37} + 5}{2}
+% 
+% latex: = \frac{2.828 + 6.083 + 5}{2} \approx \frac{13.911}{2} \approx 6.9555
+% 
+% latex: r = \frac{\sqrt{s \cdot (s - a) \cdot (s - b) \cdot (s - c)}}{s}
+% 
+% latex: = \frac{\sqrt{6.9555 \cdot \left(6.9555 - 2.828\right) \cdot \left(6.9555 - 6.083\right) \cdot \left(6.9555 - 5\right)}}{6.9555}
+% 
+% latex: = \frac{\sqrt{6.9555 \cdot 4.1275 \cdot 0.8725 \cdot 1.9555}}{6.9555}
+% 
+% latex: \approx \frac{\sqrt{6.9555 \cdot 4.1275 \cdot 0.8725 \cdot 1.9555}}{6.9555}
+% 
+% latex: \approx \frac{\sqrt{6.9555 \cdot 4.1275 \cdot 0.8725 \cdot 1.9555}}{6.9555}
+% 
+% latex: \approx \frac{\sqrt{48.89}}{6.9555} \approx \frac{6.998}{6.9555}
+%% latex: \approx 1.006
+>r=norm(P-projectToLine(P,lineThrough(A,B)))
+1.00638409418
+>
+>
+>
+>
+>
+>R=getCircleRadius(c); // jari2 lingkaran luar
+>O, R
+[0.1875,  0]
+4.30524752482
+% 
+% latex: a = \sqrt{(x_B - x_C)^2 + (y_B - y_C)^2} = \sqrt{(1 - 3)^2 + (-1 - 1)^2}
+%% latex: = \sqrt{(-2)^2 + (-2)^2} = \sqrt{4 + 4} = \sqrt{8} \approx 2.828
+% 
+% latex: b = \sqrt{(x_A - x_C)^2 + (y_A - y_C)^2} = \sqrt{(-3 - 3)^2 + (2 - 1)^2} = \sqrt{(-6)^2 + (1)^2} = \sqrt{36 + 1} = \sqrt{37} \approx 6.083
+% 
+% latex: c = \sqrt{(x_A - x_B)^2 + (y_A - y_B)^2} = \sqrt{(-3 - 1)^2 + (2 - (-1))^2} = \sqrt{(-4)^2 + (3)^2} = \sqrt{16 + 9} = \sqrt{25} = 5
+% 
+% latex: s = \frac{a + b + c}{2} = \frac{2.828 + 6.083 + 5}{2} \approx \frac{13.911}{2} \approx 6.9555
+% 
+% latex: A = \sqrt{s \cdot (s-a) \cdot (s-b) \cdot (s-c)}
+% 
+% latex: = \sqrt{6.9555 \cdot 4.1275 \cdot 0.8725 \cdot 1.9555} \approx \sqrt{48.89} \approx 6.998
+% 
+% latex: r = \frac{abc}{4A}
+%% latex: = \frac{(2.828)(6.083)(5)}{4 \cdot 6.998}
+%% latex: \approx \frac{86.186}{27.992}
+%% latex: \approx 3.08
+>
+>c=circleThrough(A,B,C); // lingkaran luar segitiga ABC
+>R=getCircleRadius(c); // jari2 lingkaran luar
+>O=getCircleCenter(c); // titik pusat lingkaran c
+>plotPoint(O,"O"); // gambar titik "O"
+>plotCircle(c,"Lingkaran luar segitiga ABC"):
+% ** Latihan 2
+%% Cari panjang jari-jari lingkaran dalam dan lingkaran luar dengan
+% koordinat yang diketahui adalah:
+%% A =(-2,2)
+%% B =(1,3)
+%% C = (3,1)
+>                                        
+>setPlotRange(-5,4.5,-5,4.5);
+>A=[-2,2]; plotPoint(A,"A");
+>B=[1,-3]; plotPoint(B,"B");
+>C=[3,1]; plotPoint(C,"C");
+% 2. Gambar segitiga dengan titik-titik sudut ketiga titik singgung
+% tersebut.
+>plotSegment(A,B,"c")
+>plotSegment(B,C,"a")
+>plotSegment(A,C,"b")
+>aspect(1):
+% 3. Tunjukkan bahwa garis bagi sudut yang ke tiga juga melalui titik
+% pusat lingkaran dalam.
+>l=angleBisector(A,C,B);
+>g=angleBisector(C,A,B);
+>P=lineIntersection(l,g)
+[0.886087,  -0.0338807]
+% latex: a =\sqrt{(3 - 1)^2 + (1 - (-3))^2} = \sqrt{(2)^2 + (4)^2} = \sqrt{4 + 16} = \sqrt{20}
+% 
+% latex: b = \sqrt{(3 - (-2))^2 + (1 - 2)^2} = \sqrt{(5)^2 + (-1)^2} = \sqrt{25 + 1} = \sqrt{26}
+% 
+% latex: c =  \sqrt{(1 - (-2))^2 + (-3 - 2)^2} = \sqrt{(3)^2 + (-5)^2} = \sqrt{9 + 25} = \sqrt{34}
+% 
+% latex: x_I = \frac{\sqrt{20} \cdot (-2) + \sqrt{26} \cdot 1 + \sqrt{34} \cdot 3}{\sqrt{20} + \sqrt{26} + \sqrt{34}}
+% 
+% latex: y_I =\frac{\sqrt{20} \cdot 2 + \sqrt{26} \cdot (-3) + \sqrt{34} \cdot 1}{\sqrt{20} + \sqrt{26} + \sqrt{34}}
+% 
+% Hasil nilai P adalah
+% 
+% latex: (\frac{\sqrt{20} \cdot (-2) + \sqrt{26} \cdot 1 + \sqrt{34} \cdot 3}{\sqrt{20} + \sqrt{26} + \sqrt{34}},\frac{\sqrt{20} \cdot 2 + \sqrt{26} \cdot (-3) + \sqrt{34} \cdot 1}{\sqrt{20} + \sqrt{26} + \sqrt{34}})
+%% Maka hasilnya (0.886087, -0.0338807)
+>color(5); plotLine(l); plotLine(g); color(1);
+>plotPoint(P,"P");
+>r=norm(P-projectToLine(P,lineThrough(A,B)))
+1.42837596706
+>plotCircle(circleWithCenter(P,r),"Lingkaran dalam segitiga ABC"):
+% Jadi, terbukti bahwa garis bagi sudut yang ketiga juga melalui titik
+% pusat lingkaran dalam.
+% 
+% 
+% 4. Gambar jari-jari lingkaran dalam.
+% 
+% latex: a = \sqrt{(x_B - x_C)^2 + (y_B - y_C)^2} = \sqrt{(1 - 3)^2 + (-3 - 1)^2} = \sqrt{(-2)^2 + (-4)^2} = \sqrt{4 + 16} = \sqrt{20} \approx 4.472
+% 
+% latex: b = \sqrt{(x_A - x_C)^2 + (y_A - y_C)^2} = \sqrt{(-2 - 3)^2 + (2 - 1)^2} = \sqrt{(-5)^2 + (1)^2} = \sqrt{25 + 1} = \sqrt{26} \approx 5.099
+% 
+% latex: c = \sqrt{(x_A - x_B)^2 + (y_A - y_B)^2} = \sqrt{(-2 - 1)^2 + (2 - (-3))^2} = \sqrt{(-3)^2 + (5)^2} = \sqrt{9 + 25} = \sqrt{34} \approx 5.831
+% 
+% latex: s = \frac{a + b + c}{2} = \frac{\sqrt{20} + \sqrt{26} + \sqrt{34}}{2}
+% 
+% latex: = \frac{4.472 + 5.099 + 5.831}{2} \approx \frac{15.402}{2} \approx 7.701
+% 
+% latex: r = \frac{\sqrt{s \cdot (s - a) \cdot (s - b) \cdot (s - c)}}{s}
+% 
+% latex: = \frac{\sqrt{7.701 \cdot (7.701 - 4.472) \cdot (7.701 - 5.099) \cdot (7.701 - 5.831)}}{7.701}
+% 
+% latex: = \frac{\sqrt{7.701 \cdot 3.229 \cdot 2.602 \cdot 1.870}}{7.701}
+% 
+% latex: \approx \frac{\sqrt{7.701 \cdot 3.229 \cdot 2.602 \cdot 1.870}}{7.701}
+% 
+% latex: \approx \frac{\sqrt{(7.701)(3.229)(2.602)(1.870)}}{7.701}
+%% latex: \approx \frac{\sqrt{121.14}}{7.701} \approx \frac{11.00}{7.701} \approx 1.43
+>r=norm(P-projectToLine(P,lineThrough(A,B)))
+1.42837596706
+>plotCircle(circleWithCenter(P,r),"Lingkaran dalam segitiga ABC"):
+>
+>O=getCircleCenter(c); // titik pusat lingkaran c
+>O, R
+[0.0714286,  1.92857]
+3.07225902394
+% latex: a = \sqrt{(x_B - x_C)^2 + (y_B - y_C)^2} = \sqrt{(1 - 3)^2 + (-3 - 1)^2} = \sqrt{(-2)^2 + (-4)^2} = \sqrt{4 + 16} = \sqrt{20} \approx 4.472
+% 
+% latex: b = \sqrt{(x_A - x_C)^2 + (y_A - y_C)^2} = \sqrt{(-2 - 3)^2 + (2 - 1)^2} = \sqrt{(-5)^2 + (1)^2} = \sqrt{25 + 1} = \sqrt{26} \approx 5.099
+% 
+% latex: c = \sqrt{(x_A - x_B)^2 + (y_A - y_B)^2} = \sqrt{(-2 - 1)^2 + (2 - (-3))^2} = \sqrt{(-3)^2 + (5)^2} = \sqrt{9 + 25} = \sqrt{34} \approx 5.831
+% 
+% latex: s = \frac{a + b + c}{2} = \frac{\sqrt{20} + \sqrt{26} + \sqrt{34}}{2}
+%% latex: \approx \frac{4.472 + 5.099 + 5.831}{2} \approx \frac{15.402}{2} \approx 7.701
+% 
+% latex: A = \sqrt{s \cdot (s-a) \cdot (s-b) \cdot (s-c)}
+%% latex: = \sqrt{7.701 \cdot (7.701 - 4.472) \cdot (7.701 - 5.099) \cdot (7.701 - 5.831)}
+%% latex: = \sqrt{7.701 \cdot 3.229 \cdot 2.602 \cdot 1.870} \approx \sqrt{121.695} \approx 11.02
+% 
+% latex: r = \frac{abc}{4A} = \frac{(4.472)(5.099)(5.831)}{4 \cdot 7.071}
+%% latex: \approx \frac{132.55}{44.08} \approx 3.07
+% 
+>
+>
+>c=circleThrough(A,B,C); // lingkaran luar segitiga ABC
+>R=getCircleRadius(c); // jari2 lingkaran luar
+>O=getCircleCenter(c); // titik pusat lingkaran c
+>O, R
+[0.181818,  -0.0909091]
+3.02195820702
+% latex: a = \sqrt{(x_2 - x_3)^2 + (y_2 - y_3)^2} = \sqrt{(1 - 3)^2 + (-3 - 1)^2} = \sqrt{(-2)^2 + (-4)^2} = \sqrt{4 + 16} = \sqrt{20} = 4.472
+% 
+% latex: b = \sqrt{(x_1 - x_3)^2 + (y_1 - y_3)^2} = \sqrt{(-2 - 3)^2 + (2 - 1)^2} = \sqrt{(-5)^2 + (1)^2} = \sqrt{25 + 1} = \sqrt{26} = 5.099
+% 
+% latex: c = \sqrt{(x_1 - x_2)^2 + (y_1 - y_2)^2} = \sqrt{(-2 - 1)^2 + (2 + 3)^2} = \sqrt{(-3)^2 + (5)^2} = \sqrt{9 + 25} = \sqrt{34} = 5.831
+% 
+% latex: s = \frac{a + b + c}{2} = \frac{4.472 + 5.099 + 5.831}{2} = \frac{15.402}{2} = 7.701
+% 
+% latex: A = \sqrt{7.701 \cdot (7.701 - 4.472) \cdot (7.701 - 5.099) \cdot (7.701 - 5.831)}
+%% latex: = \sqrt{7.701 \cdot 3.229 \cdot 2.602 \cdot 1.870}
+%% latex: = \sqrt{115.62} = 10.72
+% 
+% latex: r = \frac{a \cdot b \cdot c}{4 \cdot K}
+%% latex: = \frac{4.472 \cdot 5.099 \cdot 5.831}{4 \cdot 9.826}
+%% latex: = \frac{132.446}{42.89}
+%% latex: \approx 3.02
+>plotPoint(O,"O"); // gambar titik "O"
+>plotCircle(c,"Lingkaran luar segitiga ABC"):
+---------------------------
+Euler
+---------------------------
+Latex could not be found.
+Please configure Latex in the Menu!
+---------------------------
+OK   
+---------------------------
+
+---------------------------
+Euler
+---------------------------
+Latex could not be found.
+Please configure Latex in the Menu!
+---------------------------
+OK   
+---------------------------
+
+% * Sub Materi 9
+% 
+% * PARABOLA
+% 
+% Definisi : Tempat kedudukan titik titik P yang jaraknya ke suatu titik
+% tertentu dan jaraknya ke suatu garis(direktriks) tertentu dinamakan
+% parabola
+% 
+% ** Persamaan Parabola
+% 
+% Akan diilustrasikan gambar dari kurva parabola. Misalkan titik fokus
+% F(p,0), titik puncak O(0,0), garis arah (direktris) yaitu garis g dan
+% kita pilih R (-p,y) pada garis g, kita pilih sembarang titik P(x,y)
+% yang ada pada parabola. Berikut ilustrasi gambar dari kurva
+% parabolanya
+% 
+% 
+% Jika P(x,y) adalah sembarang titik pada parabola, maka dari definisi
+% kurva parabola diperoleh hubungan
+%% latex: |PF| = |PR|
+%% latex: \sqrt{(x-p)^2+(y-0)^2} = \sqrt{(x-(-p))^2+(y-y)^2}
+%% latex: \sqrt{(x-p)^2+y^2} = \sqrt{(x+p+(0)^2}
+%% latex: \sqrt{(x-p)^2+y^2} = \sqrt{(x+p)^2}
+%% latex: (x-p)^2+y^2 = (x+p)^2
+%% latex: x^2-2px+p^2+y^2 = x^2+2px+p^2
+%% latex: y^2 = 2px+2p
+%% latex: y^2 = 4px
+% 
+% Persamaan parabola y^2 = 4px dengan titik puncak O (0,0) dengan titik
+% fokus F(p,0) akan mepresentasikan parabola terbuka ke kanan (arah
+% sumbu x positif).
+% 
+% 
+% Parabola dengan sumbu sejajar sumbu x dan puncaknya di (h,k)
+% 
+% latex: (y-k)^2 = 4p(x-h)
+%% dengan titik puncak di (h,k)
+% 
+% Jika kita jabarkan lagi,
+%% latex: y^2 = 4p(x-h)
+%% latex: y^2-2ky+k^2 = 4px-4ph
+%% latex: y^2-2ky-4px+k^2+4ph = 0
+%% latex: Ay^2+By+Cx+D = 0
+% 
+% persamaan umum dari parabola adalah
+%% latex: Ay^2+By+Cx+D = 0
+% 
+% sebagai contoh :
+%% Buatlah sebuah grafik parabola dari fungsi,
+%% latex: y=2x^2
+%% dan tentukanlah titik puncaknya, apakah grafik terbuka keatas atau
+% kebawah?
+% 
+% Jawab :
+%% latex: y=2x^2
+%% fungsi tersebut dapat kita dari titik puncaknya (p,0) dicari
+% menggunakan rumus dengan
+%% latex: x= \frac{-b}{(2a)}
+%% diketahui a= 2, b=0
+%% maka,
+%% latex: x=\frac{0}{(2(2))}
+%% latex: x=\frac{0}{(4)}
+%% latex: x=0
+%% sehingga, titik puncak berada di (0,0)
+%% jika kita menggambarkan grafik menggunakan EMT:
+>load geometry
+Numerical and symbolic geometry.
+>setPlotRange(-2,2,0,8);
+>plot2d("2x^2");
+>o=[0,0]; plotPoint(o;"o")
+% Dari gambar tersebut terbentuk grafik parabola terbuka keatas dengan
+% titik puncak berada di (0,0)
+%% ** Parabola melalui 3 titik
+% 
+% Dengan cara perhitungan yang mirip dengan cara di atas, maka kita akan
+% dapat menentukan representasi dari tiga persamaan parabola lainnya
+% yang menghadap ke arah yang berbeda.
+%% Misalnya diketahui bahwa sebuah persamaan parabola melalui 3 titik
+% yaitu titik (-2,1),(1,4),(1,-2)dan searah dengan sumbu X! maka kita
+% dapat hitung:
+%% - Persamaan parabola melaui tiga titik dan searah sumbu X adalah
+% y^2+Ay+Bx+C=0, persamaan parabola melaui tiga titik dan searah sumbu Y
+% adalah x^2+Ax+By+C=0.
+%% - Karena pada kurva ini searah dengan sumbu X maka Pada soal ini
+% parabola searah sumbu X sehingga yang kita gunakan adalah
+% y^2+Ay+Bx+C=0.
+%% - Substitusi ketiga titik yang dilalui oleh kurva parabola:
+%% kita substitusi titik (1,4) kedalam persamaan sehingga diperoleh
+% 16+4A+B+C=0, menjadi (persamaan 1)
+%% lalu kita substitusi (1,-2) kedalam persamaan 4-2A+B+C=0, menjadi
+% (persamaan 2)
+%% Selanjutnya kita subtitusi titik terakhir yaitu titik (-2,1)?kedalam
+% persamaan sehingga didapat 1+A-2B+C=0 menjadi (persamaan 3)
+%% - Langkah selanjutnya kita eliminasi persamaan (1 dan 2), sehingga
+% didapat
+%% latex: 16+4*A+B+C=0
+%% latex: 4-2*A+B+C=0/12+6*A=0
+%% -Maka akan kita peroleh A=-2.
+%% -Substitusikan A=-2 ke persamaan 1 sehingga didapat 16+(-8)+B+C=0,
+% lalu kita peroleh B+C=-8, kita jadikan ini (persamaan 4)
+%% -Substitusikan A=-2 ke persamaan 2 sehingga didapat 1+(-2)-2B+C=0,
+% lalu kita peroleh 2B+C=1, kita jadikan ini (persamaan 5)
+%% - Lalu jika kita eliminasi (persamaan 4 dan 5) melalui perhitungan
+% manual kita peroleh 3B=-9. Dan didapat B=-3
+%% - Substitusikan B=-3 kedalam kedalam (persamaan 4)sehingga menjadi
+% -3+C=-5. Dan akan didapat C=-5.
+%% - Kita akhirnya memperoleh nilai A= -2, B=-3 lalu C=-5. Kita
+% substitusikan kedalam persamaan parabola sehingga didapat
+% y^2-2y-3x-5=0. Kita ubah persamaan parabolanya sehingga menjadi
+%% latex: y^2-2y-3x-5=0
+% 
+% Parabola dengan sumbu sejajar sumbu x dan puncaknya di (h,k)
+% 
+% latex: (y-k)^2 = 4p(x-h)
+%% dengan titik puncak di (h,k)
+% 
+% Jika kita jabarkan lagi,
+%% latex: y^2 = 4p(x-h)
+%% latex: y^2-2ky+k^2 = 4px-4ph
+%% latex: y^2-2ky-4px+k^2+4ph = 0
+%% latex: Ay^2+By+Cx+D = 0
+% 
+% persamaan umum dari parabola adalah
+%% latex: Ay^2+By+Cx+D = 0
+% 
+% ** Persamaan parabola jika diketahui titik dan arahnya
+%% Dengan membuat perhitungan yang mirip dengan cara diatas, maka kita
+% akan dapat menentukan representasi dari tiga persamaan parabola
+% lainnya yang menghadap kesuatu arah.
+%% -Misalnya diketahui bahwa sebuah persamaan parabola yang melalui 3
+% titik yaitu titik (-2,1),(1,4),(1,-2) yang searah dengan sumbu x! maka
+% dapat kita hitung:
+%% -Persamaan parabola melalui 3 titik dan searah dengan sumbu x adalah
+%% latex: y^2+Ay+Bx+C=0
+%% -Persamaan parabola yang melalui 3 titik dan searah dengan sumbu y
+% adalah
+%% latex: x^2+Ax+By+C=0.
+%% -Karena pada kurva ini searah pada sumbu x maka persamaan lyang kita
+% gunakan adalah
+%% latex: y^2+Ay+Bx+C=0
+%% -Substitusi ketiga titik yang dilalui oleh kurva parabola.
+%% -Pertama, kita substitusikan titik (1,4) kedalam persamaan sehingga
+% diperoleh 16+4A+Bx+C, menjadi (persamaan 1)
+%% -Selanjutkan kita substitusikan titik (1,-2) kedalam persamaan
+% sehingga diperoleh 4-2A+B+C=0, menjadi (persamaan 2)
+%% -Lalu terakhir kita substitusikan (-2,1) kedalam persamaan sehingga
+% diperoleh 1+A-2B+C=0, menjadi (persamaan 3)
+%% -Langkah selanjutnya kita eliminasi (persamaan 1 dan 2), sehingga
+% didapat
+%% latex: 12+6A=0
+%% latex: 6A=-12
+%% latex: A=-2
+%% -Substitusikan A=-2 kedalam (persamaan 1) sehingga didapat
+%% latex: 16+(4)(-2)+B+C=0
+%% latex: 16-8+B+C=0
+%% latex: B+C=-8
+%% B+C=-8, menjadi (persamaan 4)
+%% -Substitusi A=-2 kedalam (persamaan 2) sehingga didapat
+%% latex: 1-2-2B+C=0
+%% latex: 2B+C=1
+% 
+% ** Contoh Soal
+% 
+% 1. Tentukanlan persamaan dari parabola yang melalui 3 titik A (-1,-1),
+% B (2,0), C(1,2) dan gambarkan parabolanya.
+%% 2B+C=1, menjadi (persamaan 5)
+%% -Eliminasikan (persamaan 4 dan 5) melalui perhitungan manual kita
+% peroleh 3B=-9, lalun didapat B=-3
+%% -Substitusikan B=-3 kedalam (persamaan 4) sehingga menjadi
+%% latex: -3+C=-5
+%% latex: C=-5
+%% -Darisini kita peroleh
+%% latex: A=-2
+%% latex: B=-3
+%% latex: C=-5.
+%% -Kita substitusikan kedalam persamaan parabola sehingga menjadi
+%% latex: y^2-2y-3x-5=0
+%% latex: y^2-2y=3x+5
+%% latex: (y-1)^2-1=3x+5
+%% latex: (y-1)^2=3x+6
+%% latex: (y-1)^2=3(x+2)
+%% -Jadi diperoleh persamaan parabolanya
+%% latex: (y-1)^2=3(x+2)
+% 
+% Selanjutnya kita coba menggambar parabola yang diketahui tiga titik
+% menggunakan latex
+>load geometry 
+Numerical and symbolic geometry.
+>A &=[-1,-1]; B &=[2,0]; C &=[1,2];
+>c &=(lineThrough(A,B)); $c //  melalui garis A dan B
+>$ getLineEquation(c,x,y); $solve(%,y)  // Persamaan garis c,x,y
+% Rumus umum persamaan garis
+%% latex: ax+by+c=0
+% 
+% Mancari gradien garis
+%% latex: m = \frac{y_2-y_1}{x_2-x_1}
+%% latex: m = \frac{0-(-1)}{2-(-1)}
+%% latex: m = \frac{1}{3}
+% 
+% Persamaan Garis (Bentuk Slope-Intercept)
+%% latex: y = mx + b
+%% Gunakan titik A untuk mencari b:
+%% latex: y = \frac{1}{3} x + b
+%% Substitusi A(-1,-1):
+%% latex: -1 = \frac{1}{3}(-1) + b
+%% latex: -1 = -\frac{1}{3} + b
+%% latex: b = -1 + \frac{1}{3}(-1)
+%% latex: b = -\frac{2}{3}
+%% Jadi,persamaan garis dalam bentuk slope-intercept adalah:
+%% latex: y = \frac{1}{3}x - \frac{2}{3}
+% 
+% Selanjutnya akan dicari persamaan tempat kedudukan titik-titik yang
+% berjarak sama ke titik C dan ke garis AB.
+>p &=getHesseForm(lineThrough(A,B),x,y,C)-distance([x,y],C); $p='0
+>akar &= solve(getHesseForm(lineThrough(A,B),x,y,C)^2-distance([x,y],C)^2,y)
+>A=[-1,-1]; B=[2,0]; C=[1,2];
+>setPlotRange (-3,4,-3,4); plotPoint(A,"A"); plotPoint(B,"B"); plotPoint(C,"C"):
+>plotLine(lineThrough(A,B)):
+>plot2d(p,level=0,add=1,contourcolor=11):
+Dari kurva tersebut dapat disimpulkan bahwa jika kita meproyeksikan dengan titik yg ada di dalam kurva tersebut hasilnya akan sama jika kita memproyeksikan titik C ke garis AB
+
+
+** Latihan
+
+1. Tentukanlan persamaan dari parabola yang melalui 3 titik A (3,2), B (2,1), C(2,2) dan gambarkan parabolanya.
+> load geometry
+Numerical and symbolic geometry.
+>A &=[3,2]; B &=[2,1]; C &=[2,2];
+>r&=(lineThrough(A,B)); $r
+>$getLineEquation(r,x,y); $solve(%,y)
+>p &=getHesseForm(lineThrough(A,B),x,y,C)-distance([x,y],C); $p='0
+>akar &= solve(getHesseForm(lineThrough(A,B),x,y,C)^2-distance([x,y],C)^2,y
+>A=[3,2]; B=[2,1]; C=[2,2]; 
+>setPlotRange (6); plotPoint(A,"A"); plotPoint(B,"B"); plotPoint(C,"C");
+>plotLine(lineThrough(A,B));
+>plot2d(p,level=0,add=1,contourcolor=2):
+% * Sub Materi 10
+% 
+% * Menentukan Persamaan Elips 
+% * Jika Diketahui Titik Fokus
+% 
+% ** Elips Secara Umum
+% 
+% Definisi
+%% Elips merupakan himpunan semua titik pada bidang XY yang jaraknya dari
+% dua titik tetap (yang disebut fokus) jika dijumlahkan akan
+% menghasilkan suatu nilai konstan.
+% 
+% Dalam geometri, elips adalah bentuk dua dimensi yang didefinisikan
+% sepanjang sumbunya. Elips memiliki dua titik fokus. Jumlah kedua jarak
+% ke titik fokus, untuk semua titik dalam kurva, selalu konstan.
+%% Lingkaran juga merupakan elips, yang fokusnya berada di titik yang
+% sama, yaitu pusat lingkaran.
+% 
+% image: elips2.JPEG
+%% Menggunakan rumus jarak, jarak dapat dituliskan sebagai:
+% 
+% latex: \sqrt{(x+c)^2 + y^2} + \sqrt{(x-c)^2 + y^2} = 2a
+% 
+% Dengan mengkuadratkan dan menyederhanakan kedua sisi, kita peroleh:
+% 
+% latex: \frac{x^2}{a^2} + \frac{y^2}{b^2} = 1 \quad \text{(definisi elips)}
+% 
+% Sekarang, karena titik P terletak pada elips, maka ia harus memenuhi
+% persamaan (2) sehingga 0 < c < a:
+% 
+% latex: y^2 = b^2 \left(1 - \frac{x^2}{a^2}\right)
+% 
+% Dengan demikian,
+% 
+% latex: PF_1 = \sqrt{(x+c)^2 + y^2}
+% 
+% latex: = \sqrt{(x+c)^2 + b^2 \left(1 - \frac{x^2}{a^2}\right)}
+% 
+% Dengan menyederhanakan, diperoleh
+% 
+% latex: PF_1 = a + \frac{(\frac {c} {a}) x}{a}
+% 
+% Demikian pula,
+% 
+% latex: PF_2 = a - \frac{(\frac {c} {a}) x}{a}
+% 
+% Karena itu,
+% 
+% latex: PF_1 + PF_2 = 2a
+% 
+% Jadi, persamaan elips dengan pusat di asal dan sumbu mayor sepanjang
+% sumbu-x adalah:
+% 
+% latex: \frac{x^2}{a^2} + \frac{y^2}{b^2} = 1
+% 
+% dengan
+%% latex: -a \leq x \leq a.
+% 
+% Demikian pula, persamaan elips dengan pusat di asal dan sumbu mayor
+% sepanjang sumbu-y adalah:
+% 
+% latex: \frac{x^2}{b^2} + \frac{y^2}{a^2} = 1
+% 
+% dengan
+%% latex: -b \leq y \leq b.
+% 
+% Jika pusat elips di titik C(h,k) persamaan umumnya akan menjadi
+% 
+% Jika sumbu mayor sepanjang sumbu-x
+%% latex: \frac{(x - h)^2}{a^2} + \frac{(y - k)^2}{b^2} = 1
+% 
+% Jika sumbu mayor sepanjang sumbu-y
+%% latex: \frac{(x - h)^2}{b^2} + \frac{(y - k)^2}{a^2} = 1
+% 
+% 
+% 
+% image: segitiga.JPEG
+%% Jumlah jarak titik B dari F1 adalah
+%% latex: F_1 B + F_2 B = F_1 O + OB + F_2 B \quad (\text{dari gambar di atas})
+%% latex: \Rightarrow c + a + a - c = 2a
+% 
+% Jumlah jarak titik C ke F_1 adalah F_1 C + F_2 C
+%% latex: \Rightarrow F_1 C + F_2 C = \sqrt{b^2 + c^2} + \sqrt{b^2 + c^2} = 2\sqrt{b^2 + c^2}
+% 
+% Menurut definisi elips;
+% 
+% latex: 2\sqrt{b^2 + c^2} = 2a
+%% latex: \Rightarrow a = \sqrt{b^2 + c^2}
+%% latex: \Rightarrow a^2 = b^2 + c^2
+%% latex: \Rightarrow c^2 = a^2 - b^2
+>load geometry
+>a := 5; // panjang sumbu semi mayor
+>d := 4; // asumsikan d adalah jarak kedua fokus
+>c := d/2 // jarak pusat dengan salah satu fokus
+>b := sqrt (a^2-c^2) // panjang sumbu smei minor
+>a2 := a^2
+>b2 := b^2
+% Persamaan elips adalah
+%% latex: \frac {x^2} {a^2} + \frac {y^2} {b^2} = 1
+% 
+% sehingga
+>$&expand(x^2/25+y^2/21 = 1)
+>t := linspace(0,2pi,100);
+>x := a*cos(t);
+>y := b*sin(t);
+>setPlotRange(5); 
+>C := [0,0]; F1 := [-2,0]; F2 := [2,0]; // F1 & F2 adalah nilai (plus minus c,0)
+>aspect(1.1); plot2d(x, y); plotPoint(C); plotPoint(F1); plotPoint(F2):
+% 
+% 
+% Bagaimana jika pusat elips tidak di titik asal (0,0)???
+%% Let's get started!
+% 
+% Misalnya diberikan elips dengan pusat C(-4,5), salah satu titik
+% fokusnya berada di F1(-1,5) dengan panjang sumbu mayor adalah 12.
+% Tentukan F2, dan persamaan elips tersebut serta tunjukkan plotnya.
+%% Hint: sumbu mayor sejajar sumbu x
+% 
+>a := 6; // panjang sumbu semi mayor
+>C := [-4,5]; F1 &= [-1,5];
+>c := $distance(C,F1) // jarak pusat ke salah satu fokus
+>c := 3;
+>b := sqrt (a^2-c^2) // panjang sumbu semi minor
+>"persamaan elips: ((x-h)^2/a^2)+((y-k)^2^2/b^2)=1";
+>a2 := a^2
+>b2 := b^2
+>persamaan := "persamaan elips adalah (x+4)^2/a2+(y-5)^2/b2 = 1"
+>expr &= ((x+4)^2/a2+(y-5)^2/b2 = 1)
+>F1 &= [-4+c,5];
+>F2 &= [-4-c,5];
+>F1, F2
+>t = linspace(0, 2*pi, 100);
+>x = -4+a*cos(t);
+>y = 5+b*sin(t);
+>setPlotRange(10);
+>C := [-4,5]; F1 := [-1,5]; F2 := [-7,5];
+>aspect(1.1); plot2d(x,y); plotPoint(C); plotPoint(F1); plotPoint(F2):
+% 
+% * LATIHAN SOAL
+% 
+% 1. Diketahui titik fokus elips berada di F1(3,0) dan F2(-3,0). Jika
+% panjang sumbu mayor adalah 10, buatlah persamaan elips tersebut.
+% Apakah elips ini dapat dilukis dalam satu kuadran? Jelaskan alasamnu!
+% 
+>a := 5; C := [0,0]
+>F1 := [3,0];
+>F2 := [-3,0];
+>d &= 2*c;
+>d := $distance(F1,F2)
+>c := 6/2
+>b := sqrt(a^2-c^2)
+>t := linspace(0,2pi,100);
+>x := a*cos(t);
+>y := b*sin(t);
+>setPlotRange(10);
+>aspect(1.2); plot2d(x, y); plotPoint(F1); plotPoint(F2); plotPoint(C):
+% 
+% Persamaan elipsnya menjadi
+%% latex: \frac{x^2}{25} + \frac{y^2}{16} = 1
+% 
+% Elips ini tidak dapat dilukis dalam satu kuadran. Karena elips ini
+% simetris terhadap sumbu-x dan sumbu-y, bagian dari elips akan berada
+% di kuadran I, II, III, dan IV. Dengan pusat di titik (0,0), elips ini
+% akan memiliki bagian di seluruh kuadran, tidak terbatas hanya pada
+% satu kuadran.
+%% Simplenya lihat saja 2 titik fokusnya sudah berada di kuadran yang
+% berbeda.
+% 
+% 
+% 
+% Penyelesaian
+% 
+% a. Identifikasi Parameter:
+%%    - Fokus F1(3, 0) dan F2(-3, 0) menunjukkan bahwa fokus terletak
+% pada sumbu x.
+%%    - Panjang sumbu mayor 2a = 10, sehingga a = 5.
+%%    - Jarak dari pusat ke fokus (c) dapat dihitung:
+%% jarak dari pusat ke fokus = 3
+% 
+%    - Pusat elips adalah titik tengah antara F1 dan F2, yaitu C(0, 0).
+% 
+% latex: 2a = 10
+%% latex: a = 5
+%% latex: c = 3
+%% latex: C : (0, 0)
+% 
+% b. Hitung Panjang Sumbu Minor (b):
+%%    - Gunakan hubungan
+%% latex: c^2 = a^2 - b^2
+%% latex: c^2 = 3^2 = 9
+% 
+% 
+%    - Dari hubungan
+%% latex: c^2 = a^2 - b^2
+%% latex: 9 = 5^2 - b^2
+%% latex: 9 = 25 - b^2
+%% latex: b^2 = 25 - 9
+%% latex: b^2 = 16
+%% latex: b = 4
+% 
+% c. Tentukan Persamaan Elips
+%%    - Persamaan elips dengan pusat di C(0, 0) dan sumbu horizontal
+% adalah:
+%% latex: \frac{x^2}{a^2} + \frac{y^2}{b^2} = 1
+% 
+% Menjadi:
+%% latex: \frac{x^2}{5^2} + \frac{y^2}{4^2} = 1
+% 
+% Sehingga persamaan elips adalah:
+%% latex: \frac{x^2}{25} + \frac{y^2}{16} = 1
+% 
+% 
+% d. Apakah Elips Ini Dapat Dilukis dalam Satu Kuadran?
+%%    - Elips ini tidak dapat dilukis dalam satu kuadran. Karena elips
+% ini simetris terhadap sumbu x dan sumbu y, bagian dari elips akan
+% berada di kuadran I, II, III, dan IV.
+%%    - Alasan: Dengan pusat di titik (0, 0, elips ini akan memiliki
+% bagian di seluruh kuadran, tidak terbatas hanya pada satu kuadran.
+>
+% 
+% 2. Diketahui elips memiliki fokus di P1(3,6) dan P2(3,-2) dengan pusat
+% elips berada di titik C(3,2). Panjang sumbu mayor adalah 12. Tentukan
+% persamaan elips tersebut! Apakah elips tersebut simetris terhadap
+% sumbu-y? Jelaskan!
+% 
+>P1 := [3,6];
+>P2 := [3,-2];
+>C := [3,2];
+>a := 6;
+>d &= 2*c;
+>c := 6-2
+>b := sqrt(a^2-c^2)
+>t := linspace(0,2pi,100);
+>x := 3+ a*cos(t);
+>y := 2+ b*sin(t);
+>setPlotRange(-10,10);
+>aspect(0.8); plot2d(x, y); plotPoint(P1); plotPoint(P2); plotPoint(C):
+% Persamaan elips menjadi
+%% latex: \frac{(x - 3)^2}{20} + \frac{(y - 2)^2}{36} = 1
+% 
+% 
+% 
+% a. Tentukan Nilai a:
+%%    Panjang sumbu mayor adalah 12, sehingga 2a = 12. Maka:
+%% latex: a = \frac{12}{2} = 6
+% 
+% 
+% b. Tentukan Jarak Fokus dan Nilai c:
+%%    Fokus elips berada di F1(3, 6) dan F2(3, -2).
+%%    Jarak antara pusat C(3, 2) dan fokus F1(3, 6) adalah c:
+%% latex: c = |6 - 2| = 4
+% 
+% c. Hitung Nilai b:
+%%    Gunakan hubungan
+%% latex: c^2 = a^2 - b^2
+%% latex: 4^2 = 6^2 - b^2
+%% latex: 16 = 36 - b^2
+%% latex: b^2 = 36 - 16 = 20
+%% latex: b = \sqrt{20} = 2\sqrt{5}
+% 
+% 
+% d. Tentukan Persamaan Elips:
+%%    Karena sumbu mayor elips berada di sepanjang sumbu y, bentuk umum
+% persamaan elips dengan pusat di (h, k) = (3, 2) adalah:
+%% latex: \frac{(x - h)^2}{b^2} + \frac{(y - k)^2}{a^2} = 1
+%%    Masukkan nilai:
+%% latex: h = 3, k = 2, a = 6, dan b = 2\sqrt{5}
+%% latex: \frac{(x - 3)^2}{(2\sqrt{5})^2} + \frac{(y - 2)^2}{6^2} = 1
+% 
+%    Sederhanakan:
+%% latex: \frac{(x - 3)^2}{20} + \frac{(y - 2)^2}{36} = 1
+% 
+% 
+% Elips tersebut akan simetris terhadap sumbu-y, mengingat sumbu
+% mayornya berada di sumbu-y dengan pusat di C(3,2). Artinya pusat elips
+% bergeser dari titik asal ke titik C tanpa mengubah bentuk elipsnya.
+% Fakta tersebut sejalan dengan sifat simetri elips, elips yang
+% berbentuk persamaan standard akan simetris terhadap sumbu-y jika
+% pusatnya di (h,k) dan sumbu mayornya sejajar dengan sumbu-y yang
+% kemudian setiap titik (x,y) pada elips akan memiliki pasangan simetris
+% (-x+2h,y) yang juga berada pada elips. Dalam kasus tersebut setiap
+% titik (x,y) dalam elips akan kan memiliki pasangan simetris (-x+6,y)
+% yang juga berada pada elips tersebut.
+% 
+>
+% 
+% 3. Gambarlah suatu elips jika diketahui kedua titik fokusnya, misalnya
+% P dan Q. Ingat elips dengan fokus P dan Q adalah tempat kedudukan
+% titik-titik yang jumlah jarak ke P dan ke Q selalu sama (konstan).
+%% Penyelesaian:
+%% Diketahui kedua titik fokus P = [-1,-1] dan Q = [1,-1]
+>P := [-1,-1]; Q := [1,-1];
+>c := 1; // |-1-1|/2 = 1 diperoleh dari jarak PQ/2
+% 
+% karena jarak pusat ke fokus adalah 1, maka pusatya adalah di titik
+% asal C(0,-1)
+>C := [0,-1];
+>a := 8; b := 2; // dimisalkan
+>t := linspace(0,2pi,100);
+>x := a*cos(t);
+>y := -1+b*sin(t);
+>setPlotRange(10);
+>aspect(1.2); plot2d(x, y); plotPoint(P); plotPoint(Q); plotPoint(C):     
+
+>
+% * 
+% * Sub Materi 11
+% 
+% ** Perhitungan geometris: jarak dua titik (panjang ruas garis),
+%% ** luas dan keliling segitiga, luas dan keliling lingkaran
+% 
+% ** 1. Jarak Dua Titik (Panjang Ruang Garis) Jarak antara dua titik
+% adalah panjang garis lurus yang menghubungkan kedua titik tersebut
+% dalam bidang atau ruang tiga dimensi.
+% 
+% Misal terdapat dua titik
+%% latex: A(x_1,y_1)
+%% latex: B(x_2,y_2)
+% 
+% Rumus untuk menghitung jarak antara dua titik adalah:
+%% latex: |d| = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}
+% 
+% Rumus ini didapatkan dari teorema Pythagoras, di mana jarak tersebut
+% membentuk hipotenusa dari segitiga siku-siku dengan panjang sisi
+% horizontal
+%% latex: |x_2 - x_1|
+%% dan sisi vertikal
+%% latex: |y_2 - y_1|
+% 
+% Contoh:
+%% Jarak antara A(1,2) dan B(5,5)
+%% latex: |d| = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}
+%% latex: |d| = \sqrt{(5 - 1)^2 + (5 - 2)^2}
+%% latex: |d| = \sqrt{4^2 + 3^2}
+%% latex: |d| = \sqrt{16 + 9} = \sqrt{25} = 5
+%% Jadi, jarak antara titik A(1,2) dan B(5,5) adalah 5.
+% 
+% Bandingkan dengan menggunakan EMT:
+>
+>load geometry
+Numerical and symbolic geometry.
+>A=[1,2];
+>B=[5,5];
+>distance(A,B)
+5
+>setPlotRange(0,7,0,7);
+>A=[1,2]; plotPoint(A,"A");
+>B=[5,5]; plotPoint(B,"B");
+>plotSegment(A,B,"c"):
+>reset;
+>
+>
+% * 2. Luas Segitiga 
+% Luas segitiga dapat dihitung menggunakan beberapa metode tergantung
+% pada informasi yang diberikan. Berikut adalah beberapa cara umum untuk
+% menghitung luas segitiga.
+% 
+% ** 1) Menggunakan Alas dan Tinggi
+%% Jika diketahui panjang alas (a) dan tinggi (t) segitiga, maka luasnya
+% dapat dihitung dengan rumus:
+% 
+% latex: L = \frac{1}{2} \times a \times t
+% 
+% Rumus luas segitiga di atas didapat dari hubungan dengan persegi
+% panjang. Bayangkan sebuah persegi panjang dengan panjang a (alas
+% segitiga) dan lebar t (tinggi segitiga). Luas persegi panjang ini
+% adalah:
+%% latex: a \times t
+% 
+% Jika kita membagi persegi panjang ini menjadi dua segitiga yang
+% identik dengan menarik diagonal dari satu sudut ke sudut berlawanan,
+% kita akan mendapatkan dua segitiga dengan alas a dan tinggi t. Karena
+% luas kedua segitiga ini sama, maka luas setiap segitiga adalah
+% setengah dari luas persegi panjang tersebut, yang dapat ditulis:
+% 
+% latex: L = \frac{1}{2} \times a \times t
+%% Contoh:
+%% Hitung luas segitiga dengan alas 10cm dan tingginya 8cm.
+%% latex: L = \frac{1}{2} \times 10 \times 8
+%% latex: L = \frac{1}{2} \times 80 = 40cm^2
+%% Jadi, luas segitiga tersebut adalah 40cm^2.
+% 
+% Bandingkan dengan EMT.
+>a:= 10;
+>t:= 8;
+>0.5*10*8
+40
+>
+% ** 2) Luas Segitiga Menggunakan Rumus Heron
+% 
+% Rumus Heron biasanya digunakan untuk menghitung luas segitiga ketika
+% yang diketahui adalah panjang ketiga sisi segitiga dan koordinat
+% titik-titiknya.
+% 
+% Rumus Heron menyatakan bahwa luas segitiga dengan panjang sisi-sisi a,
+% b dan c adalah:
+% 
+% latex: L = \sqrt{s(s-a)(s-b)(s-c)}\quad \text{ dengan } s=\frac{(a+b+c)}{2},
+% 
+% atau bisa ditulis dalam bentuk lain:
+% 
+% latex: L = \frac{1}{4}\sqrt{(a+b+c)(b+c-a)(a+c-b)(a+b-c)}
+% 
+% Untuk membuktikan hal ini kita misalkan C(0,0), B(a,0) dan A(x,y),
+% b=AC, c=AB. Luas segitiga ABC adalah
+% 
+% latex: L_{\triangle ABC}=\frac{1}{2}a\times y.
+% 
+% Nilai y didapat dengan menyelesaikan sistem persamaan:
+% 
+% latex: x^2+y^2=b^2, \quad (x-a)^2+y^2=c^2.
+% 
+% Contoh.
+%% Diketahui suatu segitiga melalui titik-titik A[1,2], B[4,6], dan
+% C[7,2]. Hitunglah luas segitiga tersebut.
+% 
+% Jawab:
+%% Yang pertama dilakukan adalah menghitung panjang garisnya menggunakan
+% rumus panjang garis (jarak dua titik).
+%% Garis pertama, garis AB didefinisikan sebagai a.
+%% Jarak antara A(1,2) dan B(4,6)
+%% latex: |a| = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}
+%% latex: |a| = \sqrt{(4 - 1)^2 + (6 - 2)^2}
+%% latex: |a| = \sqrt{3^2 + 4^2}
+%% latex: |a| = \sqrt{9 + 16} = \sqrt{25}=5
+%% sehingga a = 5.
+% 
+% Garis kedua, garis BC yang didefinisikan sebagai b.
+%% Jarak antara B(4,6) dan C(7,2)
+%% latex: |b| = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}
+%% latex: |b| = \sqrt{(7 - 4)^2 + (2 - 6)^2}=
+%% latex: |b| = \sqrt{3^2 + (-4)^2}
+%% latex: |b| = \sqrt{9 + 16} = \sqrt{25} = 5
+%% sehingga b = 5.
+% 
+% Garis ketiga, garis AC yang didefinisikan sebagai c.
+%% Jarak antara A(1,2) dan C(7,2)
+%% latex: |c| = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}
+%% latex: |c| = \sqrt{(7 - 1)^2 + (2-0)^2}=
+%% latex: |c| = \sqrt{6^2 + 0^2}
+%% latex: |c| = \sqrt{36 + 0} = \sqrt{36}= 6
+%% sehingga c = 6.
+% 
+% latex: s=\frac{(5+5+6)}{2} = \frac{16}{2}=8
+%% latex: L = \sqrt{s(s-a)(s-b)(s-c)}
+%% latex: L = \sqrt{8(8-5)(8-5)(8-6)}
+%% latex: L = \sqrt{8(3)(3)(2)} = \sqrt{144}=12
+% 
+% Jadi, luas segitiga yang melalui titik-titik A[1,2], B[4,6], dan
+% C[7,2] adalah 12cm^2.
+% 
+% Perhitungan dengan EMT
+>
+>A=[1,2];
+>B=[4,6];
+>C=[7,2];
+>areaTriangle(A,B,C)
+12
+% ** Latihan
+% 
+% Diketahui segitiga dengan alas a dan tinggi t memiliki luas 20 cm^2.
+% Tentukan pasangan nilai a dan t berikut yang dapat menjadi panjang
+% alas dan tinggi segitiga tersebut jika alas dan tinggi merupakan
+% bilangan bulat positif.
+% 
+% Pilihan jawaban:
+% 
+% A. a=5 cm dan t=8cm
+% 
+% B. a=10cm dan t=4cm
+% 
+% C. a=7cm dan  t=6cm
+% 
+% D. a=4cm dan  t=10cm
+% 
+% E. a=6cm dan t=6cm
+% 
+% latex: L = \frac{1}{2} \times a \times t
+%% Maka, a*t=40
+% 
+% Perkalian a dan t menghasilkan 40, yang benar adalah opsi A, B, dan D.
+>load "C:\Users\ASUS\Euler\EulerTemp.e"
+>
+% * 3. Keliling Segitiga 
+% 
+% Secara umum, keliling segitiga (P) adalah jumlah panjang ketiga
+% sisinya. Misalkan kita memiliki segitiga dengan tiga sisi a, b, dan c
+% maka kelilingnya dapat diperoleh dengan
+% 
+% latex: P = a + b + c
+% 
+% Contoh
+%% Diketahui segitiga dengan titik sudut A(4,0), B(-4,0) dan C(0,3).
+% Berapa keliling segitiga tersebut?
+% 
+% Yang pertama dilakukan adalah menghitung panjang garisnya menggunakan
+% rumus panjang garis (jarak dua titik).
+%% Garis pertama, garis AB didefinisikan sebagai a.
+%% Jarak antara A(4,0) dan B(-4,0)
+%% latex: |a| = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}
+%% latex: |a| = \sqrt{(4 - (-4))^2 + (0 - 0)^2}
+%% latex: |a| = \sqrt{8^2 + 0^2}
+%% latex: |a| = \sqrt{64 + 0} = \sqrt{64}=8
+%% sehingga a = 8.
+% 
+% Garis kedua, garis BC yang didefinisikan sebagai b.
+%% Jarak antara B(-4,0) dan C(0,3)
+%% latex: |b| = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}
+%% latex: |b| = \sqrt{(0 - (-4))^2 + (3 - 0)^2}=
+%% latex: |b| = \sqrt{4^2 + 3^2}
+%% latex: |b| = \sqrt{16 + 9} = \sqrt{25} = 5
+%% sehingga b = 5.
+% 
+% Garis ketiga, garis AC yang didefinisikan sebagai c.
+%% Jarak antara A(4,0) dan C(0,3)
+%% latex: |c| = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}
+%% latex: |c| = \sqrt{(0 - 4)^2 + (3-0)^2}=
+%% latex: |c| = \sqrt{(-4)^2 + 3^2}
+%% latex: |c| = \sqrt{16 + 9} = \sqrt{25}= 5
+%% sehingga c = 5.
+% 
+% latex: P = a + b + c = 8 + 5 + 5 = 18
+% 
+% Jadi, keliling segitiga tersebut adalah 18
+%% Bandingkan dengan perhitungan EMT.
+>load geometry
+Numerical and symbolic geometry.
+>A = [4,0];
+>B = [-4,0];
+>C = [0,3];
+>a = distance(A,B)
+8
+>b = distance(B,C)
+5
+>c = distance(A,C)
+5
+>K = a + b + c
+18
+>
+>
+>
+>
+% * 4. Luas Lingkaran
+% 
+% Luas lingkaran adalah ukuran dari area atau wilayah yang tertutup oleh
+% sebuah lingkaran. Untuk menghitung luas lingkaran, kita bisa
+% menggunakan rumus:
+% 
+% latex: \text{Luas} = \pi \times r^2
+% 
+% di mana:
+%% latex: \pi \text{ adalah konstanta dengan nilai mendekati 3,14159}
+%% latex: r \text{  adalah jari-jari lingkaran, yaitu jarak dari pusat lingkaran ke tepi lingkaran}
+% 
+% Contoh Penghitungan Luas Lingkaran
+%% Jika sebuah lingkaran memiliki jari-jari 10 cm, maka luasnya adalah:
+% 
+% latex: L = \pi \times r^2=\pi \times 10^2 = 3,14159 \times 100 = 314,159 \text{ cm}^2
+% 
+% 
+% Luas lingkaran sangat bergantung pada jari-jarinya. Jika jari-jari
+% lingkaran bertambah, maka luas lingkaran akan bertambah dengan kuadrat
+% dari jari-jari.
+>
+>r=10;
+>area := pi * r^2;
+>area
+314.159265359
+>
+% ** Latihan
+% 
+% 1. Sebuah taman kota berbentuk lingkaran memiliki jari-jari 20 meter.
+% Taman tersebut akan ditanami rumput. Berapa luas area taman yang akan
+% ditanami rumput tersebut?
+% 
+% A) 1236,637
+%% B) 628,3185
+%% C) 1256,637
+%% D) 2256, 637
+% 
+% Jawaban:
+%% latex: L = \pi \times r^2=\pi \times 20^2 = 3,14159 \times 400 = 1256,637 \text{ cm}^2
+>
+>r=20;
+>area := pi * r^2;
+>area
+1256.63706144
+% 2. Seorang pelukis membuat karya lukis objek geomtri berbentuk
+% lingkaran. Ada dua lingkaran yang memiliki pusat yang sama
+% (konsentris). Lingkaran yang lebih besar memiliki jari-jari 15 meter,
+% dan lingkaran yang lebih kecil di dalamnya memiliki jari-jari 8 meter.
+% Seorang pelukis ingin mewarnai area antara dua lingkaran ini. Berapa
+% luas area yang perlu diwarnai?
+% 
+% Jawab:
+% 
+% Luas lingkaran besar:
+% 
+% latex: L = \pi \times r^2=\pi \times 15^2 = 3,14159 \times 225 = 706,858 \text{ m}^2
+% 
+% Luas lingkaran kecil:
+% 
+% latex: L = \pi \times r^2=\pi \times 8^2 = 3,14159 \times 64 = 201,062 \text{ m}^2
+% 
+% 
+% Luas di antara lingkaran besar dan kecil didapat dengan mengurangkan
+% luas lingkaran besar dan kecil.
+%% latex: 706,858-201,062 = 505,796 \text{ m}^2
+>
+>r1=15;
+>area1:= pi * r1^2;
+>area1
+706.858347058
+>r2=8;
+>area2:=pi*r2^2;
+>area2
+201.06192983
+>area1-area2
+505.796417228
+>
+>
+>
+>
+
+% * 5. Keliling Lingkaran
+% 
+% Keliling lingkaran adalah panjang batas luar dari lingkaran. Untuk
+% menghitung keliling, kita memerlukan informasi tentang jari-jari atau
+% diameter (d), di mana diameter adalah dua kali jari-jari (d=2r).
+% 
+% Untuk menghitung keliling lingkaran, kita dapat menggunakan rumus:
+% 
+% latex: K = 2 \pi r
+% 
+% Keterangan:
+%% - K = keliling lingkaran
+%% - r = jari-jari lingkaran
+% 
+% Contoh.
+%% Keliling lingkaran dengan jari-jari 5
+%% latex: K = 2 \pi r
+%% latex: K = 2 \pi 5
+%% latex: K = 10(3,14)=31,4
+% 
+% Bandingkan dengan perhitungan EMT
+>
+>r := 5;
+>K = 2*pi*r
+31.4159265359
+% Contoh
+%% Sebuah roda memiliki jari-jari 21 cm. Jika roda tersebut berputar satu
+% kali penuh, berapa jarak yang dilalui? Jika roda berputar selama 5
+% menit dengan kecepatan 30 putaran per menit, berapa jarak total yang
+% ditempuh?
+% 
+% 1. Menghitung keliling roda
+%% latex: K = 2 \pi r
+%% latex: K = 2 \pi 21
+%% latex: K = 2 \times (\frac{22}{7}) \times 21 = 132cm
+%% Jadi, keliling roda adalah 132cm
+% 
+% 2. Menghitung jarak yang ditempuh dalam 5 Menit
+%% Jika roda berputar 30 putaran per menit, maka dalam 5 menit:
+%% Total putaran = 30 putaran/menit×5 menit = 150 putaran
+%% Jarak total= Keliling×total putaran
+% 
+% latex: 132\times 150 = 19800cm = 198m
+% 
+% Bandingkan dengan perhitungan EMT
+>
+>r:=21;
+>K=2*pi*r
+131.946891451
+>TP = 30*5
+150
+>JT = K*TP
+19792.0337176
+% Contoh
+%% Sebuah lingkaran memiliki jari-jari yang berubah-ubah. Jari-jari
+% lingkaran ditentukan dengan rumus r=4+k, di mana k adalah angka yang
+% mulai dari 1 hingga 5. Hitunglah total keliling lingkaran saat k
+% bervariasi dari 1 hingga 5.
+% 
+% 1. Mengitung jari-jari untuk setiap nilai k:
+% 
+% latex: k = 1, r = 4 + 1 = 5
+%% latex: k = 2, r = 4 + 2 = 6
+%% latex: k = 3, r = 4 + 3 = 7
+%% latex: k = 4, r = 4 + 4 = 8
+%% latex: k = 5, r = 4 + 5 = 9
+% 
+% 2. Hitung keliling untuk setiap jari-jari:
+%% latex: K(1) = 2\pi(5)= 10\pi
+%% latex: K(2) = 2\pi(6)= 12\pi
+%% latex: K(3) = 2\pi(7)= 14\pi
+%% latex: K(4) = 2\pi(8)= 16\pi
+%% latex: K(4) = 2\pi(9)= 18\pi
+% 
+% 3. Jumlah total keliling
+%% latex: K = 10\pi + 12\pi + 14\pi + 16\pi +18\pi = 70\pi = 219,911
+% 
+% Bandingkan dengan perhitungan EMT
+>
+>k = 1:4;
+>r = 6-k;
+>KT = sum(2*pi*r)
+87.9645943005
+>
+% Sebuah kolam berbentuk lingkaran memiliki keliling 40pi. Kolam
+% tersebut akan dipasang ubin sesuai luasnya. Berapa luas kolam
+% tersebut?
+% 
+% Jawab:
+%% keliling
+%% latex: \pi \times 2r
+%% latex: 40 \pi= \pi \times 2r 
+>
+>&solve(40*pi=pi*2*r)
+
+                               [r = 20]
+
+>r = 20
+20
+>area:=pi*r^2
+1256.63706144
+>
+% ** LATIHAN SOAL
+%% Sebuah lingkaran memiliki jari-jari yang berubah-ubah. Jari-jari
+% lingkaran ditentukan dengan rumus r=6-k, di mana k adalah angka yang
+% mulai dari 1 hingga 4. Berapa total keliling lingkaran saat k
+% bervariasi dari 1 hingga 4?
+% 
+% latex: a) 87,9645
+%% latex: b) 81,6814
+%% latex: c) 75,3982
+%% latex: d) 94,2477
+%% latex: e) 86,3937
+>
+>k = 1:4;
+>r = 6-k;
+>KT = sum(2*pi*r)
+87.9645943005
+% Jadi, jawaban yang benar adalah a yaitu 87,9654
+% 
+% ** LATIHAN SOAL
+%% Sebuah kolam berbentuk lingkaran memiliki keliling 40pi. Apakah benar
+% luas kolam tersebut adalah 1256.637?
+>
+>&solve(40*pi=pi*2*r) // mencari jari-jari
+
+                               [r = 20]
+
+>r = 20
+20
+>area:=pi*r^2
+1256.63706144
+% Jadi, benar bahwa luas kolam tersebut adalah 1256.637
+>
+>
+% ** LATIHAN SOAL
+%% Jodohkan setiap ruas garis yang dibentuk oleh 2 titik dengan jaraknya
+% 
+% a. AB,dengan  A=(-1,-1)  dan B(5,-1)
+%% b. BC,dengan  B=(5,-1) dan C(5,7)
+%% c. AC,dengan  A=(-1,-1)  dan C(5,7)
+% 
+% Jarak
+%% latex: 1) 10
+%% latex: 2) 6
+%% latex: 3) 8
+>
+>load Geometry
+Numerical and symbolic geometry.
+>A = [-1,-1];
+>B = [5,-1];
+>C = [5,7];
+>AB = distance(A,B)
+6
+>BC = distance(B,C)
+8
+>AC = distance(A,C)
+10
+>
+% ** LATIHAN SOAL
+%% Terdapat dua segitiga, yaitu segitiga A dan segitiga B. Segitiga A
+% memiliki titik sudut (2,2),(2,6)  dan (8,2). Sedangkan, segitiga B
+% memiliki titik sudut (3,-4),(-2,-4)  dan (-4,6). Hitunglah kedua luas
+% segitiga tersebut, dan pilihlah pernyataan yang benar.
+% 
+% a. Luas segitiga A lebih besar dibandingkan luas segitiga B
+%% b. Luas segitiga B lebih besar dibandingkan luas segitiga A
+%% c. Luas segitiga A sama dengan luas segitiga B
+%% d. Selisih kedua luas segitiga tersebut adalah 13
+>
+>A1 = [2,2];
+>A2 = [2,6];
+>A3 = [8,2];
+>LA = areaTriangle(A1,A2,A3) // Luas segitiga A
+12
+>B1 = [3,-4];
+>B2 = [-2,-4];
+>B3 = [-4,6];
+>LB = areaTriangle(B1,B2,B3) // Luas segitiga B
+25
+>selisih = LB-LA
+13
+>
+% Jadi, pernyataan yang benar adalah b (Luas segitiga B lebih besar
+% dibandingkan luas segitiga A) dan d (Selisih kedua luas segitiga
+% tersebut adalah 13)
+>
+>
+>
+>
